@@ -1,0 +1,31 @@
+@import "../../../styles.scss";
+
+.navbar {
+  background-color: white;
+
+  button.dropdown-toggle {
+    display: inline-block;
+    border: none;
+    padding: 7px 2px;
+    margin: 0;
+    text-decoration: none;
+    background: none;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  button.dropdown-toggle:focus {
+    outline: 0;
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+}
+
+.shadow {
+    box-shadow: 0 .1rem 0.5rem rgba(0,0,0,.15)!important;
+}
