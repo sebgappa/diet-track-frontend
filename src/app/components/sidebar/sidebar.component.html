@@ -1,0 +1,17 @@
+<nav class="sidebar" [ngClass]="getSidebarClass()">
+    <div class="sidebar-sticky mt-2">
+        <ul class="nav flex-column pt-2">
+            <li class="nav-item">
+                <a class="nav-link px-4" routerLink="diary" routerLinkActive="active">
+                    <span><fa-icon [icon]="diaryIcon"></fa-icon></span>
+                    <span class="nav-item-text ml-3">My Diary</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="toggleSidebarButton" class="float-right">
+        <button (click)="collapseSideBarClicked()" type="button" class="collapse-toggle btn px-4">
+            <fa-icon [icon]="collapse ? openSidebarIcon : closeSidebarIcon" size="lg"></fa-icon>
+        </button>
+    </div>
+</nav>

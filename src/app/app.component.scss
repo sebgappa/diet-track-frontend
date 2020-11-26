@@ -1,0 +1,68 @@
+@import "../styles.scss";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+// Calculates the size of the header depending on when the sidebar is opened or closed
+main {
+  $sidebar-width: 65px;
+  width: calc(100% - $sidebar-width);
+  margin-left: $sidebar-width;
+  transition: all 0.5s;
+
+  @include media-breakpoint-up(sm) {
+    $sidebar-width: 65px;
+    width: calc(100% - $sidebar-width);
+    margin-left: $sidebar-width;
+  }
+
+  @include media-breakpoint-up(md) {
+    $sidebar-width: 150px;
+    width: calc(100% - $sidebar-width);
+    margin-left: $sidebar-width;
+  }
+
+  @include media-breakpoint-up(lg) {
+    $sidebar-width: 180px;
+    width: calc(100% - $sidebar-width);
+    margin-left: $sidebar-width;
+  }
+
+  @include media-breakpoint-up(xl) {
+    $sidebar-width: 250px;
+    width: calc(100% - $sidebar-width);
+    margin-left: $sidebar-width;
+  }
+}
+
+.sidebar-open {
+  @include media-breakpoint-up(sm) {
+    $sidebar-width: 65px;
+    width: calc(100% - $sidebar-width);
+    margin-left: $sidebar-width;
+  }
+
+  @include media-breakpoint-up(md) {
+    $sidebar-width: 150px;
+    width: calc(100% - $sidebar-width);
+    margin-left: $sidebar-width;
+  }
+
+  @include media-breakpoint-up(lg) {
+    $sidebar-width: 180px;
+    width: calc(100% - $sidebar-width);
+    margin-left: $sidebar-width;
+  }
+
+  @include media-breakpoint-up(xl) {
+    $sidebar-width: 250px;
+    width: calc(100% - $sidebar-width);
+    margin-left: $sidebar-width;
+  }
+}
+
+.sidebar-close {
+  $sidebar-width: 65px;
+  width: calc(100% - $sidebar-width);
+  margin-left: $sidebar-width;
+}
