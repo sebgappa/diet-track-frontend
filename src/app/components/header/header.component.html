@@ -1,10 +1,37 @@
 <div class="stick-top shadow">
-    <nav class="navbar navbar-light flex-md-nowrap p-2 pb-3 shadow">
-        <div class="col text-right">
-            <div ngbDropdown display="dynamic" autoClose="true" class="d-inline-block" placement="bottom-right">
-                <button ngbDropdownToggle>Test</button>
-                <div ngbDropdownMenu>
-                    <button ngbDropdownItem>Logout</button>
+    <nav class="navbar navbar-light flex-md-nowrap p-2 shadow">
+        <div class="container-fluid">
+            <div class="row w-100 no-gutters">
+                <div class="col-lg-4 d-none d-lg-block"></div>
+                <div class="col-lg-4 d-none d-lg-block text-center">
+                    <h2>
+                        <span>
+                            <fa-icon [icon]="seedlingIcon" size="lg"></fa-icon>
+                        </span>
+                        DietTrack
+                    </h2>
+                </div>
+                <div class="col-lg-4 d-none d-lg-block text-right">
+                    <div ngbDropdown display="dynamic" autoClose="true" class="d-inline-block" placement="bottom-right">
+                        <button ngbDropdownToggle>My Account</button>
+                        <div ngbDropdownMenu>
+                            <button ngbDropdownItem>Logout</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hides text to adapt to smaller screen size -->
+                <div class="col-4 d-lg-none"></div>
+                <div class="col-4 d-lg-none text-center">
+                    <fa-icon [icon]="seedlingIcon" size="lg"></fa-icon>
+                </div>
+                <div class="col-4 d-lg-none text-right">
+                    <div ngbDropdown display="dynamic" autoClose="true" class="d-inline-block" placement="bottom-right">
+                        <button ngbDropdownToggle></button>
+                        <div ngbDropdownMenu>
+                            <button ngbDropdownItem>Logout</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

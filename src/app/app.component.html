@@ -1,4 +1,5 @@
-<main role="main" class="p-0">
+<app-sidebar (closeSidebar)="setSidebarState($event)"></app-sidebar>
+<main role="main" class="p-0" [ngClass]="getSidebarState()">
   <app-header></app-header>
   <router-outlet></router-outlet>
 </main>

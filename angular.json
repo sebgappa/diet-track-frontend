@@ -129,6 +129,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "DietTrack"
+    }
+  },
+  "defaultProject": "DietTrack",
+  "cli": {
+    "analytics": "d8a2a9f5-bd2a-4d74-a442-2bcafad99245"
+  }
 }
