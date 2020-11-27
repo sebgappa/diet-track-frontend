@@ -10,6 +10,14 @@ const routes: Routes = [
         loadChildren: () => import('./modules/diary/diary.module').then(mod => mod.DiaryModule)
       },
       {
+        path: 'goals',
+        loadChildren: () => import('./modules/goals/goals.module').then(mod => mod.GoalsModule)
+      },
+      {
+        path: 'meals',
+        loadChildren: () => import('./modules/meals/meals.module').then(mod => mod.MealsModule)
+      },
+      {
         path: '**',
         redirectTo: 'diary'
       },

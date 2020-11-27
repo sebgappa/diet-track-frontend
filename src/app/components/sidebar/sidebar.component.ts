@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { faBook, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faBullseye, faChevronLeft, faChevronRight, faUtensils } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,9 +9,12 @@ import { faBook, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-s
 export class SidebarComponent implements OnInit {
   @Output() public closeSidebar = new EventEmitter<boolean>();
   public collapse: boolean;
+
   public openSidebarIcon = faChevronRight;
   public closeSidebarIcon = faChevronLeft;
   public diaryIcon = faBook;
+  public goalIcon = faBullseye;
+  public mealIcon = faUtensils;
 
   constructor() { }
 

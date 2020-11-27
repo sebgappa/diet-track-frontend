@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-diary',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./diary.component.scss']
 })
 export class DiaryComponent implements OnInit {
+  public plusIcon = faPlus
 
   constructor() { }
 
   ngOnInit() {
   }
-
 }
