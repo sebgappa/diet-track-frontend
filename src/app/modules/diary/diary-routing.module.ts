@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DiaryComponent } from './components/diary/diary.component';
-import { ScannerComponent } from './scanner/scanner.component';
+import { ScannerComponent } from './components/scanner/scanner.component';
 
 const routes: Routes = [
   {

@@ -7,7 +7,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./diary.component.scss']
 })
 export class DiaryComponent implements OnInit {
-  public plusIcon = faPlus
+  public plusIcon = faPlus;
 
   constructor() { }
 
