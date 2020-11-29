@@ -5,7 +5,6 @@ import { DiaryRoutingModule } from './diary-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ScannerComponent } from './components/scanner/scanner.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
