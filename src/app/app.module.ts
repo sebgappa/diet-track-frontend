@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -15,6 +15,8 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
 import { AuthenticationButtonComponent } from './components/authentication-button/authentication-button.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
@@ -31,14 +33,24 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    HttpClientModule,
     FontAwesomeModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     AuthModule.forRoot({
       ...env.auth,
+      httpInterceptor: {
+        ...env.httpInterceptor,
+      },
     }),
   ],
-  providers: [],
+  providers: [
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: AuthHttpInterceptor, 
+      multi: true 
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
