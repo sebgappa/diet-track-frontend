@@ -27,7 +27,7 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     LogoutButtonComponent,
     AuthenticationButtonComponent,
     ProfileComponent,
-    WelcomeComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
