@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-welcome',
@@ -6,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class WelcomeComponent implements OnInit {
+export class WelcomeComponent  {
+  public isMobile;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(deviceDetectorService: DeviceDetectorService) {
+    this.isMobile = deviceDetectorService.isMobile();
+    console.log(this.isMobile);
   }
-
 }

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { ProfileComponent } from './components/profile/profile.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { DeviceGuard } from './guard/device.guard';
 
 const routes: Routes = [
   {
@@ -11,17 +12,17 @@ const routes: Routes = [
       {
         path: 'diary',
         loadChildren: () => import('./modules/diary/diary.module').then(mod => mod.DiaryModule),
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, DeviceGuard]
       },
       {
         path: 'goals',
         loadChildren: () => import('./modules/goals/goals.module').then(mod => mod.GoalsModule),
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, DeviceGuard]
       },
       {
         path: 'meals',
         loadChildren: () => import('./modules/meals/meals.module').then(mod => mod.MealsModule),
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, DeviceGuard]
       },
       {
         path: 'profile',

@@ -1,11 +1,18 @@
+import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { DeviceService } from '../services/device.service';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
+@Injectable({
+    providedIn: 'root',
+})
 export class DeviceGuard implements CanActivate {
-    constructor(private deviceService: DeviceService) {}
+    constructor(private deviceDetectorService: DeviceDetectorService, private router: Router) {}
 
     canActivate(): boolean {
-        const isDesktop = this.deviceService.isDesktop();
-        return isDesktop;
+        const isMobile = this.deviceDetectorService.isMobile();
+        if(!isMobile) {
+            this.router.navigate(['/welcome'])
+        }
+        return isMobile;
     }
 }
