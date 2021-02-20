@@ -15,8 +15,8 @@ import { FoodService } from '../../services/food.service';
 })
 export class BreakdownComponent implements OnInit {
 
-  public labels: Label[] = ['Protein', 'Carbs', 'Fats'];
-  public data;
+  public labels: Label[] = ['Protein', 'Fats', 'Carbs'];
+  public data = [0, 0, 0];
   public type: ChartType = 'doughnut';
 
   private unsubscribe: Subject<void> = new Subject();
@@ -33,8 +33,8 @@ export class BreakdownComponent implements OnInit {
         }
       });
 
-    this.foodService.getFood(this.barcode, 1, 25).pipe(takeUntil(this.unsubscribe)).subscribe((response) => {
-      this.data = response.data;
+    this.foodService.getFood(this.barcode).pipe(takeUntil(this.unsubscribe)).subscribe((response) => {
+      this.data = [response.protein, response.fat, response.carbs];
     }, () => {
       console.log("No response");
     })

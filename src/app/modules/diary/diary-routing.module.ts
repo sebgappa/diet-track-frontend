@@ -14,7 +14,7 @@ const routes: Routes = [
     component: ScannerComponent
   },
   {
-    path: 'breakdown/{id}',
+    path: 'breakdown/:id',
     component: BreakdownComponent
   }
 ];
