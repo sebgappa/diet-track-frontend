@@ -5,8 +5,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './pie.component.html',
   styleUrls: ['./pie.component.scss']
 })
-export class PieComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+export class PieComponent {
+
+  public labels = ['Protein', 'Carbs', 'Fats'];
+  public data = [120, 150, 180];
+  public type = 'doughnut';
 }

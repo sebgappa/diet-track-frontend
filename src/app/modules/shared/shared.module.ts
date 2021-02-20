@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PieComponent } from './components/charts/pie/pie.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: 
@@ -10,7 +11,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     CommonModule,
-    NgbModule
+    NgbModule,
+    ChartsModule
   ],
   exports:
   [
