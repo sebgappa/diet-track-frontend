@@ -16,7 +16,8 @@ export class ScannerComponent {
   }
 
   scanSuccess(event) {
-    this.router.navigate(['/breakdown', { id: event }]);
+    this.toastrService.success('Barcode value read!');
+    this.router.navigate(['diary/breakdown/', event]);
   }
 
   scanError(event) {
