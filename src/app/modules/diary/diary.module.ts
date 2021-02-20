@@ -5,19 +5,22 @@ import { DiaryRoutingModule } from './diary-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ScannerComponent } from './components/scanner/scanner.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import { ToastrModule } from 'ngx-toastr';
+import { BreakdownComponent } from './components/breakdown/breakdown.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
   declarations: [
     DiaryComponent,
-    ScannerComponent
+    ScannerComponent,
+    BreakdownComponent
   ],
   imports: [
     CommonModule,
     DiaryRoutingModule,
     FontAwesomeModule,
-    ZXingScannerModule
+    ZXingScannerModule,
+    ChartsModule
   ]
 })
 export class DiaryModule { }
