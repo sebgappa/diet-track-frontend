@@ -11,18 +11,9 @@ import { FoodService } from '../../services/food.service';
 })
 export class DiaryComponent implements OnInit {
   public plusIcon = faPlus;
-  public unsubscribe: Subject<void> = new Subject();
 
-  constructor(private foodService: FoodService) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  getFood() {
-    this.foodService.getFood(123, 1, 25).pipe(takeUntil(this.unsubscribe)).subscribe((response) => {
-      console.log(response);
-    }, () => {
-      console.log("No response");
-    })
   }
 }

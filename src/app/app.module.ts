@@ -17,6 +17,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     LogoutButtonComponent,
     AuthenticationButtonComponent,
     ProfileComponent,
-    WelcomeComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
