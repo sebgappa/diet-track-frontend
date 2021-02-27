@@ -8,13 +8,15 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { BreakdownComponent } from './components/breakdown/breakdown.component';
 import { ChartsModule } from 'ng2-charts';
 import { ToastrModule } from 'ngx-toastr';
+import { FoodComponent } from './components/food/food.component';
 
 
 @NgModule({
   declarations: [
     DiaryComponent,
     ScannerComponent,
-    BreakdownComponent
+    BreakdownComponent,
+    FoodComponent
   ],
   imports: [
     CommonModule,

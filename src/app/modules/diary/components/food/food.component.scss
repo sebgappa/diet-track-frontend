@@ -1,0 +1,19 @@
+.btn-circle {
+    width: 50px;
+    height: 50px;
+    padding: 6px 0px;
+    border-radius: 35px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+
+.shadow {
+    box-shadow: 0 .1rem 0.5rem rgba(0,0,0,.15)!important;
+}
+
+.fixed-bottom-right {
+    position: fixed;
+    bottom: 0px;
+    left: 45%;
+}

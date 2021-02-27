@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BreakdownComponent } from './components/breakdown/breakdown.component';
 import { DiaryComponent } from './components/diary/diary.component';
+import { FoodComponent } from './components/food/food.component';
 import { ScannerComponent } from './components/scanner/scanner.component';
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'breakdown/:id',
     component: BreakdownComponent
+  },
+  {
+    path: 'food',
+    component: FoodComponent
   }
 ];
 
