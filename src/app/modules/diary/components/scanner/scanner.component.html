@@ -1,1 +1,48 @@
-<zxing-scanner [formats]="allowedFormats" (scanSuccess)="scanSuccess($event)" (scanError)="scanError($event)"></zxing-scanner>
+<div class="container">
+    <div class="row mt-2">
+        <div class="col text-center">
+            <h6><b>[Scan a barcode]</b></h6>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngIf="camera" class="col no-padding">
+            <zxing-scanner [formats]="allowedFormats" (scanSuccess)="scanSuccess($event)"
+                (scanError)="scanError($event)" (camerasNotFound)="camerasNotFound($event)"></zxing-scanner>
+        </div>
+
+        <div *ngIf="!camera" class="col m-5 text-center text-secondary">
+            <h6>No suitable device found.</h6>
+        </div>
+    </div>
+    <form [formGroup]="barcodeFormGroup" (ngSubmit)="submitBarcode(); barcodeFormGroup.reset()">
+        <div class="row">
+            <div class="col no-padding">
+                <div class="input-group">
+                    <span class="input-group-text" id="barcode">
+                        <fa-icon [icon]="barcodeIcon" size="lg"></fa-icon>
+                    </span>
+                    <input id="barcode" type="text" class="form-control" formControlName="barcode" placeholder="Enter barcode manually?"
+                        aria-label="barcode" aria-describedby="barcode">
+                    <button type="submit" class="btn btn-primary" [disabled]="!barcodeFormGroup.valid">
+                        <fa-icon [icon]="tickIcon" size="sm"></fa-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row mt-1" *ngIf="barcodeForm.barcode.invalid && (barcodeForm.barcode.dirty || barcodeForm.barcode.touched)">
+        <div class="col no-padding">
+            <div class="alert alert-danger">
+                <div *ngIf="barcodeForm.barcode.errors.required">
+                    Value is required.
+                </div>
+                <div *ngIf="barcodeForm.barcode.errors.maxlength">
+                    Max length is 55 characters.
+                </div>
+                <div *ngIf="barcodeForm.barcode.errors.pattern">
+                    Barcode must be a number.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

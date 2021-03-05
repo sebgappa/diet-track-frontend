@@ -1,0 +1,22 @@
+.no-padding {
+    padding: 0px;
+}
+
+.align-calories-right {
+    float:right;
+}
+
+.list-group-item {
+    font-size: 14px;
+    padding: 0px;
+}
+
+.list-group{
+    max-height: 400px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.text-secondary {
+    margin-bottom: 1rem;
+}

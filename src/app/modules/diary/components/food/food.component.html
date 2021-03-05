@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col pt-3">
+            <app-search-bar [placeHolder]="'Search for food!'" (submitSearchQuery)="searchFood($event)">
+            </app-search-bar>
+
+            <div class="text-right pt-3 pb-2">
+                <button type="button" class="btn btn-success btn-sm" [routerLink]="['/diary/scan']"><fa-icon [icon]="cameraIcon" size="lg"></fa-icon>  Scan barcode</button>
+            </div>
+        </div>
+    </div>
+    <div class="row shadow">
+        <div class="col mt-4 no-padding">
+            <ul class="nav nav-tabs nav-justified">
+                <li [routerLink]="tab.name" class="nav-item" *ngFor="let tab of tabs">
+                    <a class="nav-link" routerLinkActive="active">
+                        <h6><b>{{tab.displayName}}</b></h6>
+                    </a>
+                </li>
+            </ul>  
+        </div> 
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
