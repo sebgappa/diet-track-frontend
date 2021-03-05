@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-diary',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
 })
 export class DiaryComponent {
 
+  constructor(private router: Router, private route: ActivatedRoute) {
+  }
 
+  addFood(meal: string) {
+    this.router.navigate(['food', meal], { relativeTo: this.route});
+  }
 }

@@ -1,0 +1,33 @@
+<div *ngIf="!foodGroupSelected">
+    <div class="row text-center pt-4">
+        <div class="col">
+            <button type="button" class="btn btn-info btn-block" (click)="selectFoodGroup()" [routerLink]="['list/vegetables']"><fa-icon [icon]="vegetablesIcon" size="2x"></fa-icon><div class="text-center"><b>VEGETABLES</b></div></button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-info btn-block" (click)="selectFoodGroup()" [routerLink]="['list/fruits']"><fa-icon [icon]="fruitsIcon" size="2x"></fa-icon><div class="text-center"><b>FRUIT</b></div></button>
+        </div>
+    </div>
+    <div class="row text-center pt-4">
+        <div class="col">
+            <button type="button" class="btn btn-info btn-block" (click)="selectFoodGroup()" [routerLink]="['list/meats']"><fa-icon [icon]="meatsIcon" size="2x"></fa-icon><div class="text-center"><b>PROTEINS</b></div></button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-info btn-block" (click)="selectFoodGroup()" [routerLink]="['list/fats']"><fa-icon [icon]="fatsIcon" size="2x"></fa-icon><div class="text-center"><b>FATS</b></div></button>
+        </div>
+    </div>
+    <div class="row text-center pt-4">
+        <div class="col">
+            <button type="button" class="btn btn-info btn-block" (click)="selectFoodGroup()" [routerLink]="['list/carbs']"><fa-icon [icon]="carbsIcon" size="2x"></fa-icon><div class="text-center"><b>CARBS</b></div></button>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+
+<div *ngIf="foodGroupSelected" class="container">
+    <div class="row">
+        <div class="col">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

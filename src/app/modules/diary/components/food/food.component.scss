@@ -1,13 +1,3 @@
-.btn-circle {
-    width: 50px;
-    height: 50px;
-    padding: 6px 0px;
-    border-radius: 35px;
-    text-align: center;
-    font-size: 12px;
-    line-height: 1.42857;
-}
-
 .shadow {
     box-shadow: 0 .1rem 0.5rem rgba(0,0,0,.15)!important;
 }
@@ -16,4 +6,34 @@
     position: fixed;
     bottom: 0px;
     left: 45%;
+}
+
+.col {
+    background-color: white;
+}
+
+.container {
+    background-color: #d6d6d6;
+}
+
+.nav-tabs .nav-item .nav-link.active,
+.nav-tabs .nav-item .nav-link:hover {
+  border-bottom: 5px solid #2e9200; 
+}
+
+.nav-tabs .nav-item .nav-link {
+    color: rgb(58, 58, 58);
+    font-weight: 300;
+}
+
+.no-padding {
+    padding: 0px;
+}
+
+.h6, h6 {
+    font-size: 0.85rem;
+}
+
+.shadow {
+    box-shadow: 0 .1rem .5rem rgba(0,0,0,.15);
 }

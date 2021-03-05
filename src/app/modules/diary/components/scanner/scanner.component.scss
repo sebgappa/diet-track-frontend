@@ -1,0 +1,15 @@
+.no-padding {
+    padding: 0px;
+}
+
+.ng-valid {
+    border-left: 5px solid #42A948; /* green */
+}
+  
+.ng-invalid {
+    border-left: 5px solid #a94442; /* red */
+}
+
+.alert {
+    padding: .5rem 1rem;
+}
