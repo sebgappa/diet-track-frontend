@@ -1,3 +1,4 @@
+import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
+  @Input() foodGroup: string;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.foodGroup = this.capitalisefirstLetter(this.foodGroup);
   }
 
+  private capitalisefirstLetter(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
 }

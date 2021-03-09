@@ -1,31 +1,53 @@
 <div class="container">
     <div class="row">
-        <div class="col pt-3">
-            <app-search-bar [placeHolder]="'Search for food!'" (submitSearchQuery)="searchFood($event)">
+        <div class="col-12 pt-2 pb-2">
+            <div class="row">
+                <div class="col-1">
+                    <app-back-button [returnRoute]="'/diary'"></app-back-button>
+                </div>
+                <div class="col text-right">
+                    <h6><b>{{meal}}</b></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+
+            <app-search-bar [placeHolder]="searchPlaceholder" (submitSearchQuery)="searchFood($event)">
             </app-search-bar>
 
             <div class="text-right pt-3 pb-2">
-                <button type="button" class="btn btn-success btn-sm" [routerLink]="['/diary/scan']"><fa-icon [icon]="cameraIcon" size="lg"></fa-icon>  Scan barcode</button>
+                <button type="button" class="btn btn-success btn-sm" [routerLink]="['/diary/scan']">
+                    <fa-icon [icon]="cameraIcon" size="lg"></fa-icon> [Scan barcode]
+                </button>
             </div>
         </div>
     </div>
     <div class="row shadow">
         <div class="col mt-4 no-padding">
             <ul class="nav nav-tabs nav-justified">
-                <li [routerLink]="tab.name" class="nav-item" *ngFor="let tab of tabs">
+                <li [routerLink]="tab.name" (click)="showComponent(tab.name)" class="nav-item" *ngFor="let tab of tabs">
                     <a class="nav-link" routerLinkActive="active">
                         <h6><b>{{tab.displayName}}</b></h6>
                     </a>
                 </li>
-            </ul>  
-        </div> 
+            </ul>
+        </div>
     </div>
 </div>
 
-<div class="container">
+<div *ngIf="tabComponent === 'history'" class="container">
     <div class="row">
         <div class="col">
-            <router-outlet></router-outlet>
+            <app-history></app-history>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="tabComponent === 'whole'" class="container">
+    <div class="row">
+        <div class="col">
+            <app-whole (newSearchCriteriaEvent)="updateSearchCriteria($event)"
+                [wholeTabPressed]="pressWholeTab.asObservable()"></app-whole>
         </div>
     </div>
 </div>

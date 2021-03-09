@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit {
   public userIcon = faUser;
   public isMobile;
 
-  constructor(deviceDetectorService: DeviceDetectorService) { 
+  constructor(deviceDetectorService: DeviceDetectorService) {
     this.isMobile = deviceDetectorService.isMobile();
   }
 
