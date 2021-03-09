@@ -36,8 +36,8 @@ export class BreakdownComponent implements OnInit {
     this.foodService.getFood(this.barcode).pipe(takeUntil(this.unsubscribe)).subscribe((response) => {
       this.data = [response.protein, response.fat, response.carbs];
     }, () => {
-      console.log("No response");
-    })
+      console.log('No response');
+    });
   }
 
 }

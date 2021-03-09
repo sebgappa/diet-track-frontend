@@ -35,7 +35,10 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     NgbModule,
     HttpClientModule,
     FontAwesomeModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-bottom-right'
+    }),
     BrowserAnimationsModule,
     AuthModule.forRoot({
       ...env.auth,
@@ -45,10 +48,10 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     }),
   ],
   providers: [
-    { 
-      provide: HTTP_INTERCEPTORS, 
-      useClass: AuthHttpInterceptor, 
-      multi: true 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true
     },
   ],
   bootstrap: [AppComponent]

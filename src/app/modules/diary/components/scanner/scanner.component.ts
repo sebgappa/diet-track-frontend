@@ -20,13 +20,13 @@ export class ScannerComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private toastrService: ToastrService, 
+    private toastrService: ToastrService,
     private router: Router) {
   }
 
   public ngOnInit(): void {
     this.barcodeFormGroup = this.formBuilder.group({
-      barcode: [null, [Validators.required, Validators.maxLength(55), Validators.pattern("^[0-9]*$")]],
+      barcode: [null, [Validators.required, Validators.maxLength(55), Validators.pattern('^[0-9]*$')]],
     });
   }
 
@@ -41,6 +41,7 @@ export class ScannerComponent implements OnInit {
 
   camerasNotFound(event): void {
     this.camera = false;
+    this.toastrService.info('No camera found...');
   }
 
   submitBarcode(): void {

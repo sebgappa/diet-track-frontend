@@ -9,12 +9,12 @@ import * as config from '../../../../../auth_config.json';
 export class FoodService {
   private readonly urlSuffix = 'food';
 
-  constructor(private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient) {
   }
 
   public getFood(barcode: number) {
     const url = `${config.apiUri}/${this.urlSuffix}/?barcode=${barcode}`;
-  
+
     return this.httpClient.get<IFood>(url);
   }
 }

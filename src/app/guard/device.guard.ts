@@ -10,8 +10,8 @@ export class DeviceGuard implements CanActivate {
 
     canActivate(): boolean {
         const isMobile = this.deviceDetectorService.isMobile();
-        if(!isMobile) {
-            this.router.navigate(['/welcome'])
+        if (!isMobile) {
+            this.router.navigate(['/welcome']);
         }
         return isMobile;
     }

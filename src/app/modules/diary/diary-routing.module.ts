@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { BreakdownComponent } from './components/breakdown/breakdown.component';
 import { DiaryComponent } from './components/diary/diary.component';
 import { HistoryComponent } from './components/food/components/history/history.component';
-import { ListComponent } from './components/food/components/whole/components/list/list.component';
 import { WholeComponent } from './components/food/components/whole/whole.component';
 import { FoodComponent } from './components/food/food.component';
 import { ScannerComponent } from './components/scanner/scanner.component';
@@ -31,13 +30,7 @@ const routes: Routes = [
       },
       {
         path: 'whole',
-        component: WholeComponent,
-        children: [
-          {
-            path:'list/:group',
-            component: ListComponent
-          }
-        ]
+        component: WholeComponent
       }
     ]
   }
