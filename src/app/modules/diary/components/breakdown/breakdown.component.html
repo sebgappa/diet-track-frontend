@@ -1,8 +1,81 @@
-<div class="row">
-    <div class="col mt-4">
-        <div style="display: block">
-            <canvas baseChart [data]="data" [labels]="labels" [chartType]="type">
-            </canvas>
+<div class="container">
+    <form [formGroup]="nutritionBreakdownForm"
+        (ngSubmit)="addFoodItem(); nutritionBreakdownForm.reset()">
+        <div class="row">
+            <div class="col-12 pt-2">
+                <div class="row">
+                    <div class="col-1">
+                        <app-back-button [returnRoute]="'/diary'"></app-back-button>
+                    </div>
+                    <div class="col text-center ">
+                        <h6><b>{{foodObject.name}}</b></h6>
+                    </div>
+                    <div class="col-1 mr-3 no-padding">
+                        <button type="submit" class="btn btn-sm" [disabled]="!nutritionBreakdownForm.valid"><fa-icon [icon]="tickIcon" [fixedWidth]="true" class="tick-icon"></fa-icon></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 pt-2">
+                <canvas baseChart [data]="data" [chartType]="type" [labels]="labels">
+                </canvas>
+            </div>
+            <div class="col-12 pt-2">
+                <div class="row text-center text-secondary">
+                    <div class="col colour-protein">
+                        13%
+                    </div>
+                    <div class="col colour-fats">
+                        34%
+                    </div>
+                    <div class="col colour-carbs">
+                        55%
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col">
+                        <h6><b>123g</b></h6>
+                    </div>
+                    <div class="col">
+                        <h6><b>123g</b></h6>
+                    </div>
+                    <div class="col">
+                        <h6><b>123g</b></h6>
+                    </div>
+                </div>
+                <div class="row text-center text-secondary">
+                    <div class="col colour-protein">
+                        Protein
+                    </div>
+                    <div class="col colour-fats">
+                        Fats
+                    </div>
+                    <div class="col colour-carbs">
+                        Carbs
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+
+        <div class="row pt-4">
+            <div class="form-group col-12">
+                <label for="servingSize">
+                    <b>Serving size:</b>
+                </label>
+                <select type="text" formControlName="servingSize" class="form-control"
+                    [ngClass]="{ 'is-invalid': nutritionForm.servingSize.touched && nutritionForm.servingSize.errors }">
+                    <option [ngValue]="null">Select</option>
+                    <option *ngFor="let size of servingSizes">
+                        {{size}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-12">
+                <label for="numOfServings">
+                    <b>Number of servings:</b>
+                </label>
+                <input type="text" formControlName="numOfServings" class="form-control" placeholder="Enter"
+                    [ngClass]="{ 'is-invalid': nutritionForm.numOfServings.touched && nutritionForm.numOfServings.errors }">
+            </div>
+        </div>
+    </form>
 </div>
