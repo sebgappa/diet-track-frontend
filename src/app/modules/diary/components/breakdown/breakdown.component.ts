@@ -1,6 +1,7 @@
-import { IfStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Subject } from 'rxjs';
@@ -16,15 +17,32 @@ import { FoodService } from '../../services/food.service';
 export class BreakdownComponent implements OnInit {
 
   public labels: Label[] = ['Protein', 'Fats', 'Carbs'];
-  public data = [0, 0, 0];
+  public servingSizes = ['1 Container', '100g', '1g'];
+  public data = [10, 10, 10];
   public type: ChartType = 'doughnut';
+  public foodObject: IFood = {
+    protein: 123,
+    fat: 123,
+    carbs: 123,
+    calories: 123,
+    name: "King Pot Noodle",
+    brand: "test"
+  }
+  public tickIcon = faCheck;
+  public get nutritionForm() { return this.nutritionBreakdownForm.controls; }
+  public nutritionBreakdownForm: FormGroup;
 
   private unsubscribe: Subject<void> = new Subject();
   private barcode: number;
 
-  constructor(private foodService: FoodService, private route: ActivatedRoute) { }
+  constructor(private foodService: FoodService, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.nutritionBreakdownForm = this.formBuilder.group({
+      servingSize: [null, Validators.required],
+      numOfServings: [null, Validators.required]
+    });
+
     this.route.paramMap
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(params => {
@@ -38,6 +56,10 @@ export class BreakdownComponent implements OnInit {
     }, () => {
       console.log('No response');
     });
+  }
+
+  public addFoodItem() {
+    console.log("Here!");
   }
 
 }

@@ -1,0 +1,32 @@
+.text-secondary {
+    font-size: 0.80rem;
+    font-weight: bold;
+}
+
+.colour-protein {
+    color: #fc1f4f;
+}
+
+.colour-fats {
+    color: #35a2fa
+}
+
+.colour-carbs {
+    color: #d39000
+}
+
+.tick-icon {
+    color: #000000;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.no-padding {
+    padding-left: 0px;
+}
+
+input.ng-invalid.ng-touched {
+    border: solid 1px red
+}
