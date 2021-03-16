@@ -2,8 +2,11 @@
     <div class="row">
         <div class="col-12 pt-2 pb-2">
             <div class="row">
-                <div class="col-1">
+                <div *ngIf="!forMeal" class="col-1">
                     <app-back-button [returnRoute]="'/diary'"></app-back-button>
+                </div>
+                <div *ngIf="forMeal" class="col-1">
+                    <app-back-button [returnRoute]="'/meals/add'"></app-back-button>
                 </div>
                 <div class="col text-center">
                     <h6><b>{{meal}}</b></h6>

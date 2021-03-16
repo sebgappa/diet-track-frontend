@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { faCamera, faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { ToastrService } from 'ngx-toastr';
+import { IMeal } from 'src/app/models/meal.model';
+import { SessionStorageService } from 'src/app/services/session-storage/session-storage.service';
 
 @Component({
   selector: 'app-add-meal',
@@ -13,6 +17,7 @@ export class AddMealComponent implements OnInit {
   public cameraIcon = faCamera;
   public tickIcon = faCheck;
   public plusIcon = faPlus;
+
   public labels: Label[] = ['Protein', 'Fats', 'Carbs'];
   public type: ChartType = 'doughnut';
   public data = [10, 10, 10];
@@ -21,21 +26,53 @@ export class AddMealComponent implements OnInit {
       display: false
     }
   };
+
   public get mealForm() { return this.addMealForm.controls; }
   public addMealForm: FormGroup;
 
-  /**
-   *
-   */
-  constructor(private formBuilder: FormBuilder) {
-    window.sessionStorage.getItem('');
+  public meal: IMeal;
 
-  }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private sessionStorageService: SessionStorageService,
+    private router: Router,
+    private toastr: ToastrService) {}
 
   ngOnInit(): void {
+    var jSONMeal = this.sessionStorageService.readObject('meal');
+    this.meal = new IMeal;
+    Object.assign(this.meal, jSONMeal);
+
     this.addMealForm = this.formBuilder.group({
-      mealName: [null, [Validators.required, Validators.maxLength(30)]],
-      items: [null, Validators.required]
+      mealName: [this.meal.name, [Validators.required, Validators.maxLength(30)]],
+      items: [this.meal.items, Validators.required]
     });
   }
+
+  saveMeal() {
+    this.sessionStorageService.removeObject('meal');
+    this.toastr.success('Meal added');
+    this.router.navigate(['/meals']);
+  }
+
+  addFoodItem() {
+
+    var jSONMeal = this.sessionStorageService.readObject('meal');
+
+    if(jSONMeal === null) {
+      var meal: IMeal = {
+        name: this.addMealForm.controls.mealName.value,
+        items: []
+      }
+      this.sessionStorageService.saveObject('meal', meal);
+    } else {
+      var meal = new IMeal;
+      Object.assign(meal, jSONMeal);
+      meal.name = this.addMealForm.controls.mealName.value;
+      this.sessionStorageService.saveObject('meal', meal);
+    }
+    
+    this.router.navigate(['/food/new']);
+  }
 }
+

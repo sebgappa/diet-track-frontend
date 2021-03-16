@@ -31,7 +31,7 @@ const routes: Routes = [
         canActivate: [AuthGuard, DeviceGuard]
       },
       {
-        path: 'breakdown/:id',
+        path: 'breakdown/:meal/:id',
         loadChildren: () => import('./modules/breakdown/breakdown.module').then(mod => mod.BreakdownModule),
         canActivate: [AuthGuard, DeviceGuard]
       },

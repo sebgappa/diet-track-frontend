@@ -5,4 +5,6 @@ export interface IFood {
     calories: number;
     name: string;
     brand: string;
+    serving: number;
+    servingtype: string;
 }

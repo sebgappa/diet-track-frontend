@@ -1,79 +1,79 @@
 <div class="container">
-    <div class="row">
-        <div class="col-12 pt-2">
-            <div class="row">
-                <div class="col-1">
-                    <app-back-button [returnRoute]="'/diary'"></app-back-button>
-                </div>
-                <div class="col text-center">
-                    <h6><b>NEW MEAL</b></h6>
-                </div>
-                <div class="col-1 mr-3 no-padding">
-                    <button type="submit" class="btn btn-sm">
-                        <fa-icon [icon]="tickIcon" [fixedWidth]="true" class="icons"></fa-icon>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 pt-2 no-padding" style="display: block">
-            <canvas baseChart [data]="data" [chartType]="type" [labels]="labels" [options]="options">
-            </canvas>
-        </div>
-        <div class="col-12 pt-2">
-            <div class="row text-center text-secondary">
-                <div class="col colour-protein">
-                    13%
-                </div>
-                <div class="col colour-fats">
-                    34%
-                </div>
-                <div class="col colour-carbs">
-                    55%
+    <form [formGroup]="addMealForm" (ngSubmit)="saveMeal(); addMealForm.reset();">
+        <div class="row">
+            <div class="col-12 pt-2">
+                <div class="row">
+                    <div class="col-1">
+                        <app-back-button [returnRoute]="'/meals'"></app-back-button>
+                    </div>
+                    <div class="col text-center">
+                        <h6><b>NEW MEAL</b></h6>
+                    </div>
+                    <div class="col-1 mr-3 no-padding">
+                        <button type="submit" class="btn btn-sm" [disabled]="!addMealForm.valid">
+                            <fa-icon [icon]="tickIcon" [fixedWidth]="true" class="icons"></fa-icon>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="row text-center">
-                <div class="col">
-                    <h6><b>123g</b></h6>
+            <div class="col-12 pt-2 no-padding" style="display: block">
+                <canvas baseChart [data]="data" [chartType]="type" [labels]="labels" [options]="options">
+                </canvas>
+            </div>
+            <div class="col-12 pt-2">
+                <div class="row text-center text-secondary">
+                    <div class="col colour-protein">
+                        13%
+                    </div>
+                    <div class="col colour-fats">
+                        34%
+                    </div>
+                    <div class="col colour-carbs">
+                        55%
+                    </div>
                 </div>
-                <div class="col">
-                    <h6><b>123g</b></h6>
+                <div class="row text-center">
+                    <div class="col">
+                        <h6><b>123g</b></h6>
+                    </div>
+                    <div class="col">
+                        <h6><b>123g</b></h6>
+                    </div>
+                    <div class="col">
+                        <h6><b>123g</b></h6>
+                    </div>
                 </div>
-                <div class="col">
-                    <h6><b>123g</b></h6>
+                <div class="row text-center text-secondary">
+                    <div class="col colour-protein">
+                        Protein
+                    </div>
+                    <div class="col colour-fats">
+                        Fats
+                    </div>
+                    <div class="col colour-carbs">
+                        Carbs
+                    </div>
                 </div>
             </div>
-            <div class="row text-center text-secondary">
-                <div class="col colour-protein">
-                    Protein
-                </div>
-                <div class="col colour-fats">
-                    Fats
-                </div>
-                <div class="col colour-carbs">
-                    Carbs
-                </div>
-            </div>
-        </div>
-        <div class="col-12 pt-4">
-            <form [formGroup]="addMealForm">
+            <div class="col-12 pt-4">
                 <div class="row">
                     <div class="form-group col-12">
-                        <input type="text" formControlName="mealName" class="form-control" placeholder="Meal name"
+                        <h6><b>Meal name:</b></h6>
+                        <input type="text" formControlName="mealName" class="form-control" placeholder="Enter"
                             [ngClass]="{ 'is-invalid': mealForm.mealName.touched && mealForm.mealName.errors }">
                     </div>
                     <div class="col-12">
-                        <h6><b>MEAL ITEMS:</b><span class="align-items-right"><fa-icon [icon]="plusIcon" [fixedWidth]="true" class="icons"></fa-icon></span></h6>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">bbq pizza <span class="align-items-right"><b>319</b></span></li>
-                            <li class="list-group-item text-secondary">spar, 319g</li>
-                            <li class="list-group-item">Jafa cakes <span class="align-items-right"><b>450</b></span></li>
-                            <li class="list-group-item text-secondary">spar, 220g</li>
-                            <li class="list-group-item">hovis bread <span class="align-items-right"><b>213</b></span></li>
-                            <li class="list-group-item text-secondary">spar, 112g</li>
+                        <h6><b>Meal Items:</b><span class="align-items-right">
+                                <fa-icon (click)="addFoodItem()" [icon]="plusIcon" [fixedWidth]="true"
+                                    class="icons"></fa-icon>
+                            </span></h6>
+                        <ul class="list-group list-group-flush" *ngFor="let item of meal.items">
+                            <li class="list-group-item">{{item.name}}<span
+                                    class="align-items-right"><b>{{item.calories}}</b></span></li>
                         </ul>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
 </div>

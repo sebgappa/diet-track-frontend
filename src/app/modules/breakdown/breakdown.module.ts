@@ -7,6 +7,8 @@ import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SharedModule,
     ReactiveFormsModule,
     ChartsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterModule,
+    ToastrModule
   ]
 })
 export class BreakdownModule { }

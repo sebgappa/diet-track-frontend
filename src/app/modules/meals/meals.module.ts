@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { FoodModule } from '../food/food.module';
 import { ChartsModule } from 'ng2-charts';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     ChartsModule,
     FoodModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule
   ]
 })
 export class MealsModule { }

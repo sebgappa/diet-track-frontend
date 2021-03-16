@@ -13,12 +13,16 @@ import { Tab } from 'src/app/models/tab.model';
 })
 export class FoodComponent implements OnInit, OnDestroy {
   public cameraIcon = faCamera;
+
   public tabs: Tab[] = [new Tab('history', 'ALL FOODS'), new Tab('whole', 'WHOLE FOODS')];
   public tabComponent = 'history';
+  public pressWholeTab: Subject<void> = new Subject<void>();
+
   public searchPlaceholder = 'Search history!';
   public searchEnabled = true;
+
   public meal: string;
-  public pressWholeTab: Subject<void> = new Subject<void>();
+  public forMeal: boolean = false;
 
   private unsubscribe: Subject<void> = new Subject();
 
@@ -30,6 +34,10 @@ export class FoodComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(params => {
         if (params.has('meal')) {
+          if(params.get('meal') === 'new') {
+            this.forMeal = true;
+          }
+
           this.meal = params.get('meal').toLocaleUpperCase();
         }
       });

@@ -32,7 +32,7 @@ export class ScannerComponent implements OnInit {
 
   scanSuccess(event): void {
     this.toastrService.success('Barcode value read!');
-    this.router.navigate(['diary/breakdown/', event]);
+    this.router.navigate(['/breakdown/', event]);
   }
 
   scanError(event): void {
@@ -45,6 +45,6 @@ export class ScannerComponent implements OnInit {
   }
 
   submitBarcode(): void {
-    this.router.navigate(['diary/breakdown/', this.barcodeFormGroup.controls.barcode.value]);
+    this.router.navigate(['/breakdown/', this.barcodeFormGroup.controls.barcode.value]);
   }
 }
