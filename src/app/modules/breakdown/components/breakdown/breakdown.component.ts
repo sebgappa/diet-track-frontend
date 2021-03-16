@@ -6,8 +6,8 @@ import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { IFood } from '../../models/food.model';
-import { FoodService } from '../../services/food.service';
+import { IFood } from 'src/app/models/food.model';
+import { FoodService } from 'src/app/services/food/food.service';
 
 @Component({
   selector: 'app-breakdown',

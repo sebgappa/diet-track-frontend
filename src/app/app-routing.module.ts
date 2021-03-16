@@ -31,6 +31,16 @@ const routes: Routes = [
         canActivate: [AuthGuard, DeviceGuard]
       },
       {
+        path: 'breakdown/:id',
+        loadChildren: () => import('./modules/breakdown/breakdown.module').then(mod => mod.BreakdownModule),
+        canActivate: [AuthGuard, DeviceGuard]
+      },
+      {
+        path: 'scan',
+        loadChildren: () => import('./modules/scanner/scanner.module').then(mod => mod.ScannerModule),
+        canActivate: [AuthGuard, DeviceGuard]
+      },
+      {
         path: 'profile',
         component: ProfileComponent,
         canActivate: [AuthGuard]

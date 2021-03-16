@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IFood } from '../models/food.model';
-import * as config from '../../../../../auth_config.json';
+import * as config from '../../../../auth_config.json';
+import { IFood } from 'src/app/models/food.model';
 
 @Injectable({
   providedIn: 'root'
