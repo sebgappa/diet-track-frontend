@@ -62,7 +62,7 @@
                         <input type="text" formControlName="mealName" class="form-control" placeholder="Enter"
                             [ngClass]="{ 'is-invalid': mealForm.mealName.touched && mealForm.mealName.errors }">
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 pt-2">
                         <h6><b>Meal Items:</b><span class="align-items-right">
                                 <fa-icon (click)="addFoodItem()" [icon]="plusIcon" [fixedWidth]="true"
                                     class="icons"></fa-icon>
@@ -71,6 +71,9 @@
                             <li class="list-group-item">{{item.name}}<span
                                     class="align-items-right"><b>{{item.calories}}</b></span></li>
                         </ul>
+                        <div *ngIf="!meal.items" class="text-center text-secondary pt-2">
+                            <h6>Add items to your meal!</h6>
+                        </div>
                     </div>
                 </div>
             </div>

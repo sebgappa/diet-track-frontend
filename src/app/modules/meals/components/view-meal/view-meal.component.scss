@@ -1,0 +1,28 @@
+.colour-protein {
+    color: #fc1f4f;
+}
+
+.colour-fats {
+    color: #35a2fa
+}
+
+.colour-carbs {
+    color: #d39000
+}
+
+.align-items-right {
+    float:right;
+}
+
+.list-group-item {
+    font-size: 14px;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.list-group{
+    outline: 2px solid rgb(189, 189, 189);
+    max-height: 200px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
