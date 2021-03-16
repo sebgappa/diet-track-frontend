@@ -8,7 +8,7 @@
                 <div *ngIf="forMeal" class="col-1">
                     <app-back-button [returnRoute]="'/meals/add'"></app-back-button>
                 </div>
-                <div class="col text-center">
+                <div class="col text-center uppercase">
                     <h6><b>{{meal}}</b></h6>
                 </div>
                 <div class="col-1">
@@ -21,7 +21,7 @@
             </app-search-bar>
 
             <div class="text-right pt-3 pb-2">
-                <button type="button" class="btn btn-success btn-sm" [routerLink]="['/scan']">
+                <button type="button" class="btn btn-success btn-sm" [routerLink]="['/scan', meal]">
                     <fa-icon [icon]="cameraIcon" size="lg"></fa-icon> [Scan barcode]
                 </button>
             </div>

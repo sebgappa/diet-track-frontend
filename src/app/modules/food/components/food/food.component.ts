@@ -38,7 +38,7 @@ export class FoodComponent implements OnInit, OnDestroy {
             this.forMeal = true;
           }
 
-          this.meal = params.get('meal').toLocaleUpperCase();
+          this.meal = params.get('meal');
         }
       });
 

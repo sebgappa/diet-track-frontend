@@ -36,7 +36,7 @@ const routes: Routes = [
         canActivate: [AuthGuard, DeviceGuard]
       },
       {
-        path: 'scan',
+        path: 'scan/:meal',
         loadChildren: () => import('./modules/scanner/scanner.module').then(mod => mod.ScannerModule),
         canActivate: [AuthGuard, DeviceGuard]
       },
