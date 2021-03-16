@@ -8,10 +8,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DiaryComponent {
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router) {
   }
 
   addFood(meal: string) {
-    this.router.navigate(['food', meal], { relativeTo: this.route});
+    this.router.navigate(['/food/', meal]);
   }
 }

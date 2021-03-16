@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { ChartType } from 'chart.js';
+import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -17,9 +17,14 @@ import { FoodService } from '../../services/food.service';
 export class BreakdownComponent implements OnInit {
 
   public labels: Label[] = ['Protein', 'Fats', 'Carbs'];
-  public servingSizes = ['1 Container', '100g', '1g'];
-  public data = [10, 10, 10];
   public type: ChartType = 'doughnut';
+  public data = [10, 10, 10];
+  public options: ChartOptions = {
+    legend: {
+      display: false
+    }
+  }
+  public servingSizes = ['1 Container', '100g', '1g'];
   public foodObject: IFood = {
     protein: 123,
     fat: 123,

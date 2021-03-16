@@ -2,11 +2,11 @@ import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  selector: 'app-whole-list',
+  templateUrl: './whole-list.component.html',
+  styleUrls: ['./whole-list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class WholeListComponent implements OnInit {
 
   @Input() foodGroup: string;
 

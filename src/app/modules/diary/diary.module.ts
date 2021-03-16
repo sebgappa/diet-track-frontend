@@ -8,12 +8,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { BreakdownComponent } from './components/breakdown/breakdown.component';
 import { ChartsModule } from 'ng2-charts';
 import { ToastrModule } from 'ngx-toastr';
-import { FoodComponent } from './components/food/food.component';
 import { SharedModule } from '../shared/shared.module';
-import { HistoryComponent } from './components/food/components/history/history.component';
-import { WholeComponent } from './components/food/components/whole/whole.component';
 import { RouterModule } from '@angular/router';
-import { ListComponent } from './components/food/components/whole/components/list/list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -22,10 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     DiaryComponent,
     ScannerComponent,
     BreakdownComponent,
-    FoodComponent,
-    HistoryComponent,
-    WholeComponent,
-    ListComponent
   ],
   imports: [
     CommonModule,

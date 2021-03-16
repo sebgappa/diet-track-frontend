@@ -1,0 +1,85 @@
+.shadow {
+    box-shadow: 0 .1rem 0.5rem rgba(0,0,0,.15)!important;
+}
+
+.fixed-bottom-right {
+    position: fixed;
+    bottom: 0px;
+    left: 45%;
+}
+
+.col, .col-12 {
+    background-color: white;
+}
+
+.container {
+    background-color: #d6d6d6;
+}
+
+.nav-tabs .nav-item .nav-link.active,
+.nav-tabs .nav-item .nav-link:hover {
+  border-bottom: 5px solid #2e9200; 
+}
+
+.nav-tabs .nav-item .nav-link {
+    color: rgb(58, 58, 58);
+    font-weight: 300;
+}
+
+.no-padding {
+    padding: 0px;
+}
+
+.h6, h6 {
+    font-size: 0.85rem;
+}
+
+.shadow {
+    box-shadow: 0 .1rem .5rem rgba(0,0,0,.15);
+}
+
+.text-secondary {
+    font-size: 0.80rem;
+    font-weight: bold;
+}
+
+.colour-protein {
+    color: #fc1f4f;
+}
+
+.colour-fats {
+    color: #35a2fa
+}
+
+.colour-carbs {
+    color: #d39000
+}
+
+.icons {
+    color: #009414;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+input.ng-invalid.ng-touched {
+    border: solid 1px red
+}
+
+.align-items-right {
+    float:right;
+}
+
+.list-group-item {
+    font-size: 14px;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.list-group{
+    outline: 2px solid rgb(189, 189, 189);
+    max-height: 200px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}

@@ -1,1 +1,40 @@
-<p>meals works!</p>
+<div class="container">
+    <div class="row pt-2">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col text-center">
+                    <h6><b>Custom Meals</b></h6>
+                </div>
+                <div class="col-1 mr-3 no-padding-col">
+                    <a routerLink="add" class="btn btn-sm no-padding-plus"><fa-icon [icon]="plusIcon" [fixedWidth]="true" class="tick-icon"></fa-icon></a>
+                </div>
+            </div>    
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col pt-4 d-flex justify-content-center">
+            <div class="card" style="width: 16rem;">
+                <img src="assets/images/default-meal.jpg" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">My breakfast meal</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a routerLink="view/test" class="btn btn-primary">View meal</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col pt-4 d-flex justify-content-center">
+            <div class="card" style="width: 16rem;">
+                <img src="assets/images/default-meal.jpg" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">My breakfast meal</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">View meal</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

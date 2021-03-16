@@ -4,6 +4,7 @@ import { AuthGuard } from '@auth0/auth0-angular';
 import { ProfileComponent } from './components/profile/profile.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { DeviceGuard } from './guard/device.guard';
+import { FoodComponent } from './modules/food/components/food/food.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
       {
         path: 'meals',
         loadChildren: () => import('./modules/meals/meals.module').then(mod => mod.MealsModule),
+        canActivate: [AuthGuard, DeviceGuard]
+      },
+      {
+        path: 'food/:meal',
+        loadChildren: () => import('./modules/food/food.module').then(mod => mod.FoodModule),
         canActivate: [AuthGuard, DeviceGuard]
       },
       {

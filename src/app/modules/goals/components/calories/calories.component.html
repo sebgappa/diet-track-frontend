@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-12">
+            <canvas baseChart [data]="data" [chartType]="type" [options]="options" [labels]="labels">
+            </canvas>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col text-left ml-4">
+            <fa-icon class="fas fa-egg" [icon]="breakfastIcon" size="sm"></fa-icon> Breakfast
+        </div>
+        <div class="col text-left">
+            <fa-icon class="fas fa-hot-dog" [icon]="lunchIcon" size="sm"></fa-icon> Lunch
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-left ml-4">
+            <fa-icon class="fas fa-drumstick-bite" [icon]="dinnerIcon" size="sm"></fa-icon> Dinner
+        </div>
+        <div class="col text-left">
+            <fa-icon class="fas fa-apple-alt" [icon]="snacksIcon" size="sm"></fa-icon> Snacks
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <ul class="list-group">
+                <li class="list-group-item">Total Calories <span class="align-value-right"><b>319</b></span></li>
+                <li class="list-group-item">Remaining Calories <span class="align-value-right"><b>222</b></span></li>
+                <li class="list-group-item">Calorie Goal <span class="align-value-right"><b>1319</b></span></li>
+              </ul>
+        </div>
+    </div>
+</div>

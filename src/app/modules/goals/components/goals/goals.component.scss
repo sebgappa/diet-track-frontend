@@ -1,0 +1,17 @@
+.nav-tabs .nav-item .nav-link.active,
+.nav-tabs .nav-item .nav-link:hover {
+  border-bottom: 5px solid #2e9200;
+}
+
+.nav-tabs .nav-item .nav-link {
+    color: rgb(58, 58, 58);
+}
+
+.no-padding {
+    padding: 0px;
+}
+
+.tab-font {
+    font-size: 0.75rem;
+    font-weight: bold;
+}

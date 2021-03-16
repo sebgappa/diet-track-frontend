@@ -1,1 +1,39 @@
-<h4>goals works!</h4>
+<div class="container">
+    <div class="row pt-2">
+        <div class="col">
+            <div class="col-1">
+            </div>
+            <div class="col text-center">
+                <h6><b>Nutritional Goals</b></h6>
+            </div>
+            <div class="col-1">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col no-padding mt-2">
+            <ul class="nav nav-tabs nav-justified">
+                <li [routerLink]="tab.name" (click)="showComponent(tab.name)" class="nav-item" *ngFor="let tab of tabs">
+                    <a class="nav-link" routerLinkActive="active">
+                        <div class="tab-font">
+                            {{tab.displayName}}
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="tabComponent === 'calories'">
+    <app-calories></app-calories>
+</div>
+
+<div *ngIf="tabComponent === 'micros'" class="container">
+    <app-micros></app-micros>
+</div>
+
+
+<div *ngIf="tabComponent === 'macros'">
+    <app-macros></app-macros>
+</div>
