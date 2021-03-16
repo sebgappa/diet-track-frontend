@@ -27,7 +27,7 @@ export class GoalsComponent implements OnInit {
         this.tabComponent = 'micros';
         break;
       case 'macros':
-        this.tabComponent = 'macros'
+        this.tabComponent = 'macros';
         break;
     }
   }

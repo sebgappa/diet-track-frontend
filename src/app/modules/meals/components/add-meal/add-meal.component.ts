@@ -20,7 +20,7 @@ export class AddMealComponent implements OnInit {
     legend: {
       display: false
     }
-  }
+  };
   public get mealForm() { return this.addMealForm.controls; }
   public addMealForm: FormGroup;
 
@@ -28,8 +28,8 @@ export class AddMealComponent implements OnInit {
    *
    */
   constructor(private formBuilder: FormBuilder) {
-    window.sessionStorage.getItem("")
-    
+    window.sessionStorage.getItem('');
+
   }
 
   ngOnInit(): void {

@@ -23,16 +23,16 @@ export class BreakdownComponent implements OnInit {
     legend: {
       display: false
     }
-  }
+  };
   public servingSizes = ['1 Container', '100g', '1g'];
   public foodObject: IFood = {
     protein: 123,
     fat: 123,
     carbs: 123,
     calories: 123,
-    name: "King Pot Noodle",
-    brand: "test"
-  }
+    name: 'King Pot Noodle',
+    brand: 'test'
+  };
   public tickIcon = faCheck;
   public get nutritionForm() { return this.nutritionBreakdownForm.controls; }
   public nutritionBreakdownForm: FormGroup;
@@ -64,7 +64,7 @@ export class BreakdownComponent implements OnInit {
   }
 
   public addFoodItem() {
-    console.log("Here!");
+    console.log('Here!');
   }
 
 }

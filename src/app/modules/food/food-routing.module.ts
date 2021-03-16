@@ -17,7 +17,7 @@ const routes: Routes = [{
       component: WholeComponent
     }
   ]
-}]
+}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

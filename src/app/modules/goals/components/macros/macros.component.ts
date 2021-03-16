@@ -9,7 +9,7 @@ import { Label } from 'ng2-charts';
   styleUrls: ['./macros.component.scss']
 })
 export class MacrosComponent implements OnInit {
-  public labels: Label[] = ['Protein', 'Fats', 'Carbs']; 
+  public labels: Label[] = ['Protein', 'Fats', 'Carbs'];
   public type: ChartType = 'pie';
   public data = [10, 10, 10];
 
@@ -21,7 +21,7 @@ export class MacrosComponent implements OnInit {
     legend: {
       display: false
     }
-  }
+  };
 
   constructor() { }
 
