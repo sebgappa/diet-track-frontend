@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "diettrack-4850c": {
+      "hosting": {
+        "DietTrack": [
+          "diettrack-4850c"
+        ]
+      }
+    }
+  }
+}

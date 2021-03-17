@@ -17,6 +17,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
         ...env.httpInterceptor,
       },
     }),
+    AngularFireModule.initializeApp(env.firebase),
+    AngularFirestoreModule
   ],
   providers: [
     {
