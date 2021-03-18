@@ -20,7 +20,7 @@ export class ViewMealComponent implements OnInit {
   };
 
   public meal: IMeal = {
-    name: "My Meal",
+    name: 'My Meal',
     items: []
   };
 

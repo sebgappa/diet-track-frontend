@@ -37,7 +37,7 @@ export class ScannerComponent implements OnInit {
     .pipe(takeUntil(this.unsubscribe))
     .subscribe(params => {
       if (params.has('meal')) {
-        this.meal = params.get('meal')        
+        this.meal = params.get('meal');
       }
     });
 

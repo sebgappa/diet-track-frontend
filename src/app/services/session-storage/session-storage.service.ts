@@ -8,20 +8,20 @@ import { IMeal } from 'src/app/models/meal.model';
 export class SessionStorageService {
 
   public saveFoodItemToMeal(value: IFood) {
-    var jSONMeal = this.readObject('meal'); 
+    let jSONMeal = this.readObject('meal');
 
-    if(jSONMeal == null) {
+    if (jSONMeal == null) {
       jSONMeal = new IMeal;
       jSONMeal.items = [value];
-      this.saveObject('meal', jSONMeal)
+      this.saveObject('meal', jSONMeal);
     } else {
-      var meal = new IMeal;
+      const meal = new IMeal;
       Object.assign(meal, jSONMeal);
 
       meal.items.push(value);
       this.removeObject('meal');
       this.saveObject('meal', meal);
-    } 
+    }
   }
 
   public saveObject<T>(key: string, value: T) {

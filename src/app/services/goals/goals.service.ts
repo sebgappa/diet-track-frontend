@@ -6,7 +6,7 @@ import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
 })
 
 export class GoalsService {
-  private macroNutrientGoals: number[] = [180,70,100, 2800];
+  private macroNutrientGoals: number[] = [180, 70, 100, 2800];
 
   constructor() { }
 
@@ -35,10 +35,10 @@ export class GoalsService {
         break;
       case MacroNutrients.carbs:
         this.macroNutrientGoals[2] = value;
-        break
+        break;
       case MacroNutrients.calories:
         this.macroNutrientGoals[3] = value;
-        break
+        break;
       default:
         break;
     }

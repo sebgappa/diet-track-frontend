@@ -22,7 +22,7 @@ export class FoodComponent implements OnInit, OnDestroy {
   public searchEnabled = true;
 
   public meal: string;
-  public forMeal: boolean = false;
+  public forMeal = false;
 
   private unsubscribe: Subject<void> = new Subject();
 
@@ -34,7 +34,7 @@ export class FoodComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(params => {
         if (params.has('meal')) {
-          if(params.get('meal') === 'new') {
+          if (params.get('meal') === 'new') {
             this.forMeal = true;
           }
 

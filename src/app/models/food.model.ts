@@ -1,7 +1,7 @@
-import { IProduct } from "./product.mode";
+import { IProduct } from './product.mode';
 
 export interface IFood {
-    code: number,
-    product: IProduct,
-    status_verbose: string
+    code: number;
+    product: IProduct;
+    status_verbose: string;
 }

@@ -11,12 +11,12 @@ import { IFood } from 'src/app/models/food.model';
 })
 export class HistoryComponent implements OnInit {
   public meal: string;
-  public forMeal: boolean = false;
+  public forMeal = false;
   public foods: IFood[] = [];
 
   private unsubscribe: Subject<void> = new Subject();
 
-  constructor(private route: ActivatedRoute) { 
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -24,11 +24,11 @@ export class HistoryComponent implements OnInit {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(params => {
         if (params.has('meal')) {
-          if(params.get('meal') === 'new') {
+          if (params.get('meal') === 'new') {
             this.forMeal = true;
           }
 
-          this.meal = params.get('meal')        
+          this.meal = params.get('meal');
         }
       });
   }

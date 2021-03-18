@@ -12,7 +12,7 @@ export class FoodService {
   }
 
   public getFood(barcode: number) {
-    const url = `${this.openFoodFactsURL}${barcode}.json`
+    const url = `${this.openFoodFactsURL}${barcode}.json`;
 
     return this.httpClient.get<IFood>(url);
   }

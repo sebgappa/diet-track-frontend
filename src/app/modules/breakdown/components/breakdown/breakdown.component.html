@@ -106,5 +106,29 @@
                     (ngModelChange)="updateMacroServingNum()">
             </div>
         </div>
+        <div class="row" *ngIf="nutritionForm.numOfServings.invalid && (nutritionForm.numOfServings.dirty || nutritionForm.numOfServings.touched)">
+            <div class="col">
+                <div class="alert alert-danger">
+                    <div *ngIf="nutritionForm.numOfServings.errors.required">
+                        Number of servings is required.
+                    </div>
+                    <div *ngIf="nutritionForm.numOfServings.errors.maxlength">
+                        Max length is 4 characters.
+                    </div>
+                    <div *ngIf="nutritionForm.numOfServings.errors.pattern">
+                        Must enter a number.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="nutritionForm.servingSize.invalid && (nutritionForm.servingSize.dirty || nutritionForm.servingSize.touched)">
+            <div class="col">
+                <div class="alert alert-danger">
+                    <div *ngIf="nutritionForm.servingSize.errors.required">
+                        Serving size is required.
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 </div>

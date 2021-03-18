@@ -11,10 +11,10 @@ import { IFood } from 'src/app/models/food.model';
   styleUrls: ['./whole-list.component.scss']
 })
 export class WholeListComponent implements OnInit {
-  
+
   @Input() foodGroup: string;
   public meal: string;
-  public forMeal: boolean = false;
+  public forMeal = false;
   public foods: IFood[] = [];
 
   private unsubscribe: Subject<void> = new Subject();
@@ -28,11 +28,11 @@ export class WholeListComponent implements OnInit {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(params => {
         if (params.has('meal')) {
-          if(params.get('meal') === 'new') {
+          if (params.get('meal') === 'new') {
             this.forMeal = true;
           }
 
-          this.meal = params.get('meal')        
+          this.meal = params.get('meal');
         }
       });
   }

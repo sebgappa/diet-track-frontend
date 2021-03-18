@@ -33,13 +33,13 @@ export class AddMealComponent implements OnInit {
   public meal: IMeal;
 
   constructor(
-    private formBuilder: FormBuilder, 
+    private formBuilder: FormBuilder,
     private sessionStorageService: SessionStorageService,
     private router: Router,
     private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    var jSONMeal = this.sessionStorageService.readObject('meal');
+    const jSONMeal = this.sessionStorageService.readObject('meal');
     this.meal = new IMeal;
     Object.assign(this.meal, jSONMeal);
 
@@ -57,21 +57,21 @@ export class AddMealComponent implements OnInit {
 
   addFoodItem() {
 
-    var jSONMeal = this.sessionStorageService.readObject('meal');
+    const jSONMeal = this.sessionStorageService.readObject('meal');
 
-    if(jSONMeal === null) {
-      var meal: IMeal = {
+    if (jSONMeal === null) {
+      const meal: IMeal = {
         name: this.addMealForm.controls.mealName.value,
         items: []
-      }
+      };
       this.sessionStorageService.saveObject('meal', meal);
     } else {
-      var meal = new IMeal;
+      const meal = new IMeal;
       Object.assign(meal, jSONMeal);
       meal.name = this.addMealForm.controls.mealName.value;
       this.sessionStorageService.saveObject('meal', meal);
     }
-    
+
     this.router.navigate(['/food/new']);
   }
 }
