@@ -61,6 +61,6 @@ export class ScannerComponent implements OnInit {
   }
 
   submitBarcode(): void {
-    this.router.navigate(['/breakdown/', this.barcodeFormGroup.controls.barcode.value]);
+    this.router.navigate(['/breakdown/', this.meal, this.barcodeFormGroup.controls.barcode.value]);
   }
 }
