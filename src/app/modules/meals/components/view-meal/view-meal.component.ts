@@ -21,36 +21,7 @@ export class ViewMealComponent implements OnInit {
 
   public meal: IMeal = {
     name: "My Meal",
-    items: [{
-      protein: 65,
-      fat: 43,
-      carbs: 12,
-      calories: 435,
-      name: "first food item",
-      brand: "tesco",
-      serving: 200,
-      servingtype: "g"
-    },
-    {
-      protein: 76,
-      fat: 45,
-      carbs: 35,
-      calories: 654,
-      name: "second food item",
-      brand: "morrisons",
-      serving: 100,
-      servingtype: "ml"
-    },
-    {
-      protein: 43,
-      fat: 65,
-      carbs: 23,
-      calories: 754,
-      name: "third food item",
-      brand: "sainsbury's",
-      serving: 150,
-      servingtype: "kg"
-    }]
+    items: []
   };
 
   constructor() { }

@@ -1,10 +1,7 @@
+import { IProduct } from "./product.mode";
+
 export interface IFood {
-    protein: number;
-    fat: number;
-    carbs: number;
-    calories: number;
-    name: string;
-    brand: string;
-    serving: number;
-    servingtype: string;
+    code: number,
+    product: IProduct,
+    status_verbose: string
 }

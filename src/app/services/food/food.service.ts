@@ -7,13 +7,14 @@ import { IFood } from 'src/app/models/food.model';
   providedIn: 'root'
 })
 export class FoodService {
-  private readonly urlSuffix = 'food';
+  private readonly openFoodFactsURL = 'https://world.openfoodfacts.org/api/v0/product/';
 
   constructor(private httpClient: HttpClient) {
   }
 
   public getFood(barcode: number) {
-    const url = `${config.apiUri}/${this.urlSuffix}/?barcode=${barcode}`;
+    //const url = `${config.apiUri}/${this.urlSuffix}/?barcode=${barcode}`;
+    const url = `${this.openFoodFactsURL}${barcode}.json`
 
     return this.httpClient.get<IFood>(url);
   }

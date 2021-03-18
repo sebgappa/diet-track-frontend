@@ -8,7 +8,7 @@
                         <app-back-button [returnRoute]="'/food/' + meal"></app-back-button>
                     </div>
                     <div class="col text-center ">
-                        <h6><b>{{foodObject.name}}</b></h6>
+                        <h6><b>{{(foodObject)?.product.product_name}}</b></h6>
                     </div>
                     <div class="col-1 mr-3 no-padding">
                         <button type="submit" class="btn btn-sm" [disabled]="!nutritionBreakdownForm.valid"><fa-icon [icon]="tickIcon" [fixedWidth]="true" class="tick-icon"></fa-icon></button>
@@ -33,13 +33,13 @@
                 </div>
                 <div class="row text-center">
                     <div class="col">
-                        <h6><b>123g</b></h6>
+                        <h6><b>{{(foodObject)?.product.nutriments.proteins_value}}g</b></h6>
                     </div>
                     <div class="col">
-                        <h6><b>123g</b></h6>
+                        <h6><b>{{(foodObject)?.product.nutriments.fat_value}}g</b></h6>
                     </div>
                     <div class="col">
-                        <h6><b>123g</b></h6>
+                        <h6><b>{{(foodObject)?.product.nutriments.carbohydrates_value}}g</b></h6>
                     </div>
                 </div>
                 <div class="row text-center text-secondary">

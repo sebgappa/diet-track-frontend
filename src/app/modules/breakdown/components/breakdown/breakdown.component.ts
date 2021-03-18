@@ -33,16 +33,7 @@ export class BreakdownComponent implements OnInit {
   };
 
   public servingSizes = ['1 Container', '100g', '1g'];
-  public foodObject: IFood = {
-    protein: 123,
-    fat: 123,
-    carbs: 123,
-    calories: 123,
-    name: 'King Pot Noodle',
-    brand: 'test',
-    serving: 150,
-    servingtype: "g"
-  };
+  public foodObject: IFood;
 
   public get nutritionForm() { return this.nutritionBreakdownForm.controls; }
   public nutritionBreakdownForm: FormGroup;
@@ -82,7 +73,8 @@ export class BreakdownComponent implements OnInit {
       });
 
     this.foodService.getFood(this.barcode).pipe(takeUntil(this.unsubscribe)).subscribe((response) => {
-      this.data = [response.protein, response.fat, response.carbs];
+      this.data = [response.product.nutriments.proteins_value, response.product.nutriments.fat_value, response.product.nutriments.carbohydrates_value];
+      this.foodObject = response; 
     }, () => {
       console.log('No response');
     });
