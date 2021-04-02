@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -12,11 +13,11 @@ import { IFood } from 'src/app/models/food.model';
 export class HistoryComponent implements OnInit {
   public meal: string;
   public forMeal = false;
-  public foods: IFood[] = [];
+  public history = this.store.collection('history').valueChanges({ idField: 'code' });
 
   private unsubscribe: Subject<void> = new Subject();
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private store: AngularFirestore) {
   }
 
   ngOnInit(): void {
@@ -32,5 +33,7 @@ export class HistoryComponent implements OnInit {
         }
       });
   }
+
+
 
 }

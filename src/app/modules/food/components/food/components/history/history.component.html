@@ -4,10 +4,10 @@
             <h6><b>History</b></h6>
         </div>
         <div class="mt-3">
-            <ul class="list-group list-group-flush" *ngFor="let food of foods">
-                <li *ngIf="forMeal" class="list-group-item" [routerLink]="['/breakdown/new/123']">{{food.name}}<span class="align-calories-right"><b>{{food.calories}}</b></span></li>
-                <li *ngIf="!forMeal" class="list-group-item" [routerLink]="['/breakdown', meal, '123']">{{food.name}}<span class="align-calories-right"><b>{{food.calories}}</b></span></li>
-                <li class="list-group-item text-secondary">{{food.brand}}, {{food.serving}}{{food.servingtype}}</li>
+            <ul class="list-group list-group-flush" *ngFor="let food of history | async">
+                <li *ngIf="forMeal" class="list-group-item" [routerLink]="['/breakdown/new/', food.code]">{{food.product.product_name}}<span class="align-calories-right"><b>{{food.product.nutriments['energy-kcal_value']}}</b></span></li>
+                <li *ngIf="!forMeal" class="list-group-item" [routerLink]="['/breakdown', meal, food.code]">{{food.product.product_name}}<span class="align-calories-right"><b>{{food.product.nutriments['energy-kcal_value']}}</b></span></li>
+                <li class="list-group-item text-secondary">{{food.product.brands}}, {{food.product.serving_number}}x, {{food.product.serving_size}}</li>
             </ul>
         </div>
     </div>

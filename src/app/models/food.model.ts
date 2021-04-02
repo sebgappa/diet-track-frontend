@@ -1,7 +1,7 @@
 import { IProduct } from './product.mode';
 
 export interface IFood {
-    code: number;
+    code?: string;
     product: IProduct;
     status_verbose: string;
 }

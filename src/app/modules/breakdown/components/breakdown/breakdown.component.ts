@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { ChartOptions, ChartType } from 'chart.js';
-import { BaseChartDirective, Label } from 'ng2-charts';
+import { Label } from 'ng2-charts';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -57,7 +59,8 @@ export class BreakdownComponent implements OnInit {
     private router: Router,
     private sessionStorageService: SessionStorageService,
     private toastr: ToastrService,
-    private goalService: GoalsService) { }
+    private goalService: GoalsService,
+    private store: AngularFirestore) { }
 
   ngOnInit(): void {
     if (this.router.url.includes('/new')) {
@@ -85,7 +88,16 @@ export class BreakdownComponent implements OnInit {
         response.product.nutriments.proteins_value, 
         response.product.nutriments.fat_value, 
         response.product.nutriments.carbohydrates_value];
-      this.foodObject = response;
+
+      this.foodObject = {
+        code: response.code,
+        product: {
+          product_name: response.product.product_name,
+          nutriments: response.product.nutriments,
+          brands: response.product.brands
+        },
+        status_verbose: response.status_verbose
+      };
 
       this.macronutrients = [this.foodObject.product.nutriments.proteins_100g,
                             this.foodObject.product.nutriments.fat_100g,
@@ -116,7 +128,24 @@ export class BreakdownComponent implements OnInit {
       return;
     }
 
-    console.log('Here!');
+    this.foodObject.product.nutriments.proteins_value = this.macronutrients[0];
+    this.foodObject.product.nutriments.fat_value = this.macronutrients[1];
+    this.foodObject.product.nutriments.carbohydrates_value = this.macronutrients[2];
+    this.foodObject.product.nutriments['energy-kcal_value'] = this.macronutrients[3];
+    this.foodObject.product.serving_number = this.nutritionBreakdownForm.controls.numOfServings.value;
+    this.foodObject.product.serving_size = this.nutritionBreakdownForm.controls.servingSize.value + 'g';
+
+    if (this.foodObject.product.product_name.length > 30) {
+      this.foodObject.product.product_name = this.foodObject.product.product_name.substring(0, 30) + "...";
+    }
+
+    if(this.foodObject.product.brands.length > 30) {
+      this.foodObject.product.brands = this.foodObject.product.brands.substring(0, 30) + "...";
+    }
+
+    this.store.collection('history').doc(this.foodObject.code).set(this.foodObject);
+
+    this.router.navigate(['/food/', this.meal]);
   }
 
   public addFoodItemForMeal() {
