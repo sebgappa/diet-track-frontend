@@ -7,8 +7,29 @@ import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
 
 export class GoalsService {
   private macroNutrientGoals: number[] = [180, 70, 100, 2800];
+  private recommendedMicroNutrientGoals: Map<string, number> = new Map<string, number>([
+    ['fiber_value', 30],
+    ['salt_value', 6],
+    ['saturated-fat_value', 30],
+    ['trans-fat_value', 2],
+    ['sodium_value', 3.4],
+    ['sugars_value', 30],
+    ['calcium_value', 700],
+    ['cholesterol_value', 300],
+    ['iron_value', 8.7],
+    ['magnesium_value', 410],
+    ['zinc_value', 11],
+    ['vitamin-a_value', 900],
+    ['vitamin-c_value', 90],
+    ['vitamin-b12_value', 2.4],
+    ['vitamin-d_value', 20],
+  ])
 
   constructor() { }
+
+  public getRecommendedMicroNutrientGoals() {
+    return this.recommendedMicroNutrientGoals;
+  }
 
   public getMacroNutrientGoal(macronutrient: MacroNutrients) {
     switch (+macronutrient) {

@@ -49,7 +49,7 @@ export class BreakdownComponent implements OnInit {
   public meal: string;
 
   private unsubscribe: Subject<void> = new Subject();
-  private barcode: number;
+  private barcode: string;
 
   private currentServingSizeSelection: string;
 
@@ -80,7 +80,8 @@ export class BreakdownComponent implements OnInit {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(params => {
         if (params.has('id')) {
-          this.barcode = Number.parseInt(params.get('id'), 10);
+          this.barcode = params.get('id');
+
         }
         if (params.has('meal')) {
           this.meal = params.get('meal');
@@ -114,9 +115,13 @@ export class BreakdownComponent implements OnInit {
             "calcium_value": response.product.nutriments.calcium_value? response.product.nutriments.calcium_value : 0,
             "cholesterol_value": response.product.nutriments.cholesterol_value? response.product.nutriments.cholesterol_value : 0,
             "iron_value": response.product.nutriments.iron_value? response.product.nutriments.iron_value : 0,
+            "magnesium_value": response.product.nutriments.magnesium_value? response.product.nutriments.magnesium_value : 0,
+            "zinc_value": response.product.nutriments.zinc_value? response.product.nutriments.zinc_value : 0,
             "trans-fat_value": response.product.nutriments['trans-fat_value']? response.product.nutriments['trans-fat_value'] : 0,
             "vitamin-a_value": response.product.nutriments['vitamin-a_value']? response.product.nutriments['vitamin-a_value'] : 0,
-            "vitamin-c_value": response.product.nutriments['vitamin-c_value']? response.product.nutriments['vitamin-c_value'] : 0
+            "vitamin-c_value": response.product.nutriments['vitamin-c_value']? response.product.nutriments['vitamin-c_value'] : 0,
+            "vitamin-b12_value": response.product.nutriments['vitamin-b12_value']? response.product.nutriments['vitamin-b12_value'] : 0,
+            "vitamin-d_value": response.product.nutriments['vitamin-d_value']? response.product.nutriments['vitamin-d_value']: 0
           },
           brands: response.product.brands
         },

@@ -11,7 +11,7 @@ export class FoodService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public getFood(barcode: number) {
+  public getFood(barcode: string) {
     const url = `${this.openFoodFactsURL}${barcode}.json`;
 
     return this.httpClient.get<IFood>(url);

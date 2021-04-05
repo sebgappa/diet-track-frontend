@@ -15,7 +15,11 @@ export interface INutriments {
     calcium_value: number;
     cholesterol_value: number;
     iron_value: number;
+    magnesium_value: number;
+    zinc_value: number;
     'trans-fat_value': number;
     'vitamin-a_value': number;
     'vitamin-c_value': number;
+    'vitamin-b12_value': number;
+    'vitamin-d_value': number;
 }

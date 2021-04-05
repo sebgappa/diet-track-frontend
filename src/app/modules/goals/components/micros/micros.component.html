@@ -20,7 +20,9 @@
                     </td>
                     <td>{{micro.total}}</td>
                     <td>{{micro.goal}}</td>
-                    <td>{{micro.left}}</td>
+                    <td [ngClass]="microsInTheGreen(micro.total, micro.goal) == 'green' ? 'green' : (microsInTheGreen(micro.total, micro.goal) == 'red' ? 'red' : 'amber')">
+                      {{micro.left}}
+                    </td>
                   </tr>
                 </tbody>
               </table>
