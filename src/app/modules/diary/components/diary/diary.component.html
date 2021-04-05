@@ -8,7 +8,7 @@
     </div>
     <div class="row shadow">
         <div class="col pb-4 pt-2 pl-3 text-center calorie-number">
-            <b>2500</b>
+            <b>{{goalCalories}}</b>
             <div class="text-secondary subtext">
                 <b>Goal</b>
             </div>
@@ -17,7 +17,7 @@
             -
         </div>
         <div class="col pb-4 pt-2 text-center calorie-number">
-            <b>1000</b>
+            <b>{{totalFoodCalories}}</b>
             <div class="text-secondary subtext">
                 <b>Food</b>
             </div>
@@ -26,7 +26,9 @@
             =
         </div>
         <div class="col pb-4 pt-2 pr-3 text-center calorie-number">
-            <b>1500</b>
+            <b [ngClass]="{
+                positive: caloriesInTheGreen(),
+                negative: !caloriesInTheGreen()}">{{remainingCalories}}</b>
             <div class="text-secondary subtext">
                 <b>Remaining</b>
             </div>
@@ -35,18 +37,12 @@
     <div class="row shadow">
         <div class="col mt-5 pb-2">
             <div class="mt-2">
-                <h6><b>Breakfast</b><span class="align-calories-right"><b>2235</b></span></h6>
+                <h6><b>Breakfast</b><span class="align-calories-right"><b>{{breakfastCalories}}</b></span></h6>
             </div>
             <div class="mt-4">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">bbq pizza <span class="align-calories-right"><b>319</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 319g</li>
-                    <li class="list-group-item">Jafa cakes <span class="align-calories-right"><b>450</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 220g</li>
-                    <li class="list-group-item">hovis bread <span class="align-calories-right"><b>213</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 112g</li>
-                    <li class="list-group-item">chicken breast <span class="align-calories-right"><b>112</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 500g</li>
+                <ul class="list-group list-group-flush" *ngFor="let food of breakfast | async">
+                    <li class="list-group-item">{{food.product.product_name}}<span class="align-calories-right"><b>{{food.product.nutriments['energy-kcal_value']}}</b></span></li>
+                    <li class="list-group-item text-secondary">{{food.product.brands}}, {{food.product.serving_number}}x, {{food.product.serving_size}}</li>
                 </ul>
             </div>
             <div class="mt-2 text-center">
@@ -57,18 +53,12 @@
     <div class="row">
         <div class="col mt-4 pb-2">
             <div class="mt-2">
-                <h6><b>Lunch</b><span class="align-calories-right"><b>1456</b></span></h6>
+                <h6><b>Lunch</b><span class="align-calories-right"><b>{{lunchCalories}}</b></span></h6>
             </div>
             <div class="mt-4">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">bbq pizza <span class="align-calories-right"><b>319</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 319g</li>
-                    <li class="list-group-item">Jafa cakes <span class="align-calories-right"><b>450</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 220g</li>
-                    <li class="list-group-item">hovis bread <span class="align-calories-right"><b>213</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 112g</li>
-                    <li class="list-group-item">chicken breast <span class="align-calories-right"><b>112</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 500g</li>
+                <ul class="list-group list-group-flush" *ngFor="let food of lunch | async">
+                    <li class="list-group-item">{{food.product.product_name}}<span class="align-calories-right"><b>{{food.product.nutriments['energy-kcal_value']}}</b></span></li>
+                    <li class="list-group-item text-secondary">{{food.product.brands}}, {{food.product.serving_number}}x, {{food.product.serving_size}}</li>
                 </ul>
             </div>
             <div class="mt-2 text-center">
@@ -79,18 +69,12 @@
     <div class="row shadow">
         <div class="col mt-4 pb-2">
             <div class="mt-2">
-                <h6><b>Dinner</b><span class="align-calories-right"><b>3214</b></span></h6>
+                <h6><b>Dinner</b><span class="align-calories-right"><b>{{dinnerCalories}}</b></span></h6>
             </div>
             <div class="mt-4">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">bbq pizza <span class="align-calories-right"><b>319</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 319g</li>
-                    <li class="list-group-item">Jafa cakes <span class="align-calories-right"><b>450</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 220g</li>
-                    <li class="list-group-item">hovis bread <span class="align-calories-right"><b>213</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 112g</li>
-                    <li class="list-group-item">chicken breast <span class="align-calories-right"><b>112</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 500g</li>
+                <ul class="list-group list-group-flush" *ngFor="let food of dinner | async">
+                    <li class="list-group-item">{{food.product.product_name}}<span class="align-calories-right"><b>{{food.product.nutriments['energy-kcal_value']}}</b></span></li>
+                    <li class="list-group-item text-secondary">{{food.product.brands}}, {{food.product.serving_number}}x, {{food.product.serving_size}}</li>
                 </ul>
             </div>
             <div class="mt-2 text-center">
@@ -101,18 +85,12 @@
     <div class="row shadow">
         <div class="col mt-4 pb-2 mb-4">
             <div class="mt-2">
-                <h6><b>Snacks</b><span class="align-calories-right"><b>1156</b></span></h6>
+                <h6><b>Snacks</b><span class="align-calories-right"><b>{{snacksCalories}}</b></span></h6>
             </div>
             <div class="mt-4">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">bbq pizza <span class="align-calories-right"><b>319</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 319g</li>
-                    <li class="list-group-item">Jafa cakes <span class="align-calories-right"><b>450</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 220g</li>
-                    <li class="list-group-item">hovis bread <span class="align-calories-right"><b>213</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 112g</li>
-                    <li class="list-group-item">chicken breast <span class="align-calories-right"><b>112</b></span></li>
-                    <li class="list-group-item text-secondary">spar, 500g</li>
+                <ul class="list-group list-group-flush" *ngFor="let food of snacks | async">
+                    <li class="list-group-item">{{food.product.product_name}}<span class="align-calories-right"><b>{{food.product.nutriments['energy-kcal_value']}}</b></span></li>
+                    <li class="list-group-item text-secondary">{{food.product.brands}}, {{food.product.serving_number}}x, {{food.product.serving_size}}</li>
                 </ul>
             </div>
             <div class="mt-2 text-center">

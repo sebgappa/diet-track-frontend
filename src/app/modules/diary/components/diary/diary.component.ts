@@ -1,17 +1,81 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Calories } from 'src/app/enums/calories.enum';
+import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
+import { CaloriesService } from 'src/app/services/calories/calories.service';
+import { GoalsService } from 'src/app/services/goals/goals.service';
 
 @Component({
   selector: 'app-diary',
   templateUrl: './diary.component.html',
   styleUrls: ['./diary.component.scss']
 })
-export class DiaryComponent {
+export class DiaryComponent implements OnInit {
 
-  constructor(private router: Router) {
+  public breakfast;
+  public lunch;
+  public dinner;
+  public snacks;
+
+  public breakfastCalories:number = 0;
+  public lunchCalories:number = 0;
+  public dinnerCalories:number = 0;
+  public snacksCalories:number = 0;
+  public totalFoodCalories: number = 0;
+  public goalCalories: number = 0;
+  public remainingCalories: number = 0;
+
+  private unsubscribe: Subject<void> = new Subject();
+
+  constructor(
+    private router: Router, 
+    private auth: AuthService,
+    private store: AngularFirestore,
+    private goals: GoalsService,
+    private calories: CaloriesService) {
+  }
+
+  ngOnInit(): void {
+    this.goalCalories = this.goals.getMacroNutrientGoal(MacroNutrients.calories);
+
+    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
+      this.setFood(user.email)
+      Promise.all([
+        this.calories.setBreakfastCalories(user.email), 
+        this.calories.setLunchCalories(user.email), 
+        this.calories.setDinnerCalories(user.email), 
+        this.calories.setSnacksCalories(user.email)]).then(() => {
+          this.breakfastCalories = this.calories.getCaloriesConsumedPerMeal(Calories.breakfast);
+          this.lunchCalories = this.calories.getCaloriesConsumedPerMeal(Calories.lunch);
+          this.dinnerCalories = this.calories.getCaloriesConsumedPerMeal(Calories.dinner);
+          this.snacksCalories = this.calories.getCaloriesConsumedPerMeal(Calories.snacks);
+          this.remainingCalories = this.calories.getRemainingCalories();
+          this.totalFoodCalories = this.calories.getTotalCaloriesConsumed();
+        })
+    })
+  }
+
+  setFood(email: string) {
+    this.breakfast = this.store.collection(email).doc('food').collection('breakfast').valueChanges({ idField: 'code' });
+    this.lunch = this.store.collection(email).doc('food').collection('lunch').valueChanges({ idField: 'code' });
+    this.dinner = this.store.collection(email).doc('food').collection('dinner').valueChanges({ idField: 'code' });
+    this.snacks = this.store.collection(email).doc('food').collection('snacks').valueChanges({ idField: 'code' });
   }
 
   addFood(meal: string) {
     this.router.navigate(['/food/', meal]);
   }
+
+  caloriesInTheGreen(): boolean {
+    if(this.remainingCalories > 0) {
+      return true;
+    }
+
+    return false;
+  }
 }
+

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IMicro } from 'src/app/models/micro.model';
+import { MicronutrientsService } from 'src/app/services/micronutrients/micronutrients.service';
 
 @Component({
   selector: 'app-micros',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MicrosComponent implements OnInit {
 
-  constructor() { }
+  public micros: IMicro[];
+
+  constructor(private micronutrients: MicronutrientsService) { }
 
   ngOnInit(): void {
   }

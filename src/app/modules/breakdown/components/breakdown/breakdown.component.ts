@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
@@ -52,6 +53,8 @@ export class BreakdownComponent implements OnInit {
 
   private currentServingSizeSelection: string;
 
+  private user;
+
   constructor(
     private foodService: FoodService,
     private route: ActivatedRoute,
@@ -60,7 +63,8 @@ export class BreakdownComponent implements OnInit {
     private sessionStorageService: SessionStorageService,
     private toastr: ToastrService,
     private goalService: GoalsService,
-    private store: AngularFirestore) { }
+    private store: AngularFirestore,
+    private auth: AuthService) { }
 
   ngOnInit(): void {
     if (this.router.url.includes('/new')) {
@@ -93,7 +97,27 @@ export class BreakdownComponent implements OnInit {
         code: response.code,
         product: {
           product_name: response.product.product_name,
-          nutriments: response.product.nutriments,
+          nutriments: {
+            "energy-kcal_100g": response.product.nutriments['energy-kcal_100g']? response.product.nutriments['energy-kcal_100g'] : 0,
+            "energy-kcal_value": response.product.nutriments['energy-kcal_value']? response.product.nutriments['energy-kcal_value'] : 0,
+            "carbohydrates_100g": response.product.nutriments.carbohydrates_100g? response.product.nutriments.carbohydrates_100g : 0,
+            "carbohydrates_value": response.product.nutriments.carbohydrates_value? response.product.nutriments.carbohydrates_value : 0,
+            "fat_100g": response.product.nutriments.fat_100g? response.product.nutriments.fat_100g : 0,
+            "fat_value": response.product.nutriments.fat_value? response.product.nutriments.fat_value : 0,
+            "proteins_100g": response.product.nutriments.proteins_100g? response.product.nutriments.proteins_100g : 0,
+            "proteins_value": response.product.nutriments.proteins_value? response.product.nutriments.proteins_value : 0,
+            "fiber_value": response.product.nutriments.fiber_value? response.product.nutriments.fiber_value : 0,
+            "salt_value" :  response.product.nutriments.salt_value? response.product.nutriments.salt_value : 0,
+            "saturated-fat_value": response.product.nutriments['saturated-fat_value']? response.product.nutriments['saturated-fat_value']: 0,
+            "sodium_value": response.product.nutriments.sodium_value? response.product.nutriments.sodium_value : 0,
+            "sugars_value": response.product.nutriments.sugars_value? response.product.nutriments.sugars_value : 0,
+            "calcium_value": response.product.nutriments.calcium_value? response.product.nutriments.calcium_value : 0,
+            "cholesterol_value": response.product.nutriments.cholesterol_value? response.product.nutriments.cholesterol_value : 0,
+            "iron_value": response.product.nutriments.iron_value? response.product.nutriments.iron_value : 0,
+            "trans-fat_value": response.product.nutriments['trans-fat_value']? response.product.nutriments['trans-fat_value'] : 0,
+            "vitamin-a_value": response.product.nutriments['vitamin-a_value']? response.product.nutriments['vitamin-a_value'] : 0,
+            "vitamin-c_value": response.product.nutriments['vitamin-c_value']? response.product.nutriments['vitamin-c_value'] : 0
+          },
           brands: response.product.brands
         },
         status_verbose: response.status_verbose
@@ -110,9 +134,9 @@ export class BreakdownComponent implements OnInit {
                                     this.foodObject.product.nutriments['energy-kcal_100g']];
 
       this.macronutrientGoalPercentages = [
-        this.calculatePercentageOfMacronutrientGoal(response.product.nutriments.proteins_value, MacroNutrients.protein),
-        this.calculatePercentageOfMacronutrientGoal(response.product.nutriments.fat_value, MacroNutrients.fat),
-        this.calculatePercentageOfMacronutrientGoal(response.product.nutriments.carbohydrates_value, MacroNutrients.carbs),
+        this.calculatePercentageOfMacronutrientGoal(response.product.nutriments.proteins_100g, MacroNutrients.protein),
+        this.calculatePercentageOfMacronutrientGoal(response.product.nutriments.fat_100g, MacroNutrients.fat),
+        this.calculatePercentageOfMacronutrientGoal(response.product.nutriments.carbohydrates_100g, MacroNutrients.carbs),
         this.calculatePercentageOfMacronutrientGoal(response.product.nutriments['energy-kcal_100g'], MacroNutrients.calories)
       ];
     }, () => {
@@ -120,6 +144,10 @@ export class BreakdownComponent implements OnInit {
     });
 
     this.currentServingSizeSelection = this.nutritionBreakdownForm.controls.servingSize.value;
+
+    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
+      this.user = user;
+    })
   }
 
   public addFoodItem() {
@@ -143,7 +171,15 @@ export class BreakdownComponent implements OnInit {
       this.foodObject.product.brands = this.foodObject.product.brands.substring(0, 30) + "...";
     }
 
-    this.store.collection('history').doc(this.foodObject.code).set(this.foodObject);
+    this.store.firestore.runTransaction(() => {
+      const promise = Promise.all([
+        this.store.collection(this.user.email).doc('food').collection('history').doc(this.foodObject.code).set(this.foodObject),
+        this.store.collection(this.user.email).doc('food').collection(this.meal).doc(this.foodObject.code).set(this.foodObject)
+      ]);
+      return promise;
+    });
+
+    this.toastr.success("Item added");
 
     this.router.navigate(['/food/', this.meal]);
   }

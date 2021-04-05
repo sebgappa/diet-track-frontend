@@ -1,4 +1,4 @@
-import { INutriments } from './nutriment.mode';
+import { INutriments } from './nutriment.model';
 
 export interface IProduct {
     product_name: string;

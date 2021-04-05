@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import { faAppleAlt, faDrumstickBite, faEgg, faHotdog } from '@fortawesome/free-solid-svg-icons';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Calories } from 'src/app/enums/calories.enum';
+import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
+import { CaloriesService } from 'src/app/services/calories/calories.service';
+import { GoalsService } from 'src/app/services/goals/goals.service';
 
 @Component({
   selector: 'app-calories',
@@ -9,7 +16,11 @@ import { Label } from 'ng2-charts';
   styleUrls: ['./calories.component.scss']
 })
 export class CaloriesComponent implements OnInit {
-  public labels: Label[] = ['Lunch', 'Dinner', 'Snacks', 'Breakfast'];
+  public labels: Label[] = [
+  `Lunch (%)`,
+  `Dinner (%)`,
+  `Snacks (%)`,
+  'Breakfast (%)'];
   public type: ChartType = 'pie';
   public data = [10, 10, 10, 10];
   public options: ChartOptions = {
@@ -17,6 +28,10 @@ export class CaloriesComponent implements OnInit {
       display: false
     }
   };
+
+  public totalCalories: number = 0;
+  public remainingCalories: number = 0;
+  public calorieGoal: number = 0;
 
 
   public breakfastIcon = faEgg;
@@ -29,31 +44,44 @@ export class CaloriesComponent implements OnInit {
   private dinnerPercentage;
   private snacksPercentage;
 
-  private breakfastTotalCal;
-  private lunchTotalCal;
-  private dinnerTotalCal;
-  private snacksTotalCal;
+  private unsubscribe: Subject<void> = new Subject();
 
-
-  constructor() {
+  constructor(
+    private calories: CaloriesService,
+    private goals: GoalsService,
+    private auth: AuthService) {
   }
 
   ngOnInit(): void {
-    this.breakfastPercentage = 10;
-    this.lunchPercentage = 10;
-    this.dinnerPercentage = 10;
-    this.snacksPercentage = 10;
+    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
+      Promise.all([
+        this.calories.setBreakfastCalories(user.email), 
+        this.calories.setLunchCalories(user.email), 
+        this.calories.setDinnerCalories(user.email), 
+        this.calories.setSnacksCalories(user.email)]).then(() => {
+          this.breakfastPercentage = this.calculateMealPercentageOfToalCalories(Calories.breakfast);
+          this.lunchPercentage = this.calculateMealPercentageOfToalCalories(Calories.lunch);
+          this.dinnerPercentage = this.calculateMealPercentageOfToalCalories(Calories.dinner);
+          this.snacksPercentage = this.calculateMealPercentageOfToalCalories(Calories.snacks);
+      
+          this.totalCalories = this.calories.getTotalCaloriesConsumed();
+          this.calorieGoal = this.goals.getMacroNutrientGoal(MacroNutrients.calories);
+          this.remainingCalories = this.calories.getRemainingCalories();
 
-    this.breakfastTotalCal = 10;
-    this.lunchTotalCal = 10;
-    this.dinnerTotalCal = 10;
-    this.snacksTotalCal = 10;
+          this.data = [this.lunchPercentage, this.dinnerPercentage, this.snacksPercentage, this.breakfastPercentage];
+        })
+    })
+  }
 
-    // this.labels = [
-    // `Breakfast ${this.breakfastPercentage}% (${this.breakfastTotalCal} cal)`,
-    // `Lunch ${this.lunchPercentage}% (${this.lunchTotalCal} cal)`,
-    // `Dinner ${this.dinnerPercentage}% (${this.dinnerTotalCal} cal)`,
-    // `Snacks ${this.snacksPercentage}% (${this.snacksTotalCal} cal)`
-    // ];
+  calculateMealPercentageOfToalCalories(meal: Calories): number {
+    return Math.round((this.calories.getCaloriesConsumedPerMeal(meal) / this.calories.getTotalCaloriesConsumed()) * 100);
+  }
+
+  caloriesInTheGreen(): boolean {
+    if(this.remainingCalories > 0) {
+      return true;
+    }
+
+    return false;
   }
 }

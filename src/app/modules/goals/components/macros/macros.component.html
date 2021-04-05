@@ -20,20 +20,20 @@
                   <tr>
                     <th scope="row"><fa-icon class="fas fa-drumstick-bite" [icon]="proteinIcon" size="sm"></fa-icon></th>
                     <td>Protein</td>
-                    <td>12</td>
-                    <td>80</td>
+                    <td [ngClass]="proteinStatus() == 'green' ? 'green' : (proteinStatus() == 'red' ? 'red' : 'amber')"><b>{{proteinTotal}}</b></td>
+                    <td><b>{{proteinGoal}}</b></td>
                   </tr>
                   <tr>
                     <th scope="row"><fa-icon class="fas fa-cheese" [icon]="fatsIcon" size="sm"></fa-icon></th>
                     <td>Fats</td>
-                    <td>15</td>
-                    <td>30</td>
+                    <td [ngClass]="fatStatus() == 'green' ? 'green' : (fatStatus() == 'red' ? 'red' : 'amber')"><b>{{fatTotal}}</b></td>
+                    <td><b>{{fatGoal}}</b></td>
                   </tr>
                   <tr>
                     <th scope="row"><fa-icon class="fas fa-bread-slice" [icon]="carbsIcon" size="sm"></fa-icon></th>
                     <td>Carbs</td>
-                    <td>22</td>
-                    <td>60</td>
+                    <td [ngClass]="carbsStatus() == 'green' ? 'green' : (carbsStatus() == 'red' ? 'red' : 'amber')"><b>{{carbsTotal}}</b></td>
+                    <td><b>{{carbsGoal}}</b></td>
                   </tr>
                 </tbody>
               </table>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { IFood } from 'src/app/models/food.model';
 
 @Component({
   selector: 'app-history',
@@ -13,11 +13,14 @@ import { IFood } from 'src/app/models/food.model';
 export class HistoryComponent implements OnInit {
   public meal: string;
   public forMeal = false;
-  public history = this.store.collection('history').valueChanges({ idField: 'code' });
+  public history;
 
   private unsubscribe: Subject<void> = new Subject();
 
-  constructor(private route: ActivatedRoute, private store: AngularFirestore) {
+  constructor(
+    private route: ActivatedRoute, 
+    private store: AngularFirestore,
+    private auth: AuthService) {
   }
 
   ngOnInit(): void {
@@ -32,8 +35,9 @@ export class HistoryComponent implements OnInit {
           this.meal = params.get('meal');
         }
       });
+
+      this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
+        this.history = this.store.collection(user.email).doc('food').collection('history').valueChanges({ idField: 'code' });
+      });
   }
-
-
-
 }

@@ -6,6 +6,7 @@ import { BarcodeFormat } from '@zxing/library';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { FoodService } from 'src/app/services/food/food.service';
 
 @Component({
   selector: 'app-scanner',
@@ -29,7 +30,8 @@ export class ScannerComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private foodService: FoodService) {
   }
 
   public ngOnInit(): void {
@@ -47,8 +49,17 @@ export class ScannerComponent implements OnInit {
   }
 
   scanSuccess(event): void {
-    this.toastrService.success('Barcode value read!');
-    this.router.navigate(['/breakdown/', event]);
+    this.foodService.getFood(event).pipe(takeUntil(this.unsubscribe)).subscribe((response) => {
+      if(response.status_verbose == 'product found') {
+        console.log(response.status_verbose);
+        this.toastrService.success('Product found');
+        this.router.navigate(['/breakdown/', this.meal, event]);
+      } else {
+        this.toastrService.error('Could not find product');
+      }
+    }, () => {
+      console.log('No response from API');
+    });
   }
 
   scanError(event): void {
@@ -61,6 +72,17 @@ export class ScannerComponent implements OnInit {
   }
 
   submitBarcode(): void {
-    this.router.navigate(['/breakdown/', this.meal, this.barcodeFormGroup.controls.barcode.value]);
+    var barcodeValue = this.barcodeFormGroup.controls.barcode.value;
+
+    this.foodService.getFood(barcodeValue).pipe(takeUntil(this.unsubscribe)).subscribe((response) => {
+      if(response.status_verbose == 'product found') {
+        this.toastrService.success('Product found');
+        this.router.navigate(['/breakdown/', this.meal, barcodeValue]);
+      } else {
+        this.toastrService.error('Could not find product');
+      }
+    }, () => {
+      console.log('No response from API');
+    });
   }
 }

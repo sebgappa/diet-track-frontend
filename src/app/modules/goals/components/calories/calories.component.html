@@ -24,9 +24,13 @@
     <div class="row mt-4">
         <div class="col">
             <ul class="list-group">
-                <li class="list-group-item">Total Calories <span class="align-value-right"><b>319</b></span></li>
-                <li class="list-group-item">Remaining Calories <span class="align-value-right"><b>222</b></span></li>
-                <li class="list-group-item">Calorie Goal <span class="align-value-right"><b>1319</b></span></li>
+                <li class="list-group-item">Total Calories <span class="align-value-right"><b>{{totalCalories}}</b></span></li>
+                <li class="list-group-item">Remaining Calories <span class="align-value-right">
+                    <b [ngClass]="{
+                    positive: caloriesInTheGreen(),
+                    negative: !caloriesInTheGreen()}">{{remainingCalories}}</b>
+                </span></li>
+                <li class="list-group-item">Calorie Goal <span class="align-value-right"><b>{{calorieGoal}}</b></span></li>
               </ul>
         </div>
     </div>

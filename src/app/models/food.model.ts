@@ -1,4 +1,4 @@
-import { IProduct } from './product.mode';
+import { IProduct } from './product.model';
 
 export interface IFood {
     code?: string;
