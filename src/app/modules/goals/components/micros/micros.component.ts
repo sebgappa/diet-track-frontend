@@ -37,7 +37,7 @@ export class MicrosComponent implements OnInit {
   microsInTheGreen(currentAmount: number, goalAmount: number): string {
     if(currentAmount >= goalAmount && currentAmount < goalAmount + 10) {
       return 'green';
-    } else if(currentAmount >goalAmount + 10) {
+    } else if(currentAmount > goalAmount + 10) {
       return 'red'
     }
   }

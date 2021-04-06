@@ -12,16 +12,20 @@
                 </thead>
                 <tbody  *ngFor="let micro of micros">
                   <tr>
+                    <td>{{micro.name}}</td>
                     <td>
-                        {{micro.name}}
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': micro.percentage}" aria-valuenow="microTotalPercentage" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                      <b>{{micro.total}}</b>
                     </td>
-                    <td>{{micro.total}}</td>
-                    <td>{{micro.goal}}</td>
+                    <td><b>{{micro.goal}}</b></td>
                     <td [ngClass]="microsInTheGreen(micro.total, micro.goal) == 'green' ? 'green' : (microsInTheGreen(micro.total, micro.goal) == 'red' ? 'red' : 'amber')">
-                      {{micro.left}}
+                      <b>{{micro.left}}</b>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4">
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': micro.percentage}" aria-valuenow="microTotalPercentage" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
