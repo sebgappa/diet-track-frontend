@@ -182,11 +182,12 @@ export class BreakdownComponent implements OnInit {
         this.store.collection(this.user.email).doc('food').collection(this.meal).add(this.foodObject)
       ]);
       return promise;
+    }).then(() => {
+      this.toastr.success('Item added');
+      this.router.navigate(['/food/', this.meal]);
+    }, () => {
+      this.toastr.error('Failed to store item.');
     });
-
-    this.toastr.success('Item added');
-
-    this.router.navigate(['/food/', this.meal]);
   }
 
   public addFoodItemForMeal() {
@@ -205,9 +206,13 @@ export class BreakdownComponent implements OnInit {
       this.foodObject.product.brands = this.foodObject.product.brands.substring(0, 30) + '...';
     }
 
-    this.sessionStorageService.saveFoodItemToMeal(this.foodObject);
-    this.toastr.success('Iteam added');
-    this.router.navigate(['/food/', this.meal]);
+    this.store.collection(this.user.email).doc('food').collection('history').add(this.foodObject).then(() => {
+      this.toastr.success('Iteam added');
+      this.sessionStorageService.saveFoodItemToMeal(this.foodObject);
+      this.router.navigate(['/food/', this.meal]);
+    }, () => {
+      this.toastr.error('Failed to store item.');
+    });
   }
 
   public calculatePercentageOfMacronutrientGoal(foodValue: number, goalValue: Goals) {

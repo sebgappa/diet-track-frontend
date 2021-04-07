@@ -84,14 +84,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 pt-4">
+            <div class="col-12 pt-4 pb-5">
                 <div class="row">
                     <div class="form-group col-12">
                         <h6><b>Meal name:</b></h6>
                         <input type="text" formControlName="mealName" class="form-control" placeholder="Enter"
                             [ngClass]="{ 'is-invalid': mealForm.mealName.touched && mealForm.mealName.errors }">
                     </div>
-                    <div class="col-12 pt-2 mb-5">
+                    <div class="col-12 pt-2">
                         <h6><b>Meal Items:</b><span class="align-items-right">
                                 <fa-icon (click)="addFoodItem()" [icon]="plusIcon" [fixedWidth]="true" class="icons">
                                 </fa-icon>
@@ -109,29 +109,6 @@
                             <h6>Add items to your meal!</h6>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-12 pt-4">
-                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                          <img src="assets/images/default-meal-breakfast.jpg" class="d-block w-100">
-                        </div>
-                        <div class="carousel-item">
-                          <img src="assets/images/default-meal-lunch.jpg" class="d-block w-100">
-                        </div>
-                        <div class="carousel-item">
-                          <img src="assets/images/default-meal-dinner.jpg" class="d-block w-100">
-                        </div>
-                      </div>
-                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                      </button>
-                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                      </button>
                 </div>
             </div>
         </div>

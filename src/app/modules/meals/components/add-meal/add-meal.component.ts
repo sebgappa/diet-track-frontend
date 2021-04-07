@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -51,6 +51,13 @@ export class AddMealComponent implements OnInit {
 
   public meal: IMeal;
 
+  private imageSrcs: string[] = [
+    "assets/images/default-meal-breakfast.jpg",
+    "assets/images/default-meal-lunch.jpg",
+    "assets/images/default-meal-dinner.jpg",
+    "assets/images/default-meal-snacks.jpg"
+  ]
+
   private unsubscribe: Subject<void> = new Subject();
 
   constructor(
@@ -96,6 +103,9 @@ export class AddMealComponent implements OnInit {
   }
 
   saveMeal() {
+    this.meal.image = this.imageSrcs[Math.floor(Math.random() * this.imageSrcs.length)];
+    this.meal.name = this.addMealForm.controls.mealName.value;
+
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
       this.store.collection(user.email).doc('food').collection('meals').add(Object.assign({}, this.meal)).then(() => {
         this.toastr.success('Meal added');
@@ -145,4 +155,3 @@ export class AddMealComponent implements OnInit {
     return percentage;
   }
 }
-
