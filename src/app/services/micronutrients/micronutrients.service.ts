@@ -45,7 +45,7 @@ export class MicronutrientsService {
 
   setBreakfastMicronutrients(email: string): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
-      this.store.collection(email).doc('food').collection('breakfast').valueChanges({ idField: 'code' }).subscribe(breakfast => {
+      this.store.collection(email).doc('food').collection('breakfast').valueChanges({ idField: 'id' }).subscribe(breakfast => {
         for (const food of breakfast) {
           for (const value in MicroNutrients) {
             if (this.microNutrientTotals.has(value)) {
@@ -67,7 +67,7 @@ export class MicronutrientsService {
 
   setLunchMicronutrients(email: string): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
-      this.store.collection(email).doc('food').collection('lunch').valueChanges({ idField: 'code' }).subscribe(lunch => {
+      this.store.collection(email).doc('food').collection('lunch').valueChanges({ idField: 'id' }).subscribe(lunch => {
         for (const food of lunch) {
           for (const value in MicroNutrients) {
             if (this.microNutrientTotals.has(value)) {
@@ -89,7 +89,7 @@ export class MicronutrientsService {
 
   setDinnerMicronutrients(email: string): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
-      this.store.collection(email).doc('food').collection('dinner').valueChanges({ idField: 'code' }).subscribe(dinner => {
+      this.store.collection(email).doc('food').collection('dinner').valueChanges({ idField: 'id' }).subscribe(dinner => {
         for (const food of dinner) {
           for (const value in MicroNutrients) {
             if (this.microNutrientTotals.has(value)) {
@@ -111,7 +111,7 @@ export class MicronutrientsService {
 
   setSnacksMicronutrients(email: string): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
-      this.store.collection(email).doc('food').collection('snacks').valueChanges({ idField: 'code' }).subscribe(snacks => {
+      this.store.collection(email).doc('food').collection('snacks').valueChanges({ idField: 'id' }).subscribe(snacks => {
         for (const food of snacks) {
           for (const value in MicroNutrients) {
             if (this.microNutrientTotals.has(value)) {

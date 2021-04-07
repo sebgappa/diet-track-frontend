@@ -178,8 +178,8 @@ export class BreakdownComponent implements OnInit {
 
     this.store.firestore.runTransaction(() => {
       const promise = Promise.all([
-        this.store.collection(this.user.email).doc('food').collection('history').doc(this.foodObject.code).set(this.foodObject),
-        this.store.collection(this.user.email).doc('food').collection(this.meal).doc(this.foodObject.code).set(this.foodObject)
+        this.store.collection(this.user.email).doc('food').collection('history').add(this.foodObject),
+        this.store.collection(this.user.email).doc('food').collection(this.meal).add(this.foodObject)
       ]);
       return promise;
     });

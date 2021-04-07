@@ -54,7 +54,7 @@ export class MacronutrientsService {
       let protein = 0;
       let fat = 0;
       let carbs = 0;
-      this.store.collection(email).doc('food').collection('breakfast').valueChanges({ idField: 'code' }).subscribe(breakfast => {
+      this.store.collection(email).doc('food').collection('breakfast').valueChanges({ idField: 'id' }).subscribe(breakfast => {
         for (const food of breakfast) {
           protein += food.product.nutriments.proteins_value;
           fat += food.product.nutriments.fat_value;
@@ -77,7 +77,7 @@ export class MacronutrientsService {
       let protein = 0;
       let fat = 0;
       let carbs = 0;
-      this.store.collection(email).doc('food').collection('lunch').valueChanges({ idField: 'code' }).subscribe(lunch => {
+      this.store.collection(email).doc('food').collection('lunch').valueChanges({ idField: 'id' }).subscribe(lunch => {
         for (const food of lunch) {
           protein += food.product.nutriments.proteins_value;
           fat += food.product.nutriments.fat_value;
@@ -100,7 +100,7 @@ export class MacronutrientsService {
       let protein = 0;
       let fat = 0;
       let carbs = 0;
-      this.store.collection(email).doc('food').collection('dinner').valueChanges({ idField: 'code' }).subscribe(dinner => {
+      this.store.collection(email).doc('food').collection('dinner').valueChanges({ idField: 'id' }).subscribe(dinner => {
         for (const food of dinner) {
           protein += food.product.nutriments.proteins_value;
           fat += food.product.nutriments.fat_value;
@@ -123,7 +123,7 @@ export class MacronutrientsService {
       let protein = 0;
       let fat = 0;
       let carbs = 0;
-      this.store.collection(email).doc('food').collection('snacks').valueChanges({ idField: 'code' }).subscribe(snacks => {
+      this.store.collection(email).doc('food').collection('snacks').valueChanges({ idField: 'id' }).subscribe(snacks => {
         for (const food of snacks) {
           protein += food.product.nutriments.proteins_value;
           fat += food.product.nutriments.fat_value;

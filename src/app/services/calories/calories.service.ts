@@ -40,7 +40,7 @@ export class CaloriesService {
   public setBreakfastCalories(email: string): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
       let breakfastCalories = 0;
-      this.store.collection(email).doc('food').collection('breakfast').valueChanges({ idField: 'code' }).subscribe(breakfast => {
+      this.store.collection(email).doc('food').collection('breakfast').valueChanges({ idField: 'id' }).subscribe(breakfast => {
         for (const food of breakfast) {
           breakfastCalories += food.product.nutriments['energy-kcal_value'];
         }
@@ -57,7 +57,7 @@ export class CaloriesService {
   public setLunchCalories(email: string): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
       let lunchCalories = 0;
-      this.store.collection(email).doc('food').collection('lunch').valueChanges({ idField: 'code' }).subscribe(lunch => {
+      this.store.collection(email).doc('food').collection('lunch').valueChanges({ idField: 'id' }).subscribe(lunch => {
         for (const food of lunch) {
           lunchCalories += food.product.nutriments['energy-kcal_value'];
         }
@@ -74,7 +74,7 @@ export class CaloriesService {
   public setDinnerCalories(email: string): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
       let dinnerCalories = 0;
-      this.store.collection(email).doc('food').collection('dinner').valueChanges({ idField: 'code' }).subscribe(dinner => {
+      this.store.collection(email).doc('food').collection('dinner').valueChanges({ idField: 'id' }).subscribe(dinner => {
         for (const food of dinner) {
           dinnerCalories += food.product.nutriments['energy-kcal_value'];
         }
@@ -91,7 +91,7 @@ export class CaloriesService {
   public setSnacksCalories(email: string): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
       let snacksCalories = 0;
-      this.store.collection(email).doc('food').collection('snacks').valueChanges({ idField: 'code' }).subscribe(snacks => {
+      this.store.collection(email).doc('food').collection('snacks').valueChanges({ idField: 'id' }).subscribe(snacks => {
         for (const food of snacks) {
           snacksCalories += food.product.nutriments['energy-kcal_value'];
         }

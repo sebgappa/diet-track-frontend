@@ -85,7 +85,7 @@ export class AddMealComponent implements OnInit {
 
   saveMeal() {
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
-      this.store.collection(user.email).doc('food').collection('meals').doc(this.meal.name).set(Object.assign({}, this.meal)).then(() => {
+      this.store.collection(user.email).doc('food').collection('meals').add(Object.assign({}, this.meal)).then(() => {
         this.toastr.success('Meal added');
         this.sessionStorageService.removeObject('meal');
         this.addMealForm.reset();

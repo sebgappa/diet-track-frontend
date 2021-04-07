@@ -60,10 +60,10 @@ export class DiaryComponent implements OnInit {
   }
 
   setFood(email: string) {
-    this.breakfast = this.store.collection(email).doc('food').collection('breakfast').valueChanges({ idField: 'code' });
-    this.lunch = this.store.collection(email).doc('food').collection('lunch').valueChanges({ idField: 'code' });
-    this.dinner = this.store.collection(email).doc('food').collection('dinner').valueChanges({ idField: 'code' });
-    this.snacks = this.store.collection(email).doc('food').collection('snacks').valueChanges({ idField: 'code' });
+    this.breakfast = this.store.collection(email).doc('food').collection('breakfast').valueChanges({ idField: 'id' });
+    this.lunch = this.store.collection(email).doc('food').collection('lunch').valueChanges({ idField: 'id' });
+    this.dinner = this.store.collection(email).doc('food').collection('dinner').valueChanges({ idField: 'id' });
+    this.snacks = this.store.collection(email).doc('food').collection('snacks').valueChanges({ idField: 'id' });
   }
 
   addFood(meal: string) {

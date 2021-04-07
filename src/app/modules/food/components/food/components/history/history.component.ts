@@ -37,7 +37,7 @@ export class HistoryComponent implements OnInit {
       });
 
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
-        this.history = this.store.collection(user.email).doc('food').collection('history').valueChanges({ idField: 'code' });
+        this.history = this.store.collection(user.email).doc('food').collection('history').valueChanges({ idField: 'id' });
       });
   }
 }
