@@ -5,7 +5,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Calories } from 'src/app/enums/calories.enum';
-import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
+import { Goals } from 'src/app/enums/goals.enum';
 import { CaloriesService } from 'src/app/services/calories/calories.service';
 import { GoalsService } from 'src/app/services/goals/goals.service';
 
@@ -40,7 +40,7 @@ export class DiaryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.goalCalories = this.goals.getMacroNutrientGoal(MacroNutrients.calories);
+    this.goalCalories = this.goals.getMacroNutrientGoal(Goals.calories);
 
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
       this.setFood(user.email);

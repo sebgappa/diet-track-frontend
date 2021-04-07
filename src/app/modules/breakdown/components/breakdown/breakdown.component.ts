@@ -1,4 +1,3 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -10,6 +9,7 @@ import { Label } from 'ng2-charts';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Goals } from 'src/app/enums/goals.enum';
 import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
 import { IFood } from 'src/app/models/food.model';
 import { FoodService } from 'src/app/services/food/food.service';
@@ -139,10 +139,10 @@ export class BreakdownComponent implements OnInit {
                                     this.foodObject.product.nutriments['energy-kcal_100g']];
 
       this.macronutrientGoalPercentages = [
-        this.calculatePercentageOfMacronutrientGoal(response.product.nutriments.proteins_100g, MacroNutrients.protein),
-        this.calculatePercentageOfMacronutrientGoal(response.product.nutriments.fat_100g, MacroNutrients.fat),
-        this.calculatePercentageOfMacronutrientGoal(response.product.nutriments.carbohydrates_100g, MacroNutrients.carbs),
-        this.calculatePercentageOfMacronutrientGoal(response.product.nutriments['energy-kcal_100g'], MacroNutrients.calories)
+        this.calculatePercentageOfMacronutrientGoal(response.product.nutriments.proteins_100g, Goals.protein),
+        this.calculatePercentageOfMacronutrientGoal(response.product.nutriments.fat_100g, Goals.fat),
+        this.calculatePercentageOfMacronutrientGoal(response.product.nutriments.carbohydrates_100g, Goals.carbs),
+        this.calculatePercentageOfMacronutrientGoal(response.product.nutriments['energy-kcal_100g'], Goals.calories)
       ];
     }, () => {
       console.log('No response');
@@ -190,14 +190,33 @@ export class BreakdownComponent implements OnInit {
   }
 
   public addFoodItemForMeal() {
+    this.foodObject.product.nutriments.proteins_value = this.macronutrients[0];
+    this.foodObject.product.nutriments.fat_value = this.macronutrients[1];
+    this.foodObject.product.nutriments.carbohydrates_value = this.macronutrients[2];
+    this.foodObject.product.nutriments['energy-kcal_value'] = this.macronutrients[3];
+    this.foodObject.product.serving_number = this.nutritionBreakdownForm.controls.numOfServings.value;
+    this.foodObject.product.serving_size = this.nutritionBreakdownForm.controls.servingSize.value + 'g';
+
+    if (this.foodObject.product.product_name.length > 30) {
+      this.foodObject.product.product_name = this.foodObject.product.product_name.substring(0, 30) + '...';
+    }
+
+    if (this.foodObject.product.brands.length > 30) {
+      this.foodObject.product.brands = this.foodObject.product.brands.substring(0, 30) + '...';
+    }
+
     this.sessionStorageService.saveFoodItemToMeal(this.foodObject);
     this.toastr.success('Iteam added');
     this.router.navigate(['/food/', this.meal]);
   }
 
-  public calculatePercentageOfMacronutrientGoal(foodValue: number, goalValue: MacroNutrients) {
-    return Math.round((foodValue / this.goalService.getMacroNutrientGoal(goalValue)) * 100);
-  }
+  public calculatePercentageOfMacronutrientGoal(foodValue: number, goalValue: Goals) {
+      var percentage = Math.round((foodValue / this.goalService.getMacroNutrientGoal(goalValue)) * 100);
+
+      if(percentage > 100) return 100;
+      
+      return percentage;
+    }
 
   public updateMacroServingSize() {
     switch (this.nutritionBreakdownForm.controls.servingSize.value) {
@@ -208,7 +227,6 @@ export class BreakdownComponent implements OnInit {
             this.macronutrients[i] = Number((this.macronutrients[i] * 10).toFixed(4));
 
             this.macronutrientGoalPercentages[i] = this.calculatePercentageOfMacronutrientGoal(this.macronutrients[i], i);
-            if (this.macronutrientGoalPercentages[i] > 100) { this.macronutrientGoalPercentages[i] = 100; }
 
             this.originalMacronutrients[i] = Number((this.originalMacronutrients[i] * 10).toFixed(4));
           }
@@ -220,7 +238,6 @@ export class BreakdownComponent implements OnInit {
             this.macronutrients[i] = Number((this.macronutrients[i] * 100).toFixed(4));
 
             this.macronutrientGoalPercentages[i] = this.calculatePercentageOfMacronutrientGoal(this.macronutrients[i], i);
-            if (this.macronutrientGoalPercentages[i] > 100) { this.macronutrientGoalPercentages[i] = 100; }
 
             this.originalMacronutrients[i] = Number((this.originalMacronutrients[i] * 100).toFixed(4));
           }
@@ -235,7 +252,6 @@ export class BreakdownComponent implements OnInit {
             this.macronutrients[i] = Number((this.macronutrients[i] / 10).toFixed(4));
 
             this.macronutrientGoalPercentages[i] = this.calculatePercentageOfMacronutrientGoal(this.macronutrients[i], i);
-            if (this.macronutrientGoalPercentages[i] > 100) { this.macronutrientGoalPercentages[i] = 100; }
 
             this.originalMacronutrients[i] = Number((this.originalMacronutrients[i] / 10).toFixed(4));
           }
@@ -248,7 +264,6 @@ export class BreakdownComponent implements OnInit {
             this.macronutrients[i] = Number((this.macronutrients[i] * 10).toFixed(4));
 
             this.macronutrientGoalPercentages[i] = this.calculatePercentageOfMacronutrientGoal(this.macronutrients[i], i);
-            if (this.macronutrientGoalPercentages[i] > 100) { this.macronutrientGoalPercentages[i] = 100; }
 
             this.originalMacronutrients[i] = Number((this.originalMacronutrients[i] * 10).toFixed(4));
           }
@@ -263,7 +278,6 @@ export class BreakdownComponent implements OnInit {
             this.macronutrients[i] = Number((this.macronutrients[i] / 10).toFixed(4));
 
             this.macronutrientGoalPercentages[i] = this.calculatePercentageOfMacronutrientGoal(this.macronutrients[i], i);
-            if (this.macronutrientGoalPercentages[i] > 100) { this.macronutrientGoalPercentages[i] = 100; }
 
             this.originalMacronutrients[i] = Number((this.originalMacronutrients[i] / 10).toFixed(4));
           }
@@ -275,7 +289,6 @@ export class BreakdownComponent implements OnInit {
             this.macronutrients[i] = Number((this.macronutrients[i] / 100).toFixed(4));
 
             this.macronutrientGoalPercentages[i] = this.calculatePercentageOfMacronutrientGoal(this.macronutrients[i], i);
-            if (this.macronutrientGoalPercentages[i] > 100) { this.macronutrientGoalPercentages[i] = 100; }
 
             this.originalMacronutrients[i] = Number((this.originalMacronutrients[i] / 100).toFixed(4));
           }
@@ -297,7 +310,6 @@ export class BreakdownComponent implements OnInit {
         this.nutritionBreakdownForm.controls.numOfServings.value).toFixed(4));
 
       this.macronutrientGoalPercentages[i] = this.calculatePercentageOfMacronutrientGoal(this.macronutrients[i], i);
-      if (this.macronutrientGoalPercentages[i] > 100) { this.macronutrientGoalPercentages[i] = 100; }
     }
 
     this.data = [this.macronutrients[0], this.macronutrients[1], this.macronutrients[2]];

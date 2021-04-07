@@ -9,8 +9,11 @@ import { Label } from 'ng2-charts';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Goals } from 'src/app/enums/goals.enum';
 import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
 import { IMeal } from 'src/app/models/meal.model';
+import { CaloriesService } from 'src/app/services/calories/calories.service';
+import { GoalsService } from 'src/app/services/goals/goals.service';
 import { MacronutrientsService } from 'src/app/services/macronutrients/macronutrients.service';
 import { SessionStorageService } from 'src/app/services/session-storage/session-storage.service';
 
@@ -36,10 +39,12 @@ export class AddMealComponent implements OnInit {
   public proteinTotal = 0;
   public fatTotal = 0;
   public carbsTotal = 0;
+  public caloriesTotal = 0;
 
   public proteinPercentage = 0;
   public fatPercentage = 0;
   public carbsPercentage = 0;
+  public caloriesPercentage = 0;
 
   public get mealForm() { return this.addMealForm.controls; }
   public addMealForm: FormGroup;
@@ -55,7 +60,9 @@ export class AddMealComponent implements OnInit {
     private toastr: ToastrService,
     private macros: MacronutrientsService,
     private store: AngularFirestore,
-    private auth: AuthService) {}
+    private auth: AuthService,
+    private calories: CaloriesService,
+    private goals: GoalsService) {}
 
   ngOnInit(): void {
     const jSONMeal = this.sessionStorageService.readObject('meal');
@@ -68,13 +75,18 @@ export class AddMealComponent implements OnInit {
     });
 
     if (this.meal.items) {
+      this.calories.clearMealCalories();
+      this.calories.setMealCalories(this.meal);
+
       this.macros.clearTotalMacroNutrientConsumedForMeal();
       this.macros.setMacronutrientsConsumedForMeal(this.meal);
 
+      this.caloriesTotal = this.calories.getTotalCaloriesInMeal();
       this.proteinTotal = this.macros.getTotalMacroNutrientConsumedForMeal(MacroNutrients.protein);
       this.fatTotal = this.macros.getTotalMacroNutrientConsumedForMeal(MacroNutrients.fat);
       this.carbsTotal = this.macros.getTotalMacroNutrientConsumedForMeal(MacroNutrients.carbs);
 
+      this.caloriesPercentage = this.calculatePercentageOfCalorieGoal(this.caloriesTotal);
       this.proteinPercentage = this.calculatePercentageOfTotalMacros(this.proteinTotal);
       this.fatPercentage = this.calculatePercentageOfTotalMacros(this.fatTotal);
       this.carbsPercentage = this.calculatePercentageOfTotalMacros(this.carbsTotal);
@@ -118,7 +130,19 @@ export class AddMealComponent implements OnInit {
   }
 
   private calculatePercentageOfTotalMacros(macroTotal: number) {
-    return Math.round((macroTotal / (this.proteinTotal + this.fatTotal + this.carbsTotal)) * 100);
+    var percentage =  Math.round((macroTotal / (this.proteinTotal + this.fatTotal + this.carbsTotal)) * 100);
+
+    if(percentage > 100) return 100;
+      
+    return percentage;
+  }
+
+  private calculatePercentageOfCalorieGoal(calorieTotal: number) {
+    var percentage = Math.round((calorieTotal / this.goals.getMacroNutrientGoal(Goals.calories)) * 100);
+
+    if(percentage > 100) return 100;
+      
+    return percentage;
   }
 }
 

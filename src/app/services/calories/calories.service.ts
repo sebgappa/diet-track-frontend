@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Calories } from 'src/app/enums/calories.enum';
-import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
+import { Goals } from 'src/app/enums/goals.enum';
+import { IMeal } from 'src/app/models/meal.model';
 import { GoalsService } from '../goals/goals.service';
 
 @Injectable({
@@ -9,6 +10,7 @@ import { GoalsService } from '../goals/goals.service';
 })
 export class CaloriesService {
   private caloriesConsumedPerMeal: number[] = [0, 0, 0, 0];
+  private caloriesInMeal: number = 0;
 
   constructor(
     private store: AngularFirestore,
@@ -34,7 +36,23 @@ export class CaloriesService {
   }
 
   public getRemainingCalories() {
-    return Number((this.goals.getMacroNutrientGoal(MacroNutrients.calories) - this.getTotalCaloriesConsumed()).toFixed(2));
+    return Number((this.goals.getMacroNutrientGoal(Goals.calories) - this.getTotalCaloriesConsumed()).toFixed(2));
+  }
+
+  public getTotalCaloriesInMeal() {
+    return this.caloriesInMeal;
+  }
+
+  public setMealCalories(meal: IMeal) {
+    if (!meal.items) { return; }
+
+    for (const item of meal.items) {
+      this.caloriesInMeal += item.product.nutriments['energy-kcal_value']
+    }
+  }
+
+  public clearMealCalories() {
+    this.caloriesInMeal = 0;
   }
 
   public setBreakfastCalories(email: string): Promise<null> {

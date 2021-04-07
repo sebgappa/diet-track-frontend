@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
-import { IFood } from 'src/app/models/food.model';
 import { IMeal } from 'src/app/models/meal.model';
 
 @Injectable({

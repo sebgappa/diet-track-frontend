@@ -50,6 +50,10 @@
     color: #d39000
 }
 
+.colour-calories {
+    color: #7c00b6
+}
+
 .icons {
     color: #009414;
 
@@ -68,8 +72,11 @@ input.ng-invalid.ng-touched {
 
 .list-group-item {
     font-size: 14px;
-    padding: 5px;
-    font-weight: bold;
+    padding: 0px;
+}
+
+.text-secondary {
+    margin-bottom: 0.25rem;
 }
 
 .list-group{

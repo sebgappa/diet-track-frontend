@@ -6,6 +6,7 @@ import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Goals } from 'src/app/enums/goals.enum';
 import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
 import { GoalsService } from 'src/app/services/goals/goals.service';
 import { MacronutrientsService } from 'src/app/services/macronutrients/macronutrients.service';
@@ -48,9 +49,9 @@ export class MacrosComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.proteinGoal = this.goals.getMacroNutrientGoal(MacroNutrients.protein);
-    this.fatGoal = this.goals.getMacroNutrientGoal(MacroNutrients.fat);
-    this.carbsGoal = this.goals.getMacroNutrientGoal(MacroNutrients.carbs);
+    this.proteinGoal = this.goals.getMacroNutrientGoal(Goals.protein);
+    this.fatGoal = this.goals.getMacroNutrientGoal(Goals.fat);
+    this.carbsGoal = this.goals.getMacroNutrientGoal(Goals.carbs);
 
 
     this.macronutrients.clearTotalMacroNutrientConsumed();

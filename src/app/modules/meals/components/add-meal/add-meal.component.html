@@ -22,36 +22,65 @@
             </div>
             <div class="col-12 pt-2">
                 <div class="row text-center text-secondary">
-                    <div class="col colour-protein">
-                        {{proteinPercentage}}%
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col colour-protein">
+                                {{proteinPercentage}}%
+                            </div>
+                            <div class="col colour-fats">
+                                {{fatPercentage}}%
+                            </div>
+                        </div>
                     </div>
-                    <div class="col colour-fats">
-                        {{fatPercentage}}%
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col">
+                                <b>{{proteinTotal}}g</b>
+                            </div>
+                            <div class="col">
+                                <b>{{fatTotal}}g</b>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col colour-carbs">
-                        {{carbsPercentage}}%
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col colour-protein">
+                                Protein
+                            </div>
+                            <div class="col colour-fats">
+                                Fats
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col">
-                        <h6><b>{{proteinTotal}}g</b></h6>
+                    <div class="col-12 pt-2">
+                        <div class="row">
+                            <div class="col colour-carbs">
+                                {{carbsPercentage}}%
+                            </div>
+                            <div class="col colour-calories">
+                                {{caloriesPercentage}}%
+                            </div>
+                        </div>
                     </div>
-                    <div class="col">
-                        <h6><b>{{fatTotal}}g</b></h6>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col">
+                                <b>{{carbsTotal}}g</b>
+                            </div>
+                            <div class="col">
+                                <b>{{caloriesTotal}}</b>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col">
-                        <h6><b>{{carbsTotal}}g</b></h6>
-                    </div>
-                </div>
-                <div class="row text-center text-secondary">
-                    <div class="col colour-protein">
-                        Protein
-                    </div>
-                    <div class="col colour-fats">
-                        Fats
-                    </div>
-                    <div class="col colour-carbs">
-                        Carbs
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col colour-carbs">
+                                Carbs
+                            </div>
+                            <div class="col colour-calories">
+                                Kcal
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,19 +91,47 @@
                         <input type="text" formControlName="mealName" class="form-control" placeholder="Enter"
                             [ngClass]="{ 'is-invalid': mealForm.mealName.touched && mealForm.mealName.errors }">
                     </div>
-                    <div class="col-12 pt-2">
+                    <div class="col-12 pt-2 mb-5">
                         <h6><b>Meal Items:</b><span class="align-items-right">
-                                <fa-icon (click)="addFoodItem()" [icon]="plusIcon" [fixedWidth]="true"
-                                    class="icons"></fa-icon>
+                                <fa-icon (click)="addFoodItem()" [icon]="plusIcon" [fixedWidth]="true" class="icons">
+                                </fa-icon>
                             </span></h6>
-                        <ul class="list-group list-group-flush" *ngFor="let item of meal.items">
-                            <li class="list-group-item">{{item.product.product_name}}<span class="align-items-right"><b>{{item.product.nutriments['energy-kcal_value']}}</b></span>
-                            </li>
+                        <ul *ngIf="meal.items" class="list-group list-group-flush">
+                            <div *ngFor="let item of meal.items">
+                                <li class="list-group-item">{{item.product.product_name}}<span
+                                        class="align-items-right"><b>{{item.product.nutriments['energy-kcal_value']}}</b></span>
+                                </li>
+                                <li class="list-group-item text-secondary">{{item.product.brands}},
+                                    {{item.product.serving_number}}x, {{item.product.serving_size}}</li>
+                            </div>
                         </ul>
                         <div *ngIf="!meal.items" class="text-center text-secondary pt-2">
                             <h6>Add items to your meal!</h6>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="col-12 pt-4">
+                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <img src="assets/images/default-meal-breakfast.jpg" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                          <img src="assets/images/default-meal-lunch.jpg" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                          <img src="assets/images/default-meal-dinner.jpg" class="d-block w-100">
+                        </div>
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Goals } from 'src/app/enums/goals.enum';
 import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
 
 @Injectable({
@@ -31,33 +32,33 @@ export class GoalsService {
     return this.recommendedMicroNutrientGoals;
   }
 
-  public getMacroNutrientGoal(macronutrient: MacroNutrients) {
+  public getMacroNutrientGoal(macronutrient: Goals) {
     switch (+macronutrient) {
-      case MacroNutrients.protein:
+      case Goals.protein:
         return this.macroNutrientGoals[0];
-      case MacroNutrients.fat:
+      case Goals.fat:
         return this.macroNutrientGoals[1];
-      case MacroNutrients.carbs:
+      case Goals.carbs:
         return this.macroNutrientGoals[2];
-      case MacroNutrients.calories:
+      case Goals.calories:
         return this.macroNutrientGoals[3];
       default:
         break;
     }
   }
 
-  public setMacroNutrientGoal(macronutrient: MacroNutrients, value: number) {
+  public setMacroNutrientGoal(macronutrient: Goals, value: number) {
     switch (+macronutrient) {
-      case MacroNutrients.protein:
+      case Goals.protein:
         this.macroNutrientGoals[0] = value;
         break;
-      case MacroNutrients.fat:
+      case Goals.fat:
         this.macroNutrientGoals[1] = value;
         break;
-      case MacroNutrients.carbs:
+      case Goals.carbs:
         this.macroNutrientGoals[2] = value;
         break;
-      case MacroNutrients.calories:
+      case Goals.calories:
         this.macroNutrientGoals[3] = value;
         break;
       default:
