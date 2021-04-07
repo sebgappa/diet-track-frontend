@@ -15,10 +15,10 @@ export class MicronutrientsService {
     private goals: GoalsService) { }
 
   getMicronutrientObjects() {
-    var micronutrients: IMicro[] = [];
+    const micronutrients: IMicro[] = [];
 
-    for(const value in MicroNutrients) {
-      var micronutrient: IMicro = {
+    for (const value in MicroNutrients) {
+      const micronutrient: IMicro = {
         name: MicroNutrients[value],
         total: this.microNutrientTotals.get(value),
         goal: this.goals.getRecommendedMicroNutrientGoals().get(value),
@@ -32,8 +32,8 @@ export class MicronutrientsService {
   }
 
   calculateMicronutrientPercentage(currentValue: number, goalValue: number) {
-    var percentage = Math.round((currentValue / goalValue) * 100);
-    if(percentage > 100) {
+    const percentage = Math.round((currentValue / goalValue) * 100);
+    if (percentage > 100) {
       return 100;
     }
     return percentage;
@@ -44,12 +44,12 @@ export class MicronutrientsService {
   }
 
   setBreakfastMicronutrients(email: string): Promise<null> {
-    var promise = new Promise<null>((resolve, reject) => {
+    const promise = new Promise<null>((resolve, reject) => {
       this.store.collection(email).doc('food').collection('breakfast').valueChanges({ idField: 'code' }).subscribe(breakfast => {
-        for(var food of breakfast) {
-          for(const value in MicroNutrients) {
-            if(this.microNutrientTotals.has(value)) {
-              var currentValue = this.microNutrientTotals.get(value);
+        for (const food of breakfast) {
+          for (const value in MicroNutrients) {
+            if (this.microNutrientTotals.has(value)) {
+              const currentValue = this.microNutrientTotals.get(value);
               this.microNutrientTotals.set(value, Number((currentValue + food.product.nutriments[value]).toFixed(2)));
             } else {
               this.microNutrientTotals.set(value, Number(food.product.nutriments[value].toFixed(2)));
@@ -60,18 +60,18 @@ export class MicronutrientsService {
       }, () => {
         reject(null);
       });
-    })
+    });
 
     return promise;
   }
 
   setLunchMicronutrients(email: string): Promise<null> {
-    var promise = new Promise<null>((resolve, reject) => {
+    const promise = new Promise<null>((resolve, reject) => {
       this.store.collection(email).doc('food').collection('lunch').valueChanges({ idField: 'code' }).subscribe(lunch => {
-        for(var food of lunch) {
-          for(const value in MicroNutrients) {
-            if(this.microNutrientTotals.has(value)) {
-              var currentValue = this.microNutrientTotals.get(value);
+        for (const food of lunch) {
+          for (const value in MicroNutrients) {
+            if (this.microNutrientTotals.has(value)) {
+              const currentValue = this.microNutrientTotals.get(value);
               this.microNutrientTotals.set(value, Number((currentValue + food.product.nutriments[value]).toFixed(2)));
             } else {
               this.microNutrientTotals.set(value, Number(food.product.nutriments[value].toFixed(2)));
@@ -82,18 +82,18 @@ export class MicronutrientsService {
       }, () => {
         reject(null);
       });
-    })
+    });
 
     return promise;
   }
 
   setDinnerMicronutrients(email: string): Promise<null> {
-    var promise = new Promise<null>((resolve, reject) => {
+    const promise = new Promise<null>((resolve, reject) => {
       this.store.collection(email).doc('food').collection('dinner').valueChanges({ idField: 'code' }).subscribe(dinner => {
-        for(var food of dinner) {
-          for(const value in MicroNutrients) {
-            if(this.microNutrientTotals.has(value)) {
-              var currentValue = this.microNutrientTotals.get(value);
+        for (const food of dinner) {
+          for (const value in MicroNutrients) {
+            if (this.microNutrientTotals.has(value)) {
+              const currentValue = this.microNutrientTotals.get(value);
               this.microNutrientTotals.set(value, Number((currentValue + food.product.nutriments[value]).toFixed(2)));
             } else {
               this.microNutrientTotals.set(value, Number(food.product.nutriments[value].toFixed(2)));
@@ -104,18 +104,18 @@ export class MicronutrientsService {
       }, () => {
         reject(null);
       });
-    })
+    });
 
     return promise;
   }
 
   setSnacksMicronutrients(email: string): Promise<null> {
-    var promise = new Promise<null>((resolve, reject) => {
+    const promise = new Promise<null>((resolve, reject) => {
       this.store.collection(email).doc('food').collection('snacks').valueChanges({ idField: 'code' }).subscribe(snacks => {
-        for(var food of snacks) {
-          for(const value in MicroNutrients) {
-            if(this.microNutrientTotals.has(value)) {
-              var currentValue = this.microNutrientTotals.get(value);
+        for (const food of snacks) {
+          for (const value in MicroNutrients) {
+            if (this.microNutrientTotals.has(value)) {
+              const currentValue = this.microNutrientTotals.get(value);
               this.microNutrientTotals.set(value, Number((currentValue + food.product.nutriments[value]).toFixed(2)));
             } else {
               this.microNutrientTotals.set(value, Number(food.product.nutriments[value].toFixed(2)));
@@ -126,7 +126,7 @@ export class MicronutrientsService {
       }, () => {
         reject(null);
       });
-    })
+    });
 
     return promise;
   }

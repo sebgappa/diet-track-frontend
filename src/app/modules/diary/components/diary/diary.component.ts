@@ -21,18 +21,18 @@ export class DiaryComponent implements OnInit {
   public dinner;
   public snacks;
 
-  public breakfastCalories:number = 0;
-  public lunchCalories:number = 0;
-  public dinnerCalories:number = 0;
-  public snacksCalories:number = 0;
-  public totalFoodCalories: number = 0;
-  public goalCalories: number = 0;
-  public remainingCalories: number = 0;
+  public breakfastCalories = 0;
+  public lunchCalories = 0;
+  public dinnerCalories = 0;
+  public snacksCalories = 0;
+  public totalFoodCalories = 0;
+  public goalCalories = 0;
+  public remainingCalories = 0;
 
   private unsubscribe: Subject<void> = new Subject();
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private auth: AuthService,
     private store: AngularFirestore,
     private goals: GoalsService,
@@ -43,11 +43,11 @@ export class DiaryComponent implements OnInit {
     this.goalCalories = this.goals.getMacroNutrientGoal(MacroNutrients.calories);
 
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
-      this.setFood(user.email)
+      this.setFood(user.email);
       Promise.all([
-        this.calories.setBreakfastCalories(user.email), 
-        this.calories.setLunchCalories(user.email), 
-        this.calories.setDinnerCalories(user.email), 
+        this.calories.setBreakfastCalories(user.email),
+        this.calories.setLunchCalories(user.email),
+        this.calories.setDinnerCalories(user.email),
         this.calories.setSnacksCalories(user.email)]).then(() => {
           this.breakfastCalories = this.calories.getCaloriesConsumedPerMeal(Calories.breakfast);
           this.lunchCalories = this.calories.getCaloriesConsumedPerMeal(Calories.lunch);
@@ -55,8 +55,8 @@ export class DiaryComponent implements OnInit {
           this.snacksCalories = this.calories.getCaloriesConsumedPerMeal(Calories.snacks);
           this.remainingCalories = this.calories.getRemainingCalories();
           this.totalFoodCalories = this.calories.getTotalCaloriesConsumed();
-        })
-    })
+        });
+    });
   }
 
   setFood(email: string) {
@@ -71,7 +71,7 @@ export class DiaryComponent implements OnInit {
   }
 
   caloriesInTheGreen(): boolean {
-    if(this.remainingCalories > 0) {
+    if (this.remainingCalories > 0) {
       return true;
     }
 

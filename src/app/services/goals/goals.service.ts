@@ -23,7 +23,7 @@ export class GoalsService {
     ['vitamin-c_value', 90],
     ['vitamin-b12_value', 2.4],
     ['vitamin-d_value', 20],
-  ])
+  ]);
 
   constructor() { }
 

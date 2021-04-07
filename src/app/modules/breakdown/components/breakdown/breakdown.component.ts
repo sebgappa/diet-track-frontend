@@ -90,8 +90,8 @@ export class BreakdownComponent implements OnInit {
 
     this.foodService.getFood(this.barcode).pipe(takeUntil(this.unsubscribe)).subscribe((response) => {
       this.data = [
-        response.product.nutriments.proteins_value, 
-        response.product.nutriments.fat_value, 
+        response.product.nutriments.proteins_value,
+        response.product.nutriments.fat_value,
         response.product.nutriments.carbohydrates_value];
 
       this.foodObject = {
@@ -99,29 +99,29 @@ export class BreakdownComponent implements OnInit {
         product: {
           product_name: response.product.product_name,
           nutriments: {
-            "energy-kcal_100g": response.product.nutriments['energy-kcal_100g']? response.product.nutriments['energy-kcal_100g'] : 0,
-            "energy-kcal_value": response.product.nutriments['energy-kcal_value']? response.product.nutriments['energy-kcal_value'] : 0,
-            "carbohydrates_100g": response.product.nutriments.carbohydrates_100g? response.product.nutriments.carbohydrates_100g : 0,
-            "carbohydrates_value": response.product.nutriments.carbohydrates_value? response.product.nutriments.carbohydrates_value : 0,
-            "fat_100g": response.product.nutriments.fat_100g? response.product.nutriments.fat_100g : 0,
-            "fat_value": response.product.nutriments.fat_value? response.product.nutriments.fat_value : 0,
-            "proteins_100g": response.product.nutriments.proteins_100g? response.product.nutriments.proteins_100g : 0,
-            "proteins_value": response.product.nutriments.proteins_value? response.product.nutriments.proteins_value : 0,
-            "fiber_value": response.product.nutriments.fiber_value? response.product.nutriments.fiber_value : 0,
-            "salt_value" :  response.product.nutriments.salt_value? response.product.nutriments.salt_value : 0,
-            "saturated-fat_value": response.product.nutriments['saturated-fat_value']? response.product.nutriments['saturated-fat_value']: 0,
-            "sodium_value": response.product.nutriments.sodium_value? response.product.nutriments.sodium_value : 0,
-            "sugars_value": response.product.nutriments.sugars_value? response.product.nutriments.sugars_value : 0,
-            "calcium_value": response.product.nutriments.calcium_value? response.product.nutriments.calcium_value : 0,
-            "cholesterol_value": response.product.nutriments.cholesterol_value? response.product.nutriments.cholesterol_value : 0,
-            "iron_value": response.product.nutriments.iron_value? response.product.nutriments.iron_value : 0,
-            "magnesium_value": response.product.nutriments.magnesium_value? response.product.nutriments.magnesium_value : 0,
-            "zinc_value": response.product.nutriments.zinc_value? response.product.nutriments.zinc_value : 0,
-            "trans-fat_value": response.product.nutriments['trans-fat_value']? response.product.nutriments['trans-fat_value'] : 0,
-            "vitamin-a_value": response.product.nutriments['vitamin-a_value']? response.product.nutriments['vitamin-a_value'] : 0,
-            "vitamin-c_value": response.product.nutriments['vitamin-c_value']? response.product.nutriments['vitamin-c_value'] : 0,
-            "vitamin-b12_value": response.product.nutriments['vitamin-b12_value']? response.product.nutriments['vitamin-b12_value'] : 0,
-            "vitamin-d_value": response.product.nutriments['vitamin-d_value']? response.product.nutriments['vitamin-d_value']: 0
+            'energy-kcal_100g': response.product.nutriments['energy-kcal_100g'] ? response.product.nutriments['energy-kcal_100g'] : 0,
+            'energy-kcal_value': response.product.nutriments['energy-kcal_value'] ? response.product.nutriments['energy-kcal_value'] : 0,
+            carbohydrates_100g: response.product.nutriments.carbohydrates_100g ? response.product.nutriments.carbohydrates_100g : 0,
+            carbohydrates_value: response.product.nutriments.carbohydrates_value ? response.product.nutriments.carbohydrates_value : 0,
+            fat_100g: response.product.nutriments.fat_100g ? response.product.nutriments.fat_100g : 0,
+            fat_value: response.product.nutriments.fat_value ? response.product.nutriments.fat_value : 0,
+            proteins_100g: response.product.nutriments.proteins_100g ? response.product.nutriments.proteins_100g : 0,
+            proteins_value: response.product.nutriments.proteins_value ? response.product.nutriments.proteins_value : 0,
+            fiber_value: response.product.nutriments.fiber_value ? response.product.nutriments.fiber_value : 0,
+            salt_value :  response.product.nutriments.salt_value ? response.product.nutriments.salt_value : 0,
+            'saturated-fat_value': response.product.nutriments['saturated-fat_value'] ? response.product.nutriments['saturated-fat_value'] : 0,
+            sodium_value: response.product.nutriments.sodium_value ? response.product.nutriments.sodium_value : 0,
+            sugars_value: response.product.nutriments.sugars_value ? response.product.nutriments.sugars_value : 0,
+            calcium_value: response.product.nutriments.calcium_value ? response.product.nutriments.calcium_value : 0,
+            cholesterol_value: response.product.nutriments.cholesterol_value ? response.product.nutriments.cholesterol_value : 0,
+            iron_value: response.product.nutriments.iron_value ? response.product.nutriments.iron_value : 0,
+            magnesium_value: response.product.nutriments.magnesium_value ? response.product.nutriments.magnesium_value : 0,
+            zinc_value: response.product.nutriments.zinc_value ? response.product.nutriments.zinc_value : 0,
+            'trans-fat_value': response.product.nutriments['trans-fat_value'] ? response.product.nutriments['trans-fat_value'] : 0,
+            'vitamin-a_value': response.product.nutriments['vitamin-a_value'] ? response.product.nutriments['vitamin-a_value'] : 0,
+            'vitamin-c_value': response.product.nutriments['vitamin-c_value'] ? response.product.nutriments['vitamin-c_value'] : 0,
+            'vitamin-b12_value': response.product.nutriments['vitamin-b12_value'] ? response.product.nutriments['vitamin-b12_value'] : 0,
+            'vitamin-d_value': response.product.nutriments['vitamin-d_value'] ? response.product.nutriments['vitamin-d_value'] : 0
           },
           brands: response.product.brands
         },
@@ -152,7 +152,7 @@ export class BreakdownComponent implements OnInit {
 
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
       this.user = user;
-    })
+    });
   }
 
   public addFoodItem() {
@@ -169,11 +169,11 @@ export class BreakdownComponent implements OnInit {
     this.foodObject.product.serving_size = this.nutritionBreakdownForm.controls.servingSize.value + 'g';
 
     if (this.foodObject.product.product_name.length > 30) {
-      this.foodObject.product.product_name = this.foodObject.product.product_name.substring(0, 30) + "...";
+      this.foodObject.product.product_name = this.foodObject.product.product_name.substring(0, 30) + '...';
     }
 
-    if(this.foodObject.product.brands.length > 30) {
-      this.foodObject.product.brands = this.foodObject.product.brands.substring(0, 30) + "...";
+    if (this.foodObject.product.brands.length > 30) {
+      this.foodObject.product.brands = this.foodObject.product.brands.substring(0, 30) + '...';
     }
 
     this.store.firestore.runTransaction(() => {
@@ -184,7 +184,7 @@ export class BreakdownComponent implements OnInit {
       return promise;
     });
 
-    this.toastr.success("Item added");
+    this.toastr.success('Item added');
 
     this.router.navigate(['/food/', this.meal]);
   }
@@ -293,7 +293,7 @@ export class BreakdownComponent implements OnInit {
 
     for (let i = 0; i < this.macronutrients.length; i++) {
       this.macronutrients[i] = Number((
-        this.originalMacronutrients[i] * 
+        this.originalMacronutrients[i] *
         this.nutritionBreakdownForm.controls.numOfServings.value).toFixed(4));
 
       this.macronutrientGoalPercentages[i] = this.calculatePercentageOfMacronutrientGoal(this.macronutrients[i], i);

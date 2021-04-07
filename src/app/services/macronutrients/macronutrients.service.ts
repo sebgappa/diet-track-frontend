@@ -8,8 +8,8 @@ import { IMeal } from 'src/app/models/meal.model';
   providedIn: 'root'
 })
 export class MacronutrientsService {
-  private totalMacronutrientsConsumed: number[] = [0, 0, 0]
-  private totalMacronutrientsConsumedForMeal: number[] = [0, 0, 0]
+  private totalMacronutrientsConsumed: number[] = [0, 0, 0];
+  private totalMacronutrientsConsumedForMeal: number[] = [0, 0, 0];
 
   constructor(private store: AngularFirestore) { }
 
@@ -40,9 +40,9 @@ export class MacronutrientsService {
   }
 
   public setMacronutrientsConsumedForMeal(meal: IMeal) {
-    if(!meal.items) return;
+    if (!meal.items) { return; }
 
-    for(let item of meal.items) {
+    for (const item of meal.items) {
       this.totalMacronutrientsConsumedForMeal[0] += item.product.nutriments.proteins_value;
       this.totalMacronutrientsConsumedForMeal[1] += item.product.nutriments.fat_value;
       this.totalMacronutrientsConsumedForMeal[2] += item.product.nutriments.carbohydrates_value;
@@ -50,12 +50,12 @@ export class MacronutrientsService {
   }
 
   public setBreakfastMacroNutrients(email: string): Promise<null> {
-    var promise = new Promise<null>((resolve, reject) => {
-      var protein = 0;
-      var fat = 0;
-      var carbs = 0;
+    const promise = new Promise<null>((resolve, reject) => {
+      let protein = 0;
+      let fat = 0;
+      let carbs = 0;
       this.store.collection(email).doc('food').collection('breakfast').valueChanges({ idField: 'code' }).subscribe(breakfast => {
-        for(var food of breakfast) {
+        for (const food of breakfast) {
           protein += food.product.nutriments.proteins_value;
           fat += food.product.nutriments.fat_value;
           carbs += food.product.nutriments.carbohydrates_value;
@@ -73,12 +73,12 @@ export class MacronutrientsService {
   }
 
   public setLunchMacroNutrients(email: string): Promise<null> {
-    var promise = new Promise<null>((resolve, reject) => {
-      var protein = 0;
-      var fat = 0;
-      var carbs = 0;
+    const promise = new Promise<null>((resolve, reject) => {
+      let protein = 0;
+      let fat = 0;
+      let carbs = 0;
       this.store.collection(email).doc('food').collection('lunch').valueChanges({ idField: 'code' }).subscribe(lunch => {
-        for(var food of lunch) {
+        for (const food of lunch) {
           protein += food.product.nutriments.proteins_value;
           fat += food.product.nutriments.fat_value;
           carbs += food.product.nutriments.carbohydrates_value;
@@ -96,12 +96,12 @@ export class MacronutrientsService {
   }
 
   public setDinnerMacroNutrients(email: string): Promise<null> {
-    var promise = new Promise<null>((resolve, reject) => {
-      var protein = 0;
-      var fat = 0;
-      var carbs = 0;
+    const promise = new Promise<null>((resolve, reject) => {
+      let protein = 0;
+      let fat = 0;
+      let carbs = 0;
       this.store.collection(email).doc('food').collection('dinner').valueChanges({ idField: 'code' }).subscribe(dinner => {
-        for(var food of dinner) {
+        for (const food of dinner) {
           protein += food.product.nutriments.proteins_value;
           fat += food.product.nutriments.fat_value;
           carbs += food.product.nutriments.carbohydrates_value;
@@ -119,12 +119,12 @@ export class MacronutrientsService {
   }
 
   public setSnacksMacroNutrients(email: string): Promise<null> {
-    var promise = new Promise<null>((resolve, reject) => {
-      var protein = 0;
-      var fat = 0;
-      var carbs = 0;
+    const promise = new Promise<null>((resolve, reject) => {
+      let protein = 0;
+      let fat = 0;
+      let carbs = 0;
       this.store.collection(email).doc('food').collection('snacks').valueChanges({ idField: 'code' }).subscribe(snacks => {
-        for(var food of snacks) {
+        for (const food of snacks) {
           protein += food.product.nutriments.proteins_value;
           fat += food.product.nutriments.fat_value;
           carbs += food.product.nutriments.carbohydrates_value;
@@ -158,10 +158,10 @@ export class MacronutrientsService {
   }
 
   public clearTotalMacroNutrientConsumed() {
-    this.totalMacronutrientsConsumed = [0, 0, 0]
+    this.totalMacronutrientsConsumed = [0, 0, 0];
   }
 
   public clearTotalMacroNutrientConsumedForMeal() {
-    this.totalMacronutrientsConsumedForMeal = [0, 0, 0]
+    this.totalMacronutrientsConsumedForMeal = [0, 0, 0];
   }
 }

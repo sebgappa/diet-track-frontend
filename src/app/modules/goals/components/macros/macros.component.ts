@@ -65,31 +65,31 @@ export class MacrosComponent implements OnInit {
           this.fatTotal = this.macronutrients.getTotalMacroNutrientConsumed(MacroNutrients.fat);
           this.carbsTotal = this.macronutrients.getTotalMacroNutrientConsumed(MacroNutrients.carbs);
           this.data = [this.proteinTotal, this.fatTotal, this.carbsTotal];
-      })
-    })
+      });
+    });
   }
 
-  
+
   proteinStatus(): string {
-    if(this.proteinTotal >= this.proteinGoal && this.proteinTotal < this.proteinGoal + 10) {
+    if (this.proteinTotal >= this.proteinGoal && this.proteinTotal < this.proteinGoal + 10) {
       return 'green';
-    } else if(this.proteinTotal > this.proteinGoal + 10) {
-      return 'red'
+    } else if (this.proteinTotal > this.proteinGoal + 10) {
+      return 'red';
     }
   }
 
   fatStatus(): string {
-    if(this.fatTotal >= this.fatGoal && this.fatTotal < this.fatGoal + 10) {
+    if (this.fatTotal >= this.fatGoal && this.fatTotal < this.fatGoal + 10) {
       return 'green';
-    } else if(this.fatTotal > this.fatGoal + 10) {
-      return 'red'
+    } else if (this.fatTotal > this.fatGoal + 10) {
+      return 'red';
     }
   }
 
   carbsStatus(): string {
-    if(this.carbsTotal >= this.carbsGoal && this.carbsTotal < this.carbsGoal + 10) {
+    if (this.carbsTotal >= this.carbsGoal && this.carbsTotal < this.carbsGoal + 10) {
       return 'green';
-    } else if(this.carbsTotal > this.carbsGoal + 10) {
+    } else if (this.carbsTotal > this.carbsGoal + 10) {
       return 'red';
     }
   }

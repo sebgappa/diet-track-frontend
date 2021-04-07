@@ -29,9 +29,9 @@ export class CaloriesComponent implements OnInit {
     }
   };
 
-  public totalCalories: number = 0;
-  public remainingCalories: number = 0;
-  public calorieGoal: number = 0;
+  public totalCalories = 0;
+  public remainingCalories = 0;
+  public calorieGoal = 0;
 
 
   public breakfastIcon = faEgg;
@@ -55,22 +55,22 @@ export class CaloriesComponent implements OnInit {
   ngOnInit(): void {
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
       Promise.all([
-        this.calories.setBreakfastCalories(user.email), 
-        this.calories.setLunchCalories(user.email), 
-        this.calories.setDinnerCalories(user.email), 
+        this.calories.setBreakfastCalories(user.email),
+        this.calories.setLunchCalories(user.email),
+        this.calories.setDinnerCalories(user.email),
         this.calories.setSnacksCalories(user.email)]).then(() => {
           this.breakfastPercentage = this.calculateMealPercentageOfToalCalories(Calories.breakfast);
           this.lunchPercentage = this.calculateMealPercentageOfToalCalories(Calories.lunch);
           this.dinnerPercentage = this.calculateMealPercentageOfToalCalories(Calories.dinner);
           this.snacksPercentage = this.calculateMealPercentageOfToalCalories(Calories.snacks);
-      
+
           this.totalCalories = this.calories.getTotalCaloriesConsumed();
           this.calorieGoal = this.goals.getMacroNutrientGoal(MacroNutrients.calories);
           this.remainingCalories = this.calories.getRemainingCalories();
 
           this.data = [this.lunchPercentage, this.dinnerPercentage, this.snacksPercentage, this.breakfastPercentage];
-        })
-    })
+        });
+    });
   }
 
   calculateMealPercentageOfToalCalories(meal: Calories): number {
@@ -78,7 +78,7 @@ export class CaloriesComponent implements OnInit {
   }
 
   caloriesInTheGreen(): boolean {
-    if(this.remainingCalories > 0) {
+    if (this.remainingCalories > 0) {
       return true;
     }
 

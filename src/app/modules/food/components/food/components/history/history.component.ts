@@ -18,7 +18,7 @@ export class HistoryComponent implements OnInit {
   private unsubscribe: Subject<void> = new Subject();
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private store: AngularFirestore,
     private auth: AuthService) {
   }
@@ -36,7 +36,7 @@ export class HistoryComponent implements OnInit {
         }
       });
 
-      this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
+    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
         this.history = this.store.collection(user.email).doc('food').collection('history').valueChanges({ idField: 'code' });
       });
   }

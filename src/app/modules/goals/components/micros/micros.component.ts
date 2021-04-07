@@ -23,22 +23,22 @@ export class MicrosComponent implements OnInit {
   ngOnInit(): void {
     this.micronutrients.clearTotalMacroNutrientConsumed();
 
-    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => { 
+    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
       Promise.all([
         this.micronutrients.setBreakfastMicronutrients(user.email),
         this.micronutrients.setLunchMicronutrients(user.email),
         this.micronutrients.setDinnerMicronutrients(user.email),
-        this.micronutrients.setSnacksMicronutrients(user.email)]).then(() =>{
+        this.micronutrients.setSnacksMicronutrients(user.email)]).then(() => {
           this.micros = this.micronutrients.getMicronutrientObjects();
       });
     });
   }
 
   microsInTheGreen(currentAmount: number, goalAmount: number): string {
-    if(currentAmount >= goalAmount && currentAmount < goalAmount + 10) {
+    if (currentAmount >= goalAmount && currentAmount < goalAmount + 10) {
       return 'green';
-    } else if(currentAmount > goalAmount + 10) {
-      return 'red'
+    } else if (currentAmount > goalAmount + 10) {
+      return 'red';
     }
   }
 

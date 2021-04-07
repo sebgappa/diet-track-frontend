@@ -50,7 +50,7 @@ export class ScannerComponent implements OnInit {
 
   scanSuccess(event): void {
     this.foodService.getFood(event).pipe(takeUntil(this.unsubscribe)).subscribe((response) => {
-      if(response.status_verbose == 'product found') {
+      if (response.status_verbose == 'product found') {
         console.log(response.status_verbose);
         this.toastrService.success('Product found');
         this.router.navigate(['/breakdown/', this.meal, event]);
@@ -72,10 +72,10 @@ export class ScannerComponent implements OnInit {
   }
 
   submitBarcode(): void {
-    var barcodeValue = this.barcodeFormGroup.controls.barcode.value;
+    const barcodeValue = this.barcodeFormGroup.controls.barcode.value;
 
     this.foodService.getFood(barcodeValue).pipe(takeUntil(this.unsubscribe)).subscribe((response) => {
-      if(response.status_verbose == 'product found') {
+      if (response.status_verbose == 'product found') {
         this.toastrService.success('Product found');
         this.router.navigate(['/breakdown/', this.meal, barcodeValue]);
       } else {

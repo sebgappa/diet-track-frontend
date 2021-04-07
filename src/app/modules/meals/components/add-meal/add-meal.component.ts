@@ -67,7 +67,7 @@ export class AddMealComponent implements OnInit {
       items: [this.meal.items, Validators.required]
     });
 
-    if(this.meal.items) {
+    if (this.meal.items) {
       this.macros.clearTotalMacroNutrientConsumedForMeal();
       this.macros.setMacronutrientsConsumedForMeal(this.meal);
 
@@ -91,11 +91,11 @@ export class AddMealComponent implements OnInit {
         this.addMealForm.reset();
         this.router.navigate(['/meals']);
       }, () => {
-        this.toastr.error("Failed to store meal.");
+        this.toastr.error('Failed to store meal.');
       });
     }, () => {
-      this.toastr.error("Couldn't save meal, failed to retrieve user.");
-    })
+      this.toastr.error('Couldn\'t save meal, failed to retrieve user.');
+    });
   }
 
   addFoodItem() {
