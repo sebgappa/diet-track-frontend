@@ -1,5 +1,5 @@
 <div class="container">
-    <form [formGroup]="addMealForm" (ngSubmit)="saveMeal(); addMealForm.reset();">
+    <form [formGroup]="addMealForm" (ngSubmit)="saveMeal()">
         <div class="row">
             <div class="col-12 pt-2">
                 <div class="row">
@@ -23,24 +23,24 @@
             <div class="col-12 pt-2">
                 <div class="row text-center text-secondary">
                     <div class="col colour-protein">
-                        13%
+                        {{proteinPercentage}}%
                     </div>
                     <div class="col colour-fats">
-                        34%
+                        {{fatPercentage}}%
                     </div>
                     <div class="col colour-carbs">
-                        55%
+                        {{carbsPercentage}}%
                     </div>
                 </div>
                 <div class="row text-center">
                     <div class="col">
-                        <h6><b>123g</b></h6>
+                        <h6><b>{{proteinTotal}}g</b></h6>
                     </div>
                     <div class="col">
-                        <h6><b>123g</b></h6>
+                        <h6><b>{{fatTotal}}g</b></h6>
                     </div>
                     <div class="col">
-                        <h6><b>123g</b></h6>
+                        <h6><b>{{carbsTotal}}g</b></h6>
                     </div>
                 </div>
                 <div class="row text-center text-secondary">
@@ -68,8 +68,8 @@
                                     class="icons"></fa-icon>
                             </span></h6>
                         <ul class="list-group list-group-flush" *ngFor="let item of meal.items">
-                            <li class="list-group-item">{{item.name}}<span
-                                    class="align-items-right"><b>{{item.calories}}</b></span></li>
+                            <li class="list-group-item">{{item.product.product_name}}<span class="align-items-right"><b>{{item.product.nutriments['energy-kcal_value']}}</b></span>
+                            </li>
                         </ul>
                         <div *ngIf="!meal.items" class="text-center text-secondary pt-2">
                             <h6>Add items to your meal!</h6>

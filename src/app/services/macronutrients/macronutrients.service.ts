@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
+import { IFood } from 'src/app/models/food.model';
+import { IMeal } from 'src/app/models/meal.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MacronutrientsService {
   private totalMacronutrientsConsumed: number[] = [0, 0, 0]
+  private totalMacronutrientsConsumedForMeal: number[] = [0, 0, 0]
 
   constructor(private store: AngularFirestore) { }
 
@@ -20,6 +23,29 @@ export class MacronutrientsService {
         return Number(this.totalMacronutrientsConsumed[2].toFixed(2));
       default:
         break;
+    }
+  }
+
+  public getTotalMacroNutrientConsumedForMeal(macronutrient: MacroNutrients) {
+    switch (+macronutrient) {
+      case MacroNutrients.protein:
+        return Number(this.totalMacronutrientsConsumedForMeal[0].toFixed(2));
+      case MacroNutrients.fat:
+        return Number(this.totalMacronutrientsConsumedForMeal[1].toFixed(2));
+      case MacroNutrients.carbs:
+        return Number(this.totalMacronutrientsConsumedForMeal[2].toFixed(2));
+      default:
+        break;
+    }
+  }
+
+  public setMacronutrientsConsumedForMeal(meal: IMeal) {
+    if(!meal.items) return;
+
+    for(let item of meal.items) {
+      this.totalMacronutrientsConsumedForMeal[0] += item.product.nutriments.proteins_value;
+      this.totalMacronutrientsConsumedForMeal[1] += item.product.nutriments.fat_value;
+      this.totalMacronutrientsConsumedForMeal[2] += item.product.nutriments.carbohydrates_value;
     }
   }
 
@@ -133,5 +159,9 @@ export class MacronutrientsService {
 
   public clearTotalMacroNutrientConsumed() {
     this.totalMacronutrientsConsumed = [0, 0, 0]
+  }
+
+  public clearTotalMacroNutrientConsumedForMeal() {
+    this.totalMacronutrientsConsumedForMeal = [0, 0, 0]
   }
 }
