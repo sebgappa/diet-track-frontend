@@ -5,4 +5,8 @@ export class IMeal {
     description?: string;
     items: IFood[];
     image?: string;
+    calories? : number;
+    protein? : number;
+    fat? : number;
+    carbs? : number;
 }

@@ -107,6 +107,10 @@ export class AddMealComponent implements OnInit {
     this.meal.image = this.imageSrcs[Math.floor(Math.random() * this.imageSrcs.length)];
     this.meal.name = this.addMealForm.controls.mealName.value;
     this.meal.description = this.addMealForm.controls.mealDescription.value;
+    this.meal.calories = this.caloriesTotal;
+    this.meal.protein = this.proteinTotal;
+    this.meal.fat = this.fatTotal;
+    this.meal.carbs = this.carbsTotal;
 
 
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {

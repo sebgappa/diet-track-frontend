@@ -6,7 +6,7 @@
                     <app-back-button [returnRoute]="'/meals'"></app-back-button>
                 </div>
                 <div class="col text-center">
-                    <h6><b>{{meal.name}}</b></h6>
+                    <h6><b>{{ meal?.name }}</b></h6>
                 </div>
                 <div class="col-1">
                 </div>
@@ -18,44 +18,78 @@
         </div>
         <div class="col-12 pt-2">
             <div class="row text-center text-secondary">
-                <div class="col colour-protein">
-                    13%
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col colour-protein">
+                            {{proteinPercentage}}%
+                        </div>
+                        <div class="col colour-fats">
+                            {{fatPercentage}}%
+                        </div>
+                    </div>
                 </div>
-                <div class="col colour-fats">
-                    34%
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col">
+                            <b>{{meal?.protein}}g</b>
+                        </div>
+                        <div class="col">
+                            <b>{{meal?.fat}}g</b>
+                        </div>
+                    </div>
                 </div>
-                <div class="col colour-carbs">
-                    55%
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col colour-protein">
+                            Protein
+                        </div>
+                        <div class="col colour-fats">
+                            Fats
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row text-center">
-                <div class="col">
-                    <h6><b>123g</b></h6>
+                <div class="col-12 pt-2">
+                    <div class="row">
+                        <div class="col colour-carbs">
+                            {{carbsPercentage}}%
+                        </div>
+                        <div class="col colour-calories">
+                            {{caloriesPercentage}}%
+                        </div>
+                    </div>
                 </div>
-                <div class="col">
-                    <h6><b>123g</b></h6>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col">
+                            <b>{{meal?.carbs}}g</b>
+                        </div>
+                        <div class="col">
+                            <b>{{meal?.calories}}</b>
+                        </div>
+                    </div>
                 </div>
-                <div class="col">
-                    <h6><b>123g</b></h6>
-                </div>
-            </div>
-            <div class="row text-center text-secondary">
-                <div class="col colour-protein">
-                    Protein
-                </div>
-                <div class="col colour-fats">
-                    Fats
-                </div>
-                <div class="col colour-carbs">
-                    Carbs
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col colour-carbs">
+                            Carbs
+                        </div>
+                        <div class="col colour-calories">
+                            Kcal
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-12 pt-4">
+        <div class="col-12 pt-2">
             <h6><b>Meal Items:</b></h6>
-            <ul class="list-group list-group-flush" *ngFor="let item of meal.items">
-                <li class="list-group-item">{{item.name}}<span
-                        class="align-items-right"><b>{{item.calories}}</b></span></li>
+            <ul class="list-group list-group-flush">
+                <div *ngFor="let item of meal?.items">
+                    <li class="list-group-item">{{item.product.product_name}}<span
+                            class="align-items-right"><b>{{item.product.nutriments['energy-kcal_value']}}</b></span>
+                    </li>
+                    <li class="list-group-item text-secondary">{{item.product.brands}},
+                        {{item.product.serving_number}}x, {{item.product.serving_size}}</li>
+                </div>
             </ul>
         </div>
     </div>

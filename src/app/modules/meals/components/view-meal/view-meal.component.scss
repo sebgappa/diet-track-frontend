@@ -10,14 +10,21 @@
     color: #d39000
 }
 
+.colour-calories {
+    color: #7c00b6
+}
+
 .align-items-right {
     float:right;
 }
 
 .list-group-item {
     font-size: 14px;
-    padding: 5px;
-    font-weight: bold;
+    padding: 0px;
+}
+
+.text-secondary {
+    margin-bottom: 0.25rem;
 }
 
 .list-group{

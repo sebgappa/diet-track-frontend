@@ -14,7 +14,7 @@ const routes: Routes = [  {
   component: AddMealComponent
 },
 {
-  path: 'view/:name',
+  path: 'view/:id',
   component: ViewMealComponent
 }
 ];
