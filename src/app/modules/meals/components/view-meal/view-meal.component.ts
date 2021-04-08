@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
@@ -16,7 +16,7 @@ import { GoalsService } from 'src/app/services/goals/goals.service';
   templateUrl: './view-meal.component.html',
   styleUrls: ['./view-meal.component.scss']
 })
-export class ViewMealComponent implements OnInit {
+export class ViewMealComponent implements OnInit, OnDestroy {
 
   public labels: Label[] = ['Protein', 'Fats', 'Carbs'];
   public type: ChartType = 'doughnut';
@@ -68,6 +68,10 @@ export class ViewMealComponent implements OnInit {
     });
   }
 
+  public ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+  }
 
   private setChartData() {
     this.data = [this.meal.protein, this.meal.fat, this.meal.carbs];

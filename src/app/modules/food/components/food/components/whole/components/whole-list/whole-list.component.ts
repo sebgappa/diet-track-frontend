@@ -1,4 +1,4 @@
-import { Input } from '@angular/core';
+import { Input, OnDestroy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -10,7 +10,7 @@ import { IFood } from 'src/app/models/food.model';
   templateUrl: './whole-list.component.html',
   styleUrls: ['./whole-list.component.scss']
 })
-export class WholeListComponent implements OnInit {
+export class WholeListComponent implements OnInit, OnDestroy {
 
   @Input() foodGroup: string;
   public meal: string;
@@ -39,5 +39,10 @@ export class WholeListComponent implements OnInit {
 
   private capitalisefirstLetter(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
+  public ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }

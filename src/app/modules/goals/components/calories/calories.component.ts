@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { faAppleAlt, faDrumstickBite, faEgg, faHotdog } from '@fortawesome/free-solid-svg-icons';
 import { ChartOptions, ChartType } from 'chart.js';
@@ -16,7 +16,7 @@ import { GoalsService } from 'src/app/services/goals/goals.service';
   templateUrl: './calories.component.html',
   styleUrls: ['./calories.component.scss']
 })
-export class CaloriesComponent implements OnInit {
+export class CaloriesComponent implements OnInit, OnDestroy {
   public labels: Label[] = [
   `Lunch (%)`,
   `Dinner (%)`,
@@ -72,6 +72,11 @@ export class CaloriesComponent implements OnInit {
           this.data = [this.lunchPercentage, this.dinnerPercentage, this.snacksPercentage, this.breakfastPercentage];
         });
     });
+  }
+
+  public ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   calculateMealPercentageOfToalCalories(meal: Calories): number {

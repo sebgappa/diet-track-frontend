@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { MicronutrientsService } from 'src/app/services/micronutrients/micronutr
   templateUrl: './micros.component.html',
   styleUrls: ['./micros.component.scss']
 })
-export class MicrosComponent implements OnInit {
+export class MicrosComponent implements OnInit, OnDestroy {
 
   public micros: IMicro[];
 
@@ -32,6 +32,11 @@ export class MicrosComponent implements OnInit {
           this.micros = this.micronutrients.getMicronutrientObjects();
       });
     });
+  }
+
+  public ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   microsInTheGreen(currentAmount: number, goalAmount: number): string {

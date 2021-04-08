@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col">
+        <div class="mt-2">
+            <h6><b>Your meals </b> <fa-icon [icon]="mealIcon" size="sm"></fa-icon></h6>
+        </div>
+        <div class="mt-3">
+            <ul class="list-group list-group-flush" *ngFor="let meal of meals | async">
+                <li class="list-group-item">{{meal.name}}<span class="align-calories-right"><b>{{meal.calories}}</b></span></li>
+                <li class="list-group-item text-secondary">protein: {{meal.protein}}g, fat: {{meal.fat}}g, carbs: {{meal.carbs}}g</li>
+            </ul>
+        </div>
+    </div>
+</div>

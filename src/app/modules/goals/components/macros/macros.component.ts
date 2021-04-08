@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { faBreadSlice, faCheese, faDrumstickBite } from '@fortawesome/free-solid-svg-icons';
 import { ChartOptions, ChartType } from 'chart.js';
@@ -16,7 +16,7 @@ import { MacronutrientsService } from 'src/app/services/macronutrients/macronutr
   templateUrl: './macros.component.html',
   styleUrls: ['./macros.component.scss']
 })
-export class MacrosComponent implements OnInit {
+export class MacrosComponent implements OnInit, OnDestroy {
   public labels: Label[] = ['Protein', 'Fats', 'Carbs'];
   public type: ChartType = 'pie';
   public data = [10, 10, 10];
@@ -70,6 +70,10 @@ export class MacrosComponent implements OnInit {
     });
   }
 
+  public ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+  }
 
   proteinStatus(): string {
     if (this.proteinTotal >= this.proteinGoal && this.proteinTotal < this.proteinGoal + 10) {

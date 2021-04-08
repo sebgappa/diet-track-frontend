@@ -1,35 +1,30 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from '@auth0/auth0-angular';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-meals',
-  templateUrl: './meals.component.html',
-  styleUrls: ['./meals.component.scss']
+  selector: 'app-my-meals',
+  templateUrl: './my-meals.component.html',
+  styleUrls: ['./my-meals.component.scss']
 })
-export class MealsComponent implements OnInit, OnDestroy {
+export class MyMealsComponent implements OnInit, OnDestroy {
 
-  public plusIcon = faPlus;
   public meals;
-  public noMeals = false;
+  public mealIcon = faUtensils;
 
   private unsubscribe: Subject<void> = new Subject();
 
-  constructor(private store: AngularFirestore,
-              private auth: AuthService) { }
+  constructor(
+    private auth: AuthService,
+    private store: AngularFirestore) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe((user) => {
       this.meals = this.store.collection(user.email).doc('food').collection('meals').valueChanges({ idField: 'id' });
-      this.store.collection(user.email).doc('food').collection('meals').valueChanges({ idField: 'id' }).subscribe((response) => {
-        if (response.length == 0) {
-          this.noMeals = true;
-        }
-      });
-    });
+    })
   }
 
   public ngOnDestroy() {

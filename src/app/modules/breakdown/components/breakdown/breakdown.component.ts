@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -21,7 +21,7 @@ import { SessionStorageService } from 'src/app/services/session-storage/session-
   templateUrl: './breakdown.component.html',
   styleUrls: ['./breakdown.component.scss']
 })
-export class BreakdownComponent implements OnInit {
+export class BreakdownComponent implements OnInit, OnDestroy {
 
   public forMeal = false;
 
@@ -153,6 +153,11 @@ export class BreakdownComponent implements OnInit {
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
       this.user = user;
     });
+  }
+
+  public ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   public addFoodItem() {

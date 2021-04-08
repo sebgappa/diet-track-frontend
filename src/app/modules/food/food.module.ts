@@ -9,10 +9,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { MyMealsComponent } from './components/food/components/my-meals/my-meals.component';
 
 
 @NgModule({
-  declarations: [FoodComponent, HistoryComponent, WholeComponent, WholeListComponent],
+  declarations: [FoodComponent, HistoryComponent, WholeComponent, WholeListComponent, MyMealsComponent],
   imports: [
     CommonModule,
     FoodRoutingModule,
@@ -25,6 +26,7 @@ import { RouterModule } from '@angular/router';
   exports: [
     HistoryComponent,
     WholeComponent,
+    MyMealsComponent,
     WholeListComponent
   ]
 })

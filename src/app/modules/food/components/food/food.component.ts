@@ -14,7 +14,7 @@ import { Tab } from 'src/app/models/tab.model';
 export class FoodComponent implements OnInit, OnDestroy {
   public cameraIcon = faCamera;
 
-  public tabs: Tab[] = [new Tab('history', 'ALL FOODS'), new Tab('whole', 'WHOLE FOODS')];
+  public tabs: Tab[] = [new Tab('history', 'ALL'), new Tab('whole', 'WHOLE'), new Tab('mymeals', 'MEALS')];
   public tabComponent = 'history';
   public pressWholeTab: Subject<void> = new Subject<void>();
 
@@ -62,6 +62,14 @@ export class FoodComponent implements OnInit, OnDestroy {
         this.searchEnabled = false;
         this.searchPlaceholder = 'Select category!';
         this.pressWholeTab.next();
+        break;
+      case 'mymeals':
+        this.tabComponent = 'mymeals';
+        this.searchEnabled = true;
+        this.searchPlaceholder = 'Search your meals!';
+        break;
+      default:
+        break;
     }
   }
 

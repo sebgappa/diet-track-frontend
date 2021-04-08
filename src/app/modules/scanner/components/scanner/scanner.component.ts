@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faBarcode, faCheck } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,7 @@ import { FoodService } from 'src/app/services/food/food.service';
   templateUrl: './scanner.component.html',
   styleUrls: ['./scanner.component.scss']
 })
-export class ScannerComponent implements OnInit {
+export class ScannerComponent implements OnInit, OnDestroy {
   public allowedFormats = [ BarcodeFormat.QR_CODE, BarcodeFormat.EAN_13, BarcodeFormat.CODE_128, BarcodeFormat.DATA_MATRIX];
   public barcodeIcon = faBarcode;
   public tickIcon = faCheck;
@@ -46,6 +46,11 @@ export class ScannerComponent implements OnInit {
     this.barcodeFormGroup = this.formBuilder.group({
       barcode: [null, [Validators.required, Validators.maxLength(55), Validators.pattern('^[0-9]*$')]],
     });
+  }
+
+  public ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   scanSuccess(event): void {

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -22,7 +22,7 @@ import { SessionStorageService } from 'src/app/services/session-storage/session-
   templateUrl: './add-meal.component.html',
   styleUrls: ['./add-meal.component.scss']
 })
-export class AddMealComponent implements OnInit {
+export class AddMealComponent implements OnInit, OnDestroy {
   public cameraIcon = faCamera;
   public tickIcon = faCheck;
   public plusIcon = faPlus;
@@ -101,6 +101,11 @@ export class AddMealComponent implements OnInit {
 
       this.data = [this.proteinTotal, this.fatTotal, this.carbsTotal];
     }
+  }
+
+  public ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   saveMeal() {
