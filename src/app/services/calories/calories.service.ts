@@ -10,7 +10,7 @@ import { GoalsService } from '../goals/goals.service';
 })
 export class CaloriesService {
   private caloriesConsumedPerMeal: number[] = [0, 0, 0, 0];
-  private caloriesInMeal: number = 0;
+  private caloriesInMeal = 0;
 
   constructor(
     private store: AngularFirestore,
@@ -47,7 +47,7 @@ export class CaloriesService {
     if (!meal.items) { return; }
 
     for (const item of meal.items) {
-      this.caloriesInMeal += item.product.nutriments['energy-kcal_value']
+      this.caloriesInMeal += item.product.nutriments['energy-kcal_value'];
     }
   }
 

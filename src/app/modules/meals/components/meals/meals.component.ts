@@ -25,10 +25,10 @@ export class MealsComponent implements OnInit {
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe((user) => {
       this.meals = this.store.collection(user.email).doc('food').collection('meals').valueChanges({ idField: 'id' });
       this.store.collection(user.email).doc('food').collection('meals').valueChanges({ idField: 'id' }).subscribe((response) => {
-        if(response.length == 0) {
+        if (response.length == 0) {
           this.noMeals = true;
         }
-      })
-    })
+      });
+    });
   }
 }

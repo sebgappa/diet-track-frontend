@@ -216,10 +216,10 @@ export class BreakdownComponent implements OnInit {
   }
 
   public calculatePercentageOfMacronutrientGoal(foodValue: number, goalValue: Goals) {
-      var percentage = Math.round((foodValue / this.goalService.getMacroNutrientGoal(goalValue)) * 100);
+      const percentage = Math.round((foodValue / this.goalService.getMacroNutrientGoal(goalValue)) * 100);
 
-      if(percentage > 100) return 100;
-      
+      if (percentage > 100) { return 100; }
+
       return percentage;
     }
 

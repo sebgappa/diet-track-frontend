@@ -52,11 +52,11 @@ export class AddMealComponent implements OnInit {
   public meal: IMeal;
 
   private imageSrcs: string[] = [
-    "assets/images/default-meal-breakfast.jpg",
-    "assets/images/default-meal-lunch.jpg",
-    "assets/images/default-meal-dinner.jpg",
-    "assets/images/default-meal-snacks.jpg"
-  ]
+    'assets/images/default-meal-breakfast.jpg',
+    'assets/images/default-meal-lunch.jpg',
+    'assets/images/default-meal-dinner.jpg',
+    'assets/images/default-meal-snacks.jpg'
+  ];
 
   private unsubscribe: Subject<void> = new Subject();
 
@@ -145,18 +145,18 @@ export class AddMealComponent implements OnInit {
   }
 
   private calculatePercentageOfTotalMacros(macroTotal: number) {
-    var percentage =  Math.round((macroTotal / (this.proteinTotal + this.fatTotal + this.carbsTotal)) * 100);
+    const percentage =  Math.round((macroTotal / (this.proteinTotal + this.fatTotal + this.carbsTotal)) * 100);
 
-    if(percentage > 100) return 100;
-      
+    if (percentage > 100) { return 100; }
+
     return percentage;
   }
 
   private calculatePercentageOfCalorieGoal(calorieTotal: number) {
-    var percentage = Math.round((calorieTotal / this.goals.getMacroNutrientGoal(Goals.calories)) * 100);
+    const percentage = Math.round((calorieTotal / this.goals.getMacroNutrientGoal(Goals.calories)) * 100);
 
-    if(percentage > 100) return 100;
-      
+    if (percentage > 100) { return 100; }
+
     return percentage;
   }
 }
