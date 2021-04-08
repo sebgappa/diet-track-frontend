@@ -87,12 +87,18 @@
             <div class="col-12 pt-4 pb-5">
                 <div class="row">
                     <div class="form-group col-12">
-                        <h6><b>Meal name:</b></h6>
+                        <h6><b>Meal name*:</b></h6>
                         <input type="text" formControlName="mealName" class="form-control" placeholder="Enter"
                             [ngClass]="{ 'is-invalid': mealForm.mealName.touched && mealForm.mealName.errors }">
                     </div>
+
+                    <div class="form-group col-12">
+                        <h6><b>Meal description:</b></h6>
+                        <textarea type="form-control" formControlName="mealDescription" class="form-control" placeholder="Enter" rows="2"></textarea>
+                    </div>
+
                     <div class="col-12 pt-2">
-                        <h6><b>Meal Items:</b><span class="align-items-right">
+                        <h6><b>Meal Items*:</b><span class="align-items-right">
                                 <fa-icon (click)="addFoodItem()" [icon]="plusIcon" [fixedWidth]="true" class="icons">
                                 </fa-icon>
                             </span></h6>

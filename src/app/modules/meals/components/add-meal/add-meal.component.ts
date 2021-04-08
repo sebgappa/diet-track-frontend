@@ -78,6 +78,7 @@ export class AddMealComponent implements OnInit {
 
     this.addMealForm = this.formBuilder.group({
       mealName: [this.meal.name, [Validators.required, Validators.maxLength(30)]],
+      mealDescription: [this.meal.description],
       items: [this.meal.items, Validators.required]
     });
 
@@ -105,6 +106,8 @@ export class AddMealComponent implements OnInit {
   saveMeal() {
     this.meal.image = this.imageSrcs[Math.floor(Math.random() * this.imageSrcs.length)];
     this.meal.name = this.addMealForm.controls.mealName.value;
+    this.meal.description = this.addMealForm.controls.mealDescription.value;
+
 
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
       this.store.collection(user.email).doc('food').collection('meals').add(Object.assign({}, this.meal)).then(() => {
@@ -126,6 +129,7 @@ export class AddMealComponent implements OnInit {
     if (jSONMeal === null) {
       const meal: IMeal = {
         name: this.addMealForm.controls.mealName.value,
+        description: this.addMealForm.controls.mealDescription.value,
         items: []
       };
       this.sessionStorageService.saveObject('meal', meal);
@@ -133,6 +137,7 @@ export class AddMealComponent implements OnInit {
       const meal = new IMeal;
       Object.assign(meal, jSONMeal);
       meal.name = this.addMealForm.controls.mealName.value;
+      meal.description = this.addMealForm.controls.mealDescription.value;
       this.sessionStorageService.saveObject('meal', meal);
     }
 

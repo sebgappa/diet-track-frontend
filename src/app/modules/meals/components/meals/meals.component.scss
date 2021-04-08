@@ -12,3 +12,11 @@
     height: 45vw;
     object-fit: cover;
 }
+
+.icons {
+    color: #009414;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
