@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { ToastrService } from 'ngx-toastr';
@@ -26,13 +27,17 @@ export class ViewMealComponent implements OnInit, OnDestroy {
       display: false
     }
   };
-  
+
   public proteinPercentage = 0;
   public fatPercentage = 0;
   public carbsPercentage = 0;
   public caloriesPercentage = 0;
-  
+
+  public plusIcon = faPlus;
+
   public meal: IMeal;
+  public diaryMeal: string = null;
+  public addMealReturnRoute: string = null;
 
   private unsubscribe: Subject<void> = new Subject();
   private mealDoc: AngularFirestoreDocument<IMeal>;
@@ -42,7 +47,8 @@ export class ViewMealComponent implements OnInit, OnDestroy {
     private store: AngularFirestore,
     private auth: AuthService,
     private toastr: ToastrService,
-    private goals: GoalsService) { }
+    private goals: GoalsService,
+    private router: Router, ) { }
 
   ngOnInit(): void {
     this.route.paramMap
@@ -60,17 +66,26 @@ export class ViewMealComponent implements OnInit, OnDestroy {
             this.carbsPercentage = this.calculatePercentageOfTotalMacros(this.meal.carbs);
           });
         }, () => {
-          this.toastr.error("Failed to retrieve user.")
-        })
+          this.toastr.error('Failed to retrieve user.');
+        });
+      }
+      if (params.has('meal')) {
+        this.diaryMeal = params.get('meal');
+        this.addMealReturnRoute = `/food/${this.diaryMeal}/`;
       }
     }, () => {
-      this.toastr.error("Couldn't retrieve ID.")
+      this.toastr.error('Couldn\'t retrieve ID.');
     });
   }
 
   public ngOnDestroy() {
     this.unsubscribe.next();
     this.unsubscribe.complete();
+  }
+
+  public addMealToDiary() {
+    this.router.navigate(['/food/', this.diaryMeal]);
+    console.log('will do man!');
   }
 
   private setChartData() {

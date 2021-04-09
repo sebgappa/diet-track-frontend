@@ -23,6 +23,14 @@
     padding: 0px;
 }
 
+.icons {
+    color: #009414;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 .text-secondary {
     margin-bottom: 0.25rem;
 }
@@ -32,4 +40,8 @@
     max-height: 200px;
     overflow:scroll;
     -webkit-overflow-scrolling: touch;
+}
+
+.no-padding {
+    padding-left: 0px;
 }

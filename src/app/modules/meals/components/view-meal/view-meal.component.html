@@ -3,12 +3,14 @@
         <div class="col-12 pt-2">
             <div class="row">
                 <div class="col-1">
-                    <app-back-button [returnRoute]="'/meals'"></app-back-button>
+                    <app-back-button *ngIf="!addMealReturnRoute" [returnRoute]="'/meals'"></app-back-button>
+                    <app-back-button *ngIf="addMealReturnRoute" [returnRoute]="addMealReturnRoute"></app-back-button>
                 </div>
                 <div class="col text-center">
                     <h6><b>{{ meal?.name }}</b></h6>
                 </div>
-                <div class="col-1">
+                <div class="col-1 mr-3 no-padding">
+                    <button *ngIf="diaryMeal" type="button" (click)="addMealToDiary()" class="btn btn-sm"><fa-icon [icon]="plusIcon" [fixedWidth]="true" class="icons"></fa-icon></button>
                 </div>
             </div>
         </div>

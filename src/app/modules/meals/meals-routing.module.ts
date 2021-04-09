@@ -16,6 +16,10 @@ const routes: Routes = [  {
 {
   path: 'view/:id',
   component: ViewMealComponent
+},
+{
+  path: 'add/:meal/:id',
+  component: ViewMealComponent
 }
 ];
 
