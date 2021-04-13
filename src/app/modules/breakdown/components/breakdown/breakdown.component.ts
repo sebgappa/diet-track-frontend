@@ -188,7 +188,7 @@ export class BreakdownComponent implements OnInit, OnDestroy {
       ]);
       return promise;
     }).then(() => {
-      this.toastr.success('Item added');
+      this.toastr.success(`${this.foodObject.product.product_name} added`);
       this.router.navigate(['/food/', this.meal]);
     }, () => {
       this.toastr.error('Failed to store item.');

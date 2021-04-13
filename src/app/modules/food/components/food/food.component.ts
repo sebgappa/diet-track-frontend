@@ -14,7 +14,7 @@ import { Tab } from 'src/app/models/tab.model';
 export class FoodComponent implements OnInit, OnDestroy {
   public cameraIcon = faCamera;
 
-  public tabs: Tab[] = [new Tab('history', 'ALL'), new Tab('whole', 'WHOLE'), new Tab('mymeals', 'MEALS')];
+  public tabs: Tab[] = [new Tab('history', 'ALL'), new Tab('whole', 'WHOLE')];
   public tabComponent = 'history';
   public pressWholeTab: Subject<void> = new Subject<void>();
 
@@ -36,6 +36,8 @@ export class FoodComponent implements OnInit, OnDestroy {
         if (params.has('meal')) {
           if (params.get('meal') === 'new') {
             this.forMeal = true;
+          } else {
+            this.tabs.push(new Tab('mymeals', 'MEALS'));
           }
 
           this.meal = params.get('meal');

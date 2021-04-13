@@ -102,7 +102,7 @@
                                 <fa-icon (click)="addFoodItem()" [icon]="plusIcon" [fixedWidth]="true" class="icons">
                                 </fa-icon>
                             </span></h6>
-                        <ul *ngIf="meal.items" class="list-group list-group-flush">
+                        <ul *ngIf="meal.items && meal.items.length != 0" class="list-group list-group-flush">
                             <div *ngFor="let item of meal.items">
                                 <li class="list-group-item">{{item.product.product_name}}<span
                                         class="align-items-right"><b>{{item.product.nutriments['energy-kcal_value']}}</b></span>
@@ -111,7 +111,7 @@
                                     {{item.product.serving_number}}x, {{item.product.serving_size}}</li>
                             </div>
                         </ul>
-                        <div *ngIf="!meal.items" class="text-center text-secondary pt-2">
+                        <div *ngIf="!meal.items || meal.items.length == 0" class="text-center text-secondary pt-2">
                             <h6>Add items to your meal!</h6>
                         </div>
                     </div>

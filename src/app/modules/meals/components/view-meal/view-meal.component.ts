@@ -41,6 +41,7 @@ export class ViewMealComponent implements OnInit, OnDestroy {
 
   private unsubscribe: Subject<void> = new Subject();
   private mealDoc: AngularFirestoreDocument<IMeal>;
+  private userEmail: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -56,6 +57,7 @@ export class ViewMealComponent implements OnInit, OnDestroy {
     .subscribe(params => {
       if (params.has('id')) {
         this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe((user) => {
+          this.userEmail = user.email;
           this.mealDoc = this.store.collection(user.email).doc('food').collection('meals').doc<IMeal>(params.get('id'));
           this.mealDoc.valueChanges().pipe(takeUntil(this.unsubscribe)).subscribe((meal) => {
             this.meal = meal;
@@ -69,6 +71,7 @@ export class ViewMealComponent implements OnInit, OnDestroy {
           this.toastr.error('Failed to retrieve user.');
         });
       }
+      
       if (params.has('meal')) {
         this.diaryMeal = params.get('meal');
         this.addMealReturnRoute = `/food/${this.diaryMeal}/`;
@@ -84,8 +87,20 @@ export class ViewMealComponent implements OnInit, OnDestroy {
   }
 
   public addMealToDiary() {
-    this.router.navigate(['/food/', this.diaryMeal]);
-    console.log('will do man!');
+    const promises = [];
+    
+    for(var food of this.meal.items) {
+      promises.push(this.store.collection(this.userEmail).doc('food').collection(this.diaryMeal).add(food));
+    }
+
+    this.store.firestore.runTransaction(() => {
+      return Promise.all(promises);
+    }).then(() => {
+      this.toastr.success('Items added');
+      this.router.navigate(['/food/', this.diaryMeal]);
+    }, () => {
+      this.toastr.error('Failed to store items.');
+    });    
   }
 
   private setChartData() {

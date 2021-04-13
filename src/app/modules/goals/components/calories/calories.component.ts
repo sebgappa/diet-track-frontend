@@ -30,6 +30,17 @@ export class CaloriesComponent implements OnInit, OnDestroy {
     }
   };
 
+  public donutColors=[
+    {
+      backgroundColor: [
+        'rgba(255, 161, 181, 1)',
+        'rgba(134, 199, 243, 1)',
+        'rgba(255, 226, 154, 1)',
+        'rgba(115, 255, 190)'
+    ]
+    }
+  ];
+
   public totalCalories = 0;
   public remainingCalories = 0;
   public calorieGoal = 0;
