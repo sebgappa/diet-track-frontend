@@ -7,7 +7,6 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Calories } from 'src/app/enums/calories.enum';
 import { Goals } from 'src/app/enums/goals.enum';
-import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
 import { CaloriesService } from 'src/app/services/calories/calories.service';
 import { GoalsService } from 'src/app/services/goals/goals.service';
 
