@@ -47,11 +47,11 @@ export class BreakdownComponent implements OnInit, OnDestroy {
   public nutritionBreakdownForm: FormGroup;
 
   public meal: string;
+  public barcode: string;
+  public currentServingSizeSelection: string;
 
   private unsubscribe: Subject<void> = new Subject();
-  private barcode: string;
 
-  private currentServingSizeSelection: string;
 
   private user;
 
@@ -72,7 +72,7 @@ export class BreakdownComponent implements OnInit, OnDestroy {
     }
 
     this.nutritionBreakdownForm = this.formBuilder.group({
-      servingSize: [100, Validators.required],
+      servingSize: ['100', Validators.required],
       numOfServings: [1, [Validators.required, Validators.maxLength(4), Validators.pattern('^[0-9]*$')]]
     });
 
@@ -221,6 +221,8 @@ export class BreakdownComponent implements OnInit, OnDestroy {
   }
 
   public calculatePercentageOfMacronutrientGoal(foodValue: number, goalValue: Goals) {
+      if(foodValue <= 0) { return 0; }
+
       const percentage = Math.round((foodValue / this.goalService.getMacroNutrientGoal(goalValue)) * 100);
 
       if (percentage > 100) { return 100; }

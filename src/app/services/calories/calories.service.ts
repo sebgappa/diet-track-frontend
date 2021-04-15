@@ -9,8 +9,8 @@ import { GoalsService } from '../goals/goals.service';
   providedIn: 'root'
 })
 export class CaloriesService {
-  private caloriesConsumedPerMeal: number[] = [0, 0, 0, 0];
-  private caloriesInMeal = 0;
+  public caloriesConsumedPerMeal: number[] = [0, 0, 0, 0];
+  public caloriesInMeal = 0;
 
   constructor(
     private store: AngularFirestore,
