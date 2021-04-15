@@ -39,16 +39,16 @@ describe('SearchService', () => {
             'vitamin-b12_value': 20,
             'vitamin-d_value': 20
           },
-          brands: "test brand 1"
+          brands: 'test brand 1'
         },
-        status_verbose: "product found"
-  }
+        status_verbose: 'product found'
+  };
 
   beforeEach(() => {
     firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
     docSpy = jasmine.createSpyObj( 'doc', [ 'collection']);
     collectionSpy = jasmine.createSpyObj( 'collection', [ 'doc', 'valueChanges' ]);
-    
+
     firestoreSpy.collection.and.returnValue(collectionSpy);
     collectionSpy.doc.and.returnValue(docSpy);
     docSpy.collection.and.returnValue(collectionSpy);

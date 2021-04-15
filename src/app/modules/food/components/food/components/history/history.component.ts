@@ -43,14 +43,14 @@ export class HistoryComponent implements OnInit, OnDestroy {
       });
 
 
-      this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
+    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
         this.store.collection(user.email).doc('food').collection('history').valueChanges({ idField: 'code' })
         .pipe(takeUntil(this.unsubscribe)).subscribe(response => {
           this.history = response;
         });
       });
 
-      this.eventsSubscription = this.searchResult.subscribe(result => {
+    this.eventsSubscription = this.searchResult.subscribe(result => {
         this.history = result;
       });
   }

@@ -59,15 +59,15 @@ describe('BreakdownComponent', () => {
             'vitamin-b12_value': 20,
             'vitamin-d_value': 20
           },
-          brands: "test brand 1"
+          brands: 'test brand 1'
         },
-        status_verbose: "product found"
-  }
+        status_verbose: 'product found'
+  };
 
   beforeEach(async () => {
     toastrSpy = jasmine.createSpyObj('ToastrService', ['success', 'error']);
     firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection', 'doc', 'valueChanges']);
-    routerSpy = jasmine.createSpyObj('Router', ['navigate'], {'url': '/new'});
+    routerSpy = jasmine.createSpyObj('Router', ['navigate'], {url: '/new'});
     foodServiceSpy = jasmine.createSpyObj('FoodService', ['getFood']);
     goalsServiceSpy = jasmine.createSpyObj('GoalsService', ['getMacroNutrientGoal']);
     sessionStorageServiceSpy = jasmine.createSpyObj('SessionStorageService', ['saveFoodItemToMeal']);
@@ -188,22 +188,22 @@ describe('BreakdownComponent', () => {
     it('should calculate the correct percentages for given a normal set of values', () => {
       goalsServiceSpy.getMacroNutrientGoal.and.returnValue(105);
       expect(component.calculatePercentageOfMacronutrientGoal(43, Goals.protein)).toEqual(41);
-    })
+    });
 
     it('should calculate the correct percentages for given a decimal set of values', () => {
       goalsServiceSpy.getMacroNutrientGoal.and.returnValue(205);
       expect(component.calculatePercentageOfMacronutrientGoal(23.55, Goals.protein)).toEqual(11);
-    })
+    });
 
     it('should handle the case where foodvalue is negative and return 0', () => {
       goalsServiceSpy.getMacroNutrientGoal.and.returnValue(205);
       expect(component.calculatePercentageOfMacronutrientGoal(-10, Goals.protein)).toEqual(0);
-    })
+    });
 
     it('should handle the case where percentage is greater than 100 and return 100', () => {
       goalsServiceSpy.getMacroNutrientGoal.and.returnValue(205);
       expect(component.calculatePercentageOfMacronutrientGoal(300, Goals.protein)).toEqual(100);
-    })
+    });
   });
 
   describe('updateMacroServingSize', () => {
@@ -215,7 +215,7 @@ describe('BreakdownComponent', () => {
          14,
          0,
          0]);
-  
+
       expect(component.originalMacronutrients).toEqual(
         [15,
           14,
@@ -227,25 +227,25 @@ describe('BreakdownComponent', () => {
           14,
           0,
           0]);
-    })
+    });
 
     it('if selection is 100 and current selection is 10 times by 10', () => {
-      component.currentServingSizeSelection = "10";
+      component.currentServingSizeSelection = '10';
       component.updateMacroServingSize();
       expect(component.macronutrients).toEqual(
           [150,
            140,
            0,
            0]);
-    
+
       expect(component.originalMacronutrients).toEqual(
           [150,
             140,
             0,
             0]);
-      
+
       expect(goalsServiceSpy.getMacroNutrientGoal).toHaveBeenCalledTimes(4);
-  
+
       expect(component.macronutrientGoalPercentages).toEqual(
           [100,
             100,
@@ -254,14 +254,14 @@ describe('BreakdownComponent', () => {
     });
 
     it('if selection is 100 and current selection is 1 times by 100', () => {
-      component.currentServingSizeSelection = "1";
+      component.currentServingSizeSelection = '1';
       component.updateMacroServingSize();
       expect(component.macronutrients).toEqual(
           [1500,
            1400,
            0,
            0]);
-    
+
       expect(component.originalMacronutrients).toEqual(
           [1500,
             1400,
@@ -269,7 +269,7 @@ describe('BreakdownComponent', () => {
             0]);
 
       expect(goalsServiceSpy.getMacroNutrientGoal).toHaveBeenCalledTimes(4);
-  
+
       expect(component.macronutrientGoalPercentages).toEqual(
           [100,
             100,
@@ -278,7 +278,7 @@ describe('BreakdownComponent', () => {
     });
 
     it('if selection is 10 and current selection is 100 divide by 10', () => {
-      component.nutritionBreakdownForm.controls['servingSize'].setValue("10");
+      component.nutritionBreakdownForm.controls.servingSize.setValue('10');
       component.updateMacroServingSize();
 
       expect(component.macronutrients).toEqual(
@@ -286,7 +286,7 @@ describe('BreakdownComponent', () => {
          1.4,
          0,
          0]);
-  
+
       expect(component.originalMacronutrients).toEqual(
         [1.5,
           1.4,
@@ -300,11 +300,11 @@ describe('BreakdownComponent', () => {
           1,
           0,
           0]);
-    })
+    });
 
     it('if selection is 10 and current selection is 1 times by 10', () => {
       component.currentServingSizeSelection = '1';
-      component.nutritionBreakdownForm.controls['servingSize'].setValue("10");
+      component.nutritionBreakdownForm.controls.servingSize.setValue('10');
       component.updateMacroServingSize();
 
       expect(component.macronutrients).toEqual(
@@ -312,7 +312,7 @@ describe('BreakdownComponent', () => {
          140,
          0,
          0]);
-  
+
       expect(component.originalMacronutrients).toEqual(
         [150,
           140,
@@ -326,10 +326,10 @@ describe('BreakdownComponent', () => {
           100,
           0,
           0]);
-    })
+    });
 
     it('if selection is 1 and current selection is 100 divide by 100', () => {
-      component.nutritionBreakdownForm.controls['servingSize'].setValue("1");
+      component.nutritionBreakdownForm.controls.servingSize.setValue('1');
       component.updateMacroServingSize();
 
       expect(component.macronutrients).toEqual(
@@ -337,7 +337,7 @@ describe('BreakdownComponent', () => {
          0.14,
          0,
          0]);
-  
+
       expect(component.originalMacronutrients).toEqual(
         [0.15,
           0.14,
@@ -351,11 +351,11 @@ describe('BreakdownComponent', () => {
           0,
           0,
           0]);
-    })
+    });
 
     it('if selection is 1 and current selection is 10 divide by 10', () => {
       component.currentServingSizeSelection = '10';
-      component.nutritionBreakdownForm.controls['servingSize'].setValue("1");
+      component.nutritionBreakdownForm.controls.servingSize.setValue('1');
       component.updateMacroServingSize();
 
       expect(component.macronutrients).toEqual(
@@ -363,7 +363,7 @@ describe('BreakdownComponent', () => {
          1.4,
          0,
          0]);
-  
+
       expect(component.originalMacronutrients).toEqual(
         [1.5,
           1.4,
@@ -377,12 +377,12 @@ describe('BreakdownComponent', () => {
           1,
           0,
           0]);
-    })
+    });
   });
 
   describe('updateMacroServingSize', () => {
     it('should not change macronutrient values if number is greater than 10,000', () => {
-      component.nutritionBreakdownForm.controls['numOfServings'].setValue(10001);
+      component.nutritionBreakdownForm.controls.numOfServings.setValue(10001);
       component.updateMacroServingSize();
 
       expect(component.macronutrients).toEqual(
@@ -399,7 +399,7 @@ describe('BreakdownComponent', () => {
     });
 
     it('should set correct macronutrient values for valid serving size', () => {
-      component.nutritionBreakdownForm.controls['numOfServings'].setValue(10);
+      component.nutritionBreakdownForm.controls.numOfServings.setValue(10);
       component.updateMacroServingSize();
 
       expect(component.macronutrients).toEqual(
@@ -418,15 +418,15 @@ describe('BreakdownComponent', () => {
 
   describe('addFoodItem', () => {
     it('should trim product name if longer than 30 characters', () => {
-      component.foodObject.product.product_name = "thisisaproductnamethatislongerthan30characters"
+      component.foodObject.product.product_name = 'thisisaproductnamethatislongerthan30characters';
       component.addFoodItem();
-      expect(component.foodObject.product.product_name).toEqual("thisisaproductnamethatislonger...");
+      expect(component.foodObject.product.product_name).toEqual('thisisaproductnamethatislonger...');
     });
 
     it('should trim brands if longer than 30 characters', () => {
-      component.foodObject.product.brands = "thisisabrandnamethatislongerthan30characters"
+      component.foodObject.product.brands = 'thisisabrandnamethatislongerthan30characters';
       component.addFoodItem();
-      expect(component.foodObject.product.brands).toEqual("thisisabrandnamethatislongerth...");
+      expect(component.foodObject.product.brands).toEqual('thisisabrandnamethatislongerth...');
     });
 
     it('should perform correct actions for adding meal if successful', () => {
@@ -440,15 +440,15 @@ describe('BreakdownComponent', () => {
 
   describe('addFoodItemForMeal', () => {
     it('should trim product name if longer than 30 characters', () => {
-      component.foodObject.product.product_name = "thisisaproductnamethatislongerthan30characters"
+      component.foodObject.product.product_name = 'thisisaproductnamethatislongerthan30characters';
       component.addFoodItemForMeal();
-      expect(component.foodObject.product.product_name).toEqual("thisisaproductnamethatislonger...");
+      expect(component.foodObject.product.product_name).toEqual('thisisaproductnamethatislonger...');
     });
 
     it('should trim brands if longer than 30 characters', () => {
-      component.foodObject.product.brands = "thisisabrandnamethatislongerthan30characters"
+      component.foodObject.product.brands = 'thisisabrandnamethatislongerthan30characters';
       component.addFoodItemForMeal();
-      expect(component.foodObject.product.brands).toEqual("thisisabrandnamethatislongerth...");
+      expect(component.foodObject.product.brands).toEqual('thisisabrandnamethatislongerth...');
     });
 
     it('should perform correct actions for adding meal if successful', () => {

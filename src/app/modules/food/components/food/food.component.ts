@@ -23,9 +23,9 @@ export class FoodComponent implements OnInit, OnDestroy {
   public tabComponent = 'history';
   public pressWholeTab: Subject<void> = new Subject<void>();
 
-  public searchPlaceholder: string = 'Search history!';
+  public searchPlaceholder = 'Search history!';
   public searchEnabled = true;
-  public searchFor: string = 'history';
+  public searchFor = 'history';
 
   public meal: string;
   public forMeal = false;
@@ -38,8 +38,8 @@ export class FoodComponent implements OnInit, OnDestroy {
   private userEmail: string;
 
   constructor(
-    private route: ActivatedRoute, 
-    private router: Router, 
+    private route: ActivatedRoute,
+    private router: Router,
     private toastrService: ToastrService,
     private search: SearchService,
     private auth: AuthService) { }
@@ -47,7 +47,7 @@ export class FoodComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
       this.userEmail = user.email;
-    })
+    });
 
     this.route.paramMap
       .pipe(takeUntil(this.unsubscribe))
