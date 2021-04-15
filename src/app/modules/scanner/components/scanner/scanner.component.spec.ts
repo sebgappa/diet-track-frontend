@@ -15,7 +15,7 @@ describe('ScannerComponent', () => {
   let toastrSpy;
 
   beforeEach(async () => {
-    toastrSpy = jasmine.createSpyObj('ToastrService', ['success', 'error', 'info'])
+    toastrSpy = jasmine.createSpyObj('ToastrService', ['success', 'error', 'info']);
 
     await TestBed.configureTestingModule({
       imports: [

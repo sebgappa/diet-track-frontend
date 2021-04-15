@@ -20,7 +20,7 @@ describe('WholeListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WholeListComponent);
     component = fixture.componentInstance;
-    component.foodGroup = "fruits";
+    component.foodGroup = 'fruits';
     fixture.detectChanges();
   });
 

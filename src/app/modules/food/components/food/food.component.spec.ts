@@ -25,7 +25,7 @@ describe('FoodComponent', () => {
 
   beforeEach(async () => {
     routerSpy = jasmine.createSpyObj('Router', ['navigate']);
-    toastrSpy = jasmine.createSpyObj('ToastrService', ['info'])
+    toastrSpy = jasmine.createSpyObj('ToastrService', ['info']);
     firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
     docSpy = jasmine.createSpyObj( 'doc', [ 'collection']);
     collectionSpy = jasmine.createSpyObj( 'collection', [ 'doc', 'valueChanges' ]);
@@ -35,8 +35,8 @@ describe('FoodComponent', () => {
     docSpy.collection.and.returnValue(collectionSpy);
     collectionSpy.valueChanges.and.returnValue(of([{
       product: {
-        product_name: "test",
-        brands: "test",
+        product_name: 'test',
+        brands: 'test',
         serving_number: 1,
         serving_size: 1,
         nutriments: {

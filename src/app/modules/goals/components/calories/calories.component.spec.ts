@@ -17,15 +17,15 @@ describe('CaloriesComponent', () => {
   let goalsServiceSpy;
 
   beforeEach(async () => {
-    calorieServiceSpy = jasmine.createSpyObj('CaloriesService', 
-    ['setBreakfastCalories', 
-      'setLunchCalories', 
-      'setDinnerCalories', 
-      'setSnacksCalories', 
+    calorieServiceSpy = jasmine.createSpyObj('CaloriesService',
+    ['setBreakfastCalories',
+      'setLunchCalories',
+      'setDinnerCalories',
+      'setSnacksCalories',
       'getTotalCaloriesConsumed',
       'getCaloriesConsumedPerMeal',
-      'getRemainingCalories'])
-    goalsServiceSpy = jasmine.createSpyObj('GoalsService', ['getMacroNutrientGoal'])
+      'getRemainingCalories']);
+    goalsServiceSpy = jasmine.createSpyObj('GoalsService', ['getMacroNutrientGoal']);
 
 
     await TestBed.configureTestingModule({

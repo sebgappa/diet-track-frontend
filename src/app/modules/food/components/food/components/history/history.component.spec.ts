@@ -25,8 +25,8 @@ describe('HistoryComponent', () => {
     docSpy.collection.and.returnValue(collectionSpy);
     collectionSpy.valueChanges.and.returnValue(of([{
       product: {
-        product_name: "test",
-        brands: "test",
+        product_name: 'test',
+        brands: 'test',
         serving_number: 1,
         serving_size: 1,
         nutriments: {

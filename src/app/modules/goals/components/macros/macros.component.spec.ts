@@ -15,14 +15,14 @@ describe('MacrosComponent', () => {
   let macronutrientsServiceSpy;
 
   beforeEach(async () => {
-    firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection', 'doc', 'valueChanges'])
+    firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection', 'doc', 'valueChanges']);
     macronutrientsServiceSpy = jasmine.createSpyObj('MacMacronutrientsService', [
-      'setBreakfastMacroNutrients', 
-      'setLunchMacroNutrients', 
-      'setDinnerMacroNutrients', 
+      'setBreakfastMacroNutrients',
+      'setLunchMacroNutrients',
+      'setDinnerMacroNutrients',
       'setSnacksMacroNutrients',
       'getTotalMacroNutrientConsumed',
-      'clearTotalMacroNutrientConsumed'])
+      'clearTotalMacroNutrientConsumed']);
 
     await TestBed.configureTestingModule({
       imports: [

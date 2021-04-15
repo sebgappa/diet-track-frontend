@@ -20,7 +20,7 @@ describe('MicrosComponent', () => {
       'setDinnerMicronutrients',
       'setSnacksMicronutrients',
       'getMicronutrientObjects',
-      'clearTotalMacroNutrientConsumed'])
+      'clearTotalMacroNutrientConsumed']);
 
     await TestBed.configureTestingModule({
       declarations: [ MicrosComponent ],

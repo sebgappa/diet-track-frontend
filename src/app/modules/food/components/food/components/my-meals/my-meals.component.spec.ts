@@ -25,7 +25,7 @@ describe('MyMealsComponent', () => {
     docSpy.collection.and.returnValue(collectionSpy);
     collectionSpy.valueChanges.and.returnValue(of([{
       meal: {
-        name: "test",
+        name: 'test',
         calories: 100,
         protein: 100,
         fat: 100,

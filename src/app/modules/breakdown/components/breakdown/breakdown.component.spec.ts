@@ -19,7 +19,7 @@ describe('BreakdownComponent', () => {
   let firestoreSpy;
 
   beforeEach(async () => {
-    toastrSpy = jasmine.createSpyObj('ToastrService', ['success','error']);
+    toastrSpy = jasmine.createSpyObj('ToastrService', ['success', 'error']);
     firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection', 'doc', 'valueChanges']);
 
     await TestBed.configureTestingModule({

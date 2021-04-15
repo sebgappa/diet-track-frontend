@@ -17,7 +17,7 @@ describe('ViewMealComponent', () => {
 
   beforeEach(async () => {
     firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection', 'doc', 'valueChanges']);
-    toastrSpy = jasmine.createSpyObj('ToastrService', ['success', 'error'])
+    toastrSpy = jasmine.createSpyObj('ToastrService', ['success', 'error']);
 
     await TestBed.configureTestingModule({
       imports: [

@@ -21,7 +21,7 @@ describe('MicronutrientsService', () => {
     docSpy.collection.and.returnValue(collectionSpy);
     collectionSpy.valueChanges.and.returnValue(of([{
       product: {
-        product_name: "test",
+        product_name: 'test',
         nutriments: {}
       }
     }]));

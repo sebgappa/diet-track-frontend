@@ -9,7 +9,7 @@ describe('CaloriesService', () => {
 
 
   beforeEach(() => {
-    firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection', 'doc', 'valueChanges'])
+    firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection', 'doc', 'valueChanges']);
 
 
     TestBed.configureTestingModule({

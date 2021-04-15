@@ -71,7 +71,7 @@ export class ViewMealComponent implements OnInit, OnDestroy {
           this.toastr.error('Failed to retrieve user.');
         });
       }
-      
+
       if (params.has('meal')) {
         this.diaryMeal = params.get('meal');
         this.addMealReturnRoute = `/food/${this.diaryMeal}/`;
@@ -88,8 +88,8 @@ export class ViewMealComponent implements OnInit, OnDestroy {
 
   public addMealToDiary() {
     const promises = [];
-    
-    for(var food of this.meal.items) {
+
+    for (const food of this.meal.items) {
       promises.push(this.store.collection(this.userEmail).doc('food').collection(this.diaryMeal).add(food));
     }
 
@@ -100,7 +100,7 @@ export class ViewMealComponent implements OnInit, OnDestroy {
       this.router.navigate(['/food/', this.diaryMeal]);
     }, () => {
       this.toastr.error('Failed to store items.');
-    });    
+    });
   }
 
   private setChartData() {

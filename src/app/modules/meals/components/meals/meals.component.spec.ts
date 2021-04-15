@@ -25,9 +25,9 @@ describe('MealsComponent', () => {
     docSpy.collection.and.returnValue(collectionSpy);
     collectionSpy.valueChanges.and.returnValue(of([{
       meal: {
-        image: "test",
-        name: "test",
-        description: "test"
+        image: 'test',
+        name: 'test',
+        description: 'test'
       }
     }]));
 
