@@ -17,7 +17,6 @@ import { MyMealsComponent } from './components/food/components/my-meals/my-meals
   imports: [
     CommonModule,
     FoodRoutingModule,
-    CommonModule,
     FontAwesomeModule,
     ToastrModule,
     SharedModule,

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SearchBarComponent } from './search-bar.component';
 
@@ -8,6 +9,9 @@ describe('SearchBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        FontAwesomeModule
+      ],
       declarations: [ SearchBarComponent ]
     })
     .compileComponents();
