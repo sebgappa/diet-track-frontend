@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
-import { Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { IMeal } from 'src/app/models/meal.model';
 
 @Component({
   selector: 'app-my-meals',
@@ -12,12 +13,14 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./my-meals.component.scss']
 })
 export class MyMealsComponent implements OnInit, OnDestroy {
+  @Input() searchResult: Observable<IMeal[]>;
 
   public meals;
   public mealIcon = faUtensils;
   public diaryMeal;
 
   private unsubscribe: Subject<void> = new Subject();
+  private eventsSubscription: Subscription;
 
   constructor(
     private auth: AuthService,
@@ -33,13 +36,21 @@ export class MyMealsComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe((user) => {
-      this.meals = this.store.collection(user.email).doc('food').collection('meals').valueChanges({ idField: 'id' });
+    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
+      this.store.collection(user.email).doc('food').collection('meals').valueChanges({ idField: 'id' })
+      .pipe(takeUntil(this.unsubscribe)).subscribe(response => {
+        this.meals = response;
+      });
+    });
+
+    this.eventsSubscription = this.searchResult.subscribe(result => {
+      this.meals = result;
     });
   }
 
   public ngOnDestroy() {
     this.unsubscribe.next();
     this.unsubscribe.complete();
+    this.eventsSubscription.unsubscribe();
   }
 }

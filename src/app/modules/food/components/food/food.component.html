@@ -43,7 +43,7 @@
 <div *ngIf="tabComponent === 'history'" class="container">
     <div class="row">
         <div class="col">
-            <app-history></app-history>
+            <app-history [searchResult]="searchHistory.asObservable()"></app-history>
         </div>
     </div>
 </div>
@@ -60,7 +60,7 @@
 <div *ngIf="tabComponent === 'mymeals'" class="container">
     <div class="row">
         <div class="col">
-            <app-my-meals></app-my-meals>
+            <app-my-meals [searchResult]="searchMeals.asObservable()"></app-my-meals>
         </div>
     </div>
 </div>

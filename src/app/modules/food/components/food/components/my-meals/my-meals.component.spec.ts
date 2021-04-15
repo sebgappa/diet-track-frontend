@@ -56,6 +56,7 @@ describe('MyMealsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MyMealsComponent);
     component = fixture.componentInstance;
+    component.searchResult = of();
     fixture.detectChanges();
   });
 

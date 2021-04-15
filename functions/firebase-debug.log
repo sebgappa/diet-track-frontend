@@ -1,0 +1,290 @@
+[debug] [2021-04-15T19:43:46.746Z] ----------------------------------------------------------------------
+[debug] [2021-04-15T19:43:46.748Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\UKGC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js --debug --only functions deploy
+[debug] [2021-04-15T19:43:46.749Z] CLI Version:   9.8.0
+[debug] [2021-04-15T19:43:46.749Z] Platform:      win32
+[debug] [2021-04-15T19:43:46.749Z] Node Version:  v10.16.3
+[debug] [2021-04-15T19:43:46.750Z] Time:          Thu Apr 15 2021 20:43:46 GMT+0100 (British Summer Time)
+[debug] [2021-04-15T19:43:46.750Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-04-15T19:43:46.761Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-04-15T19:43:46.763Z] > authorizing via signed-in user
+[debug] [2021-04-15T19:43:46.764Z] [iam] checking project diettrack-4850c for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2021-04-15T19:43:46.767Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-04-15T19:43:46.768Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-04-15T19:43:46.992Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Thu, 15 Apr 2021 19:43:44 GMT","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:43:47.013Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/diettrack-4850c:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2021-04-15T19:43:47.751Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:43:45 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=548","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:43:47.753Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/diettrack-4850c/serviceAccounts/diettrack-4850c@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-04-15T19:43:48.049Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:43:45 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'diettrack-4850c'...
+[info] 
+[info] i  deploying functions 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] +  functions: Finished running predeploy script. 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2021-04-15T19:44:06.662Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/diettrack-4850c/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2021-04-15T19:44:06.663Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/diettrack-4850c/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2021-04-15T19:44:06.664Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/diettrack-4850c/services/cloudbuild.googleapis.com  
+ 
+[debug] [2021-04-15T19:44:07.553Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:44:05 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:44:07.616Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:44:05 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2021-04-15T19:44:07.658Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:44:05 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2021-04-15T19:44:07.660Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/diettrack-4850c/adminSdkConfig  
+ 
+[debug] [2021-04-15T19:44:08.051Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:44:05 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: preparing functions directory for uploading... 
+[debug] [2021-04-15T19:44:08.054Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/diettrack-4850c/configs  
+ 
+[debug] [2021-04-15T19:44:08.371Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:44:06 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: packaged functions (45.62 KB) for uploading 
+[debug] [2021-04-15T19:44:08.619Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "12"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@types/algoliasearch": "^4.0.0",
+    "algoliasearch": "^4.9.0",
+    "firebase-admin": "^9.2.0",
+    "firebase-functions": "^3.11.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.9.1",
+    "@typescript-eslint/parser": "^3.8.0",
+    "eslint": "^7.6.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.22.0",
+    "firebase-functions-test": "^0.2.0",
+    "typescript": "^3.8.0"
+  },
+  "private": true
+}
+[debug] [2021-04-15T19:44:08.623Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/diettrack-4850c/locations/-/functions  
+ 
+[debug] [2021-04-15T19:44:09.217Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:44:06 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:44:09.219Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/diettrack-4850c/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2021-04-15T19:44:09.948Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:44:07 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:44:09.949Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-f6a97a86-9e5e-42e3-af9d-1260fab368c9/b8e1192c-220c-421c-b05d-a14053d07a70.zip?GoogleAccessId=service-756064667679@gcf-admin-robot.iam.gserviceaccount.com&Expires=1618517647&Signature=p8aPi%2BGgncET7mecT61mnCtt%2BRUG68yKdkCH7VB1wUkDire7y4irEACiStgXSGIHrYjav8ajz8ElWqiUPZ%2BiJGO1SWGq96Zp3FgbyZ3F93z5wT1JVF2srZa2f%2Ft0DjLPrpR2jVZvR1A5Pf%2Be8rM%2Fvl4EZ7otKEyu2QDAAJUmO7PaBV7Zi0XNg%2BqitIuazVfoL7aqhhl1%2BP5UTnae8HGPKPPhIhpj4F%2Bpyd2%2FGbUho2cqEu00UrZ9A7SklEurrMu%2Bmp7D61TF19hOceVSTnv6asf8ma9GR7ebu2GA0IbsZIV4V9m8zRg0NkK%2FLLb9okXZC4fwKRTQxsQsz%2BaL3r%2BrHA%3D%3D  
+ <request body omitted>
+[debug] [2021-04-15T19:44:10.285Z] <<< HTTP RESPONSE 200 {"x-guploader-uploadid":"ABg5-UwbA49WxCH83GGb_yU-DQ1etD9nUiqmiUX9GcYpnAqDKmEcElAL0VSku-SDycXJ5FrxP6EZhTOtjJKkCbwSPffpkZMu6w","etag":"\"19b74c0fcdcbe772eb58817b29a7e650\"","x-goog-generation":"1618515847945650","x-goog-metageneration":"1","x-goog-hash":"crc32c=1E5vFw==, md5=GbdMD83L53LrWIF7KafmUA==","x-goog-stored-content-length":"46714","x-goog-stored-content-encoding":"identity","vary":"Origin","content-length":"0","date":"Thu, 15 Apr 2021 19:44:07 GMT","server":"UploadServer","content-type":"text/html; charset=UTF-8","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""}
+[info] +  functions: functions folder uploaded successfully 
+[info] i  functions: updating Node.js 12 function historyOnCreate(us-central1)... 
+[debug] [2021-04-15T19:44:10.292Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/diettrack-4850c/locations/us-central1/functions/historyOnCreate {"updateMask":"sourceUploadUrl,name,labels,runtime,environmentVariables,eventTrigger.resource,eventTrigger.eventType,eventTrigger.service,eventTrigger.failurePolicy"} 
+ {"sourceUploadUrl":"https://storage.googleapis.com/gcf-upload-us-central1-f6a97a86-9e5e-42e3-af9d-1260fab368c9/b8e1192c-220c-421c-b05d-a14053d07a70.zip?GoogleAccessId=service-756064667679@gcf-admin-robot.iam.gserviceaccount.com&Expires=1618517647&Signature=p8aPi%2BGgncET7mecT61mnCtt%2BRUG68yKdkCH7VB1wUkDire7y4irEACiStgXSGIHrYjav8ajz8ElWqiUPZ%2BiJGO1SWGq96Zp3FgbyZ3F93z5wT1JVF2srZa2f%2Ft0DjLPrpR2jVZvR1A5Pf%2Be8rM%2Fvl4EZ7otKEyu2QDAAJUmO7PaBV7Zi0XNg%2BqitIuazVfoL7aqhhl1%2BP5UTnae8HGPKPPhIhpj4F%2Bpyd2%2FGbUho2cqEu00UrZ9A7SklEurrMu%2Bmp7D61TF19hOceVSTnv6asf8ma9GR7ebu2GA0IbsZIV4V9m8zRg0NkK%2FLLb9okXZC4fwKRTQxsQsz%2BaL3r%2BrHA%3D%3D","name":"projects/diettrack-4850c/locations/us-central1/functions/historyOnCreate","labels":{"deployment-tool":"cli-firebase"},"eventTrigger":{"resource":"projects/diettrack-4850c/databases/(default)/documents/history/{id}","eventType":"providers/cloud.firestore/eventTypes/document.create","service":"firestore.googleapis.com"},"runtime":"nodejs12","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"diettrack-4850c\",\"storageBucket\":\"diettrack-4850c.appspot.com\",\"locationId\":\"europe-west\"}"}}
+[debug] [2021-04-15T19:44:11.392Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:44:09 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:44:11.395Z] > refreshing access token with scopes: []
+[debug] [2021-04-15T19:44:11.395Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-04-15T19:44:11.524Z] <<< HTTP RESPONSE 200 {"date":"Thu, 15 Apr 2021 19:44:09 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:44:11.558Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hpc3RvcnlPbkNyZWF0ZS9aYUxGNDNVM0JKaw [none]
+[debug] [2021-04-15T19:44:11.809Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hpc3RvcnlPbkNyZWF0ZS9aYUxGNDNVM0JKaw 200
+[debug] [2021-04-15T19:44:11.810Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hpc3RvcnlPbkNyZWF0ZS9aYUxGNDNVM0JKaw {"name":"operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hpc3RvcnlPbkNyZWF0ZS9aYUxGNDNVM0JKaw","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v1.OperationMetadataV1","target":"projects/diettrack-4850c/locations/us-central1/functions/historyOnCreate","type":"UPDATE_FUNCTION","request":{"@type":"type.googleapis.com/google.cloud.functions.v1.CloudFunction","name":"projects/diettrack-4850c/locations/us-central1/functions/historyOnCreate","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.create","resource":"projects/diettrack-4850c/databases/(default)/documents/history/{id}","service":"firestore.googleapis.com"},"status":"UNKNOWN","entryPoint":"historyOnCreate","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"diettrack-4850c@appspot.gserviceaccount.com","updateTime":"2021-04-15T19:29:30Z","versionId":"4","labels":{"deployment-tool":"cli-firebase"},"sourceUploadUrl":"https://storage.googleapis.com/gcf-upload-us-central1-f6a97a86-9e5e-42e3-af9d-1260fab368c9/b8e1192c-220c-421c-b05d-a14053d07a70.zip?GoogleAccessId=service-756064667679@gcf-admin-robot.iam.gserviceaccount.com&Expires=1618517647&Signature=p8aPi%2BGgncET7mecT61mnCtt%2BRUG68yKdkCH7VB1wUkDire7y4irEACiStgXSGIHrYjav8ajz8ElWqiUPZ%2BiJGO1SWGq96Zp3FgbyZ3F93z5wT1JVF2srZa2f%2Ft0DjLPrpR2jVZvR1A5Pf%2Be8rM%2Fvl4EZ7otKEyu2QDAAJUmO7PaBV7Zi0XNg%2BqitIuazVfoL7aqhhl1%2BP5UTnae8HGPKPPhIhpj4F%2Bpyd2%2FGbUho2cqEu00UrZ9A7SklEurrMu%2Bmp7D61TF19hOceVSTnv6asf8ma9GR7ebu2GA0IbsZIV4V9m8zRg0NkK%2FLLb9okXZC4fwKRTQxsQsz%2BaL3r%2BrHA%3D%3D","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"diettrack-4850c\",\"storageBucket\":\"diettrack-4850c.appspot.com\",\"locationId\":\"europe-west\"}"},"runtime":"nodejs12","ingressSettings":"ALLOW_ALL"},"versionId":"5","updateTime":"2021-04-15T19:44:09Z"}}
+[debug] [2021-04-15T19:44:12.326Z] [update-projects/diettrack-4850c/locations/us-central1/functions/historyOnCreate] Retrying task index 0
+[debug] [2021-04-15T19:44:12.327Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hpc3RvcnlPbkNyZWF0ZS9aYUxGNDNVM0JKaw [none]
+[debug] [2021-04-15T19:44:12.583Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hpc3RvcnlPbkNyZWF0ZS9aYUxGNDNVM0JKaw 200
+[debug] [2021-04-15T19:44:12.584Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hpc3RvcnlPbkNyZWF0ZS9aYUxGNDNVM0JKaw {"name":"operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hpc3RvcnlPbkNyZWF0ZS9aYUxGNDNVM0JKaw","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v1.OperationMetadataV1","target":"projects/diettrack-4850c/locations/us-central1/functions/historyOnCreate","type":"UPDATE_FUNCTION","request":{"@type":"type.googleapis.com/google.cloud.functions.v1.CloudFunction","name":"projects/diettrack-4850c/locations/us-central1/functions/historyOnCreate","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.create","resource":"projects/diettrack-4850c/databases/(default)/documents/history/{id}","service":"firestore.googleapis.com"},"status":"UNKNOWN","entryPoint":"historyOnCreate","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"diettrack-4850c@appspot.gserviceaccount.com","updateTime":"2021-04-15T19:29:30Z","versionId":"4","labels":{"deployment-tool":"cli-firebase"},"sourceUploadUrl":"https://storage.googleapis.com/gcf-upload-us-central1-f6a97a86-9e5e-42e3-af9d-1260fab368c9/b8e1192c-220c-421c-b05d-a14053d07a70.zip?GoogleAccessId=service-756064667679@gcf-admin-robot.iam.gserviceaccount.com&Expires=1618517647&Signature=p8aPi%2BGgncET7mecT61mnCtt%2BRUG68yKdkCH7VB1wUkDire7y4irEACiStgXSGIHrYjav8ajz8ElWqiUPZ%2BiJGO1SWGq96Zp3FgbyZ3F93z5wT1JVF2srZa2f%2Ft0DjLPrpR2jVZvR1A5Pf%2Be8rM%2Fvl4EZ7otKEyu2QDAAJUmO7PaBV7Zi0XNg%2BqitIuazVfoL7aqhhl1%2BP5UTnae8HGPKPPhIhpj4F%2Bpyd2%2FGbUho2cqEu00UrZ9A7SklEurrMu%2Bmp7D61TF19hOceVSTnv6asf8ma9GR7ebu2GA0IbsZIV4V9m8zRg0NkK%2FLLb9okXZC4fwKRTQxsQsz%2BaL3r%2BrHA%3D%3D","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"diettrack-4850c\",\"storageBucket\":\"diettrack-4850c.appspot.com\",\"locationId\":\"europe-west\"}"},"runtime":"nodejs12","ingressSettings":"ALLOW_ALL"},"versionId":"5","updateTime":"2021-04-15T19:44:09Z"},"done":true,"error":{"code":9,"message":"Failed to initialize region (action ID: 89d54d9c3c5b9434): Cloud storage operation for gcf-sources-756064667679-us-central1 failed as the billing account is not available"}}
+[debug] [2021-04-15T19:44:12.586Z] Got sourceToken undefined for region us-central1
+[debug] [2021-04-15T19:44:12.588Z] Total Function Deployment time: 2299
+[debug] [2021-04-15T19:44:12.588Z] 1 Functions Deployed
+[debug] [2021-04-15T19:44:12.588Z] 1 Functions Errored
+[debug] [2021-04-15T19:44:12.589Z] Average Function Deployment time: 2298
+[debug] [2021-04-15T19:44:12.591Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-04-15T19:44:12.592Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[info] 
+Functions deploy had errors with the following functions:
+[info] 	historyOnCreate(us-central1)
+[info] 
+To try redeploying those functions, run:
+[info]     firebase deploy --only "functions:historyOnCreate"
+[info] 
+To continue deploying other features (such as database), run:
+[info]     firebase deploy --except functions
+[debug] [2021-04-15T19:44:12.597Z] 	Error during update for projects/diettrack-4850c/locations/us-central1/functions/historyOnCreate: Failed to initialize region (action ID: 89d54d9c3c5b9434): Cloud storage operation for gcf-sources-756064667679-us-central1 failed as the billing account is not available
+[debug] [2021-04-15T19:44:12.713Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Thu, 15 Apr 2021 19:44:10 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:44:12.743Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/diettrack-4850c/locations/-/functions  
+ 
+[error] 
+[error] Error: Functions did not deploy properly.
+[debug] [2021-04-15T19:57:28.955Z] ----------------------------------------------------------------------
+[debug] [2021-04-15T19:57:28.957Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\UKGC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js --debug --only functions deploy
+[debug] [2021-04-15T19:57:28.958Z] CLI Version:   9.8.0
+[debug] [2021-04-15T19:57:28.958Z] Platform:      win32
+[debug] [2021-04-15T19:57:28.958Z] Node Version:  v10.16.3
+[debug] [2021-04-15T19:57:28.959Z] Time:          Thu Apr 15 2021 20:57:28 GMT+0100 (British Summer Time)
+[debug] [2021-04-15T19:57:28.959Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-04-15T19:57:28.970Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-04-15T19:57:28.972Z] > authorizing via signed-in user
+[debug] [2021-04-15T19:57:28.973Z] [iam] checking project diettrack-4850c for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2021-04-15T19:57:28.976Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/diettrack-4850c:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2021-04-15T19:57:29.738Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:57:27 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=577","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:57:29.740Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/diettrack-4850c/serviceAccounts/diettrack-4850c@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-04-15T19:57:29.988Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:57:27 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'diettrack-4850c'...
+[info] 
+[info] i  deploying functions 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[error] 
+[error] Error: functions predeploy error: Command terminated with non-zero exit code1
+[debug] [2021-04-15T19:57:55.707Z] ----------------------------------------------------------------------
+[debug] [2021-04-15T19:57:55.709Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\UKGC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js --debug --only functions deploy
+[debug] [2021-04-15T19:57:55.710Z] CLI Version:   9.8.0
+[debug] [2021-04-15T19:57:55.710Z] Platform:      win32
+[debug] [2021-04-15T19:57:55.710Z] Node Version:  v10.16.3
+[debug] [2021-04-15T19:57:55.711Z] Time:          Thu Apr 15 2021 20:57:55 GMT+0100 (British Summer Time)
+[debug] [2021-04-15T19:57:55.711Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-04-15T19:57:55.721Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-04-15T19:57:55.723Z] > authorizing via signed-in user
+[debug] [2021-04-15T19:57:55.724Z] [iam] checking project diettrack-4850c for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2021-04-15T19:57:55.727Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/diettrack-4850c:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2021-04-15T19:57:56.389Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:57:54 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=547","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:57:56.392Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/diettrack-4850c/serviceAccounts/diettrack-4850c@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-04-15T19:57:56.695Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:57:54 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'diettrack-4850c'...
+[info] 
+[info] i  deploying functions 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] +  functions: Finished running predeploy script. 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2021-04-15T19:58:15.469Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/diettrack-4850c/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2021-04-15T19:58:15.470Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/diettrack-4850c/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2021-04-15T19:58:15.471Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/diettrack-4850c/services/cloudbuild.googleapis.com  
+ 
+[debug] [2021-04-15T19:58:16.576Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:58:14 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:58:16.699Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:58:14 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2021-04-15T19:58:16.701Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:58:14 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2021-04-15T19:58:16.703Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/diettrack-4850c/adminSdkConfig  
+ 
+[debug] [2021-04-15T19:58:17.195Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:58:14 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: preparing functions directory for uploading... 
+[debug] [2021-04-15T19:58:17.198Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/diettrack-4850c/configs  
+ 
+[debug] [2021-04-15T19:58:17.513Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:58:15 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: packaged functions (45.71 KB) for uploading 
+[debug] [2021-04-15T19:58:17.741Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "12"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@types/algoliasearch": "^4.0.0",
+    "algoliasearch": "^4.9.0",
+    "firebase-admin": "^9.2.0",
+    "firebase-functions": "^3.11.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.9.1",
+    "@typescript-eslint/parser": "^3.8.0",
+    "eslint": "^7.6.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.22.0",
+    "firebase-functions-test": "^0.2.0",
+    "typescript": "^3.8.0"
+  },
+  "private": true
+}
+[debug] [2021-04-15T19:58:17.746Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/diettrack-4850c/locations/-/functions  
+ 
+[debug] [2021-04-15T19:58:18.387Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:58:16 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:58:18.389Z] [functions] found 1 new HTTP functions, testing setIamPolicy permission...
+[debug] [2021-04-15T19:58:18.389Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/diettrack-4850c:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.setIamPolicy"]}
+[debug] [2021-04-15T19:58:19.050Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:58:16 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=564","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:58:19.052Z] [functions] found setIamPolicy permission, proceeding with deploy
+[debug] [2021-04-15T19:58:19.053Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/diettrack-4850c/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2021-04-15T19:58:19.776Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:58:17 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:58:19.778Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-f6a97a86-9e5e-42e3-af9d-1260fab368c9/003c36cc-fee1-4ce2-a963-f1721d7d2364.zip?GoogleAccessId=service-756064667679@gcf-admin-robot.iam.gserviceaccount.com&Expires=1618518497&Signature=B3WW5E3YZrsaPsXlq%2B0ItFQvGPD1O1XsdZ1Mdx8316vJ00%2FXPPIGEuhoFsH94b3ZKPKh8E0%2BM%2B8ZlvxskM9Pm7ONJfwsRQh0Ao4WNPSZLj6yPUOt7H6%2F%2BpMz1mB1p58CYm9kFereFVBf0h160d7NLj4R9YSSqE%2FU8GcguxH3QaIh4tEwMQIEo3Mplk5cmcVjwyp5mpve3JEWci7BXgCUmAP68Q9ieVnTiLwGkEaveeglG2x0bIe%2BGbk5wu5hAjXN9MhaJVoBYHO%2FDcQbDXrAjX4qk8fTxpGYfRflwX4taWDooSNJH3ZPJXP6jGBm6gmzei0z4t0cjRwu5vaK%2F3HLyw%3D%3D  
+ <request body omitted>
+[debug] [2021-04-15T19:58:20.217Z] <<< HTTP RESPONSE 200 {"x-guploader-uploadid":"ABg5-UyviYMbj9eLz1N0Xj-iBLhqJ7pnxQilRwLmeyuFVjI1ioNX3_LgAo2abOp2fds65VmpAYMj16VqoFrSc6M7eIimy1_NHA","etag":"\"2571a181e49042afd19cbb281d8e8ffd\"","x-goog-generation":"1618516697870018","x-goog-metageneration":"1","x-goog-hash":"crc32c=2MAOyw==, md5=JXGhgeSQQq/RnLsoHY6P/Q==","x-goog-stored-content-length":"46808","x-goog-stored-content-encoding":"identity","vary":"Origin","content-length":"0","date":"Thu, 15 Apr 2021 19:58:17 GMT","server":"UploadServer","content-type":"text/html; charset=UTF-8","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""}
+[info] +  functions: functions folder uploaded successfully 
+[info] 
+The following functions are found in your project but do not exist in your local source code:
+	historyOnCreate(us-central1)
+
+If you are renaming a function or changing its region, it is recommended that you create the new function first before deleting the old one to prevent event loss. For more info, visit https://firebase.google.com/docs/functions/manage-functions#modify
+
+[info] i  functions: continuing with other deployments. 
+[info] i  functions: creating Node.js 12 function helloWorld(us-central1)... 
+[debug] [2021-04-15T19:58:48.696Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/diettrack-4850c/locations/us-central1/functions  
+ {"sourceUploadUrl":"https://storage.googleapis.com/gcf-upload-us-central1-f6a97a86-9e5e-42e3-af9d-1260fab368c9/003c36cc-fee1-4ce2-a963-f1721d7d2364.zip?GoogleAccessId=service-756064667679@gcf-admin-robot.iam.gserviceaccount.com&Expires=1618518497&Signature=B3WW5E3YZrsaPsXlq%2B0ItFQvGPD1O1XsdZ1Mdx8316vJ00%2FXPPIGEuhoFsH94b3ZKPKh8E0%2BM%2B8ZlvxskM9Pm7ONJfwsRQh0Ao4WNPSZLj6yPUOt7H6%2F%2BpMz1mB1p58CYm9kFereFVBf0h160d7NLj4R9YSSqE%2FU8GcguxH3QaIh4tEwMQIEo3Mplk5cmcVjwyp5mpve3JEWci7BXgCUmAP68Q9ieVnTiLwGkEaveeglG2x0bIe%2BGbk5wu5hAjXN9MhaJVoBYHO%2FDcQbDXrAjX4qk8fTxpGYfRflwX4taWDooSNJH3ZPJXP6jGBm6gmzei0z4t0cjRwu5vaK%2F3HLyw%3D%3D","name":"projects/diettrack-4850c/locations/us-central1/functions/helloWorld","entryPoint":"helloWorld","labels":{"deployment-tool":"cli-firebase"},"runtime":"nodejs12","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"diettrack-4850c\",\"storageBucket\":\"diettrack-4850c.appspot.com\",\"locationId\":\"europe-west\"}"},"httpsTrigger":{}}
+[debug] [2021-04-15T19:58:50.250Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 15 Apr 2021 19:58:47 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:58:50.253Z] > refreshing access token with scopes: []
+[debug] [2021-04-15T19:58:50.253Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-04-15T19:58:50.436Z] <<< HTTP RESPONSE 200 {"date":"Thu, 15 Apr 2021 19:58:48 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:58:50.466Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hlbGxvV29ybGQvLUN2a2htRVEwc28 [none]
+[debug] [2021-04-15T19:58:50.724Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hlbGxvV29ybGQvLUN2a2htRVEwc28 200
+[debug] [2021-04-15T19:58:50.725Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hlbGxvV29ybGQvLUN2a2htRVEwc28 {"name":"operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hlbGxvV29ybGQvLUN2a2htRVEwc28","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v1.OperationMetadataV1","target":"projects/diettrack-4850c/locations/us-central1/functions/helloWorld","type":"CREATE_FUNCTION","request":{"@type":"type.googleapis.com/google.cloud.functions.v1.CloudFunction","name":"projects/diettrack-4850c/locations/us-central1/functions/helloWorld","httpsTrigger":{},"entryPoint":"helloWorld","labels":{"deployment-tool":"cli-firebase"},"sourceUploadUrl":"https://storage.googleapis.com/gcf-upload-us-central1-f6a97a86-9e5e-42e3-af9d-1260fab368c9/003c36cc-fee1-4ce2-a963-f1721d7d2364.zip?GoogleAccessId=service-756064667679@gcf-admin-robot.iam.gserviceaccount.com&Expires=1618518497&Signature=B3WW5E3YZrsaPsXlq%2B0ItFQvGPD1O1XsdZ1Mdx8316vJ00%2FXPPIGEuhoFsH94b3ZKPKh8E0%2BM%2B8ZlvxskM9Pm7ONJfwsRQh0Ao4WNPSZLj6yPUOt7H6%2F%2BpMz1mB1p58CYm9kFereFVBf0h160d7NLj4R9YSSqE%2FU8GcguxH3QaIh4tEwMQIEo3Mplk5cmcVjwyp5mpve3JEWci7BXgCUmAP68Q9ieVnTiLwGkEaveeglG2x0bIe%2BGbk5wu5hAjXN9MhaJVoBYHO%2FDcQbDXrAjX4qk8fTxpGYfRflwX4taWDooSNJH3ZPJXP6jGBm6gmzei0z4t0cjRwu5vaK%2F3HLyw%3D%3D","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"diettrack-4850c\",\"storageBucket\":\"diettrack-4850c.appspot.com\",\"locationId\":\"europe-west\"}"},"runtime":"nodejs12"},"versionId":"1","updateTime":"2021-04-15T19:58:48Z"}}
+[debug] [2021-04-15T19:58:51.236Z] [create-projects/diettrack-4850c/locations/us-central1/functions/helloWorld] Retrying task index 0
+[debug] [2021-04-15T19:58:51.237Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hlbGxvV29ybGQvLUN2a2htRVEwc28 [none]
+[debug] [2021-04-15T19:58:51.525Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hlbGxvV29ybGQvLUN2a2htRVEwc28 200
+[debug] [2021-04-15T19:58:51.525Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hlbGxvV29ybGQvLUN2a2htRVEwc28 {"name":"operations/ZGlldHRyYWNrLTQ4NTBjL3VzLWNlbnRyYWwxL2hlbGxvV29ybGQvLUN2a2htRVEwc28","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v1.OperationMetadataV1","target":"projects/diettrack-4850c/locations/us-central1/functions/helloWorld","type":"CREATE_FUNCTION","request":{"@type":"type.googleapis.com/google.cloud.functions.v1.CloudFunction","name":"projects/diettrack-4850c/locations/us-central1/functions/helloWorld","httpsTrigger":{},"entryPoint":"helloWorld","labels":{"deployment-tool":"cli-firebase"},"sourceUploadUrl":"https://storage.googleapis.com/gcf-upload-us-central1-f6a97a86-9e5e-42e3-af9d-1260fab368c9/003c36cc-fee1-4ce2-a963-f1721d7d2364.zip?GoogleAccessId=service-756064667679@gcf-admin-robot.iam.gserviceaccount.com&Expires=1618518497&Signature=B3WW5E3YZrsaPsXlq%2B0ItFQvGPD1O1XsdZ1Mdx8316vJ00%2FXPPIGEuhoFsH94b3ZKPKh8E0%2BM%2B8ZlvxskM9Pm7ONJfwsRQh0Ao4WNPSZLj6yPUOt7H6%2F%2BpMz1mB1p58CYm9kFereFVBf0h160d7NLj4R9YSSqE%2FU8GcguxH3QaIh4tEwMQIEo3Mplk5cmcVjwyp5mpve3JEWci7BXgCUmAP68Q9ieVnTiLwGkEaveeglG2x0bIe%2BGbk5wu5hAjXN9MhaJVoBYHO%2FDcQbDXrAjX4qk8fTxpGYfRflwX4taWDooSNJH3ZPJXP6jGBm6gmzei0z4t0cjRwu5vaK%2F3HLyw%3D%3D","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"diettrack-4850c\",\"storageBucket\":\"diettrack-4850c.appspot.com\",\"locationId\":\"europe-west\"}"},"runtime":"nodejs12"},"versionId":"1","updateTime":"2021-04-15T19:58:48Z"},"done":true,"error":{"code":9,"message":"Failed to initialize region (action ID: 38f80822a16b538a): Cloud storage operation for gcf-sources-756064667679-us-central1 failed as the billing account is not available"}}
+[debug] [2021-04-15T19:58:51.527Z] Got sourceToken undefined for region us-central1
+[debug] [2021-04-15T19:58:51.528Z] Total Function Deployment time: 2834
+[debug] [2021-04-15T19:58:51.529Z] 1 Functions Deployed
+[debug] [2021-04-15T19:58:51.529Z] 1 Functions Errored
+[debug] [2021-04-15T19:58:51.529Z] Average Function Deployment time: 2833
+[debug] [2021-04-15T19:58:51.532Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-04-15T19:58:51.533Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[info] 
+Functions deploy had errors with the following functions:
+[info] 	helloWorld(us-central1)
+[info] 
+To try redeploying those functions, run:
+[info]     firebase deploy --only "functions:helloWorld"
+[info] 
+To continue deploying other features (such as database), run:
+[info]     firebase deploy --except functions
+[debug] [2021-04-15T19:58:51.536Z] 	Error during create for projects/diettrack-4850c/locations/us-central1/functions/helloWorld: Failed to initialize region (action ID: 38f80822a16b538a): Cloud storage operation for gcf-sources-756064667679-us-central1 failed as the billing account is not available
+[debug] [2021-04-15T19:58:51.643Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Thu, 15 Apr 2021 19:58:49 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-15T19:58:51.674Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/diettrack-4850c/locations/-/functions  
+ 
+[error] 
+[error] Error: Functions did not deploy properly.

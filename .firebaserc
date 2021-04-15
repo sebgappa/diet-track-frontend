@@ -7,5 +7,9 @@
         ]
       }
     }
+  },
+  "projects": {
+    "default": "diettrack-4850c",
+    "dev": "diettrack-4850c"
   }
 }

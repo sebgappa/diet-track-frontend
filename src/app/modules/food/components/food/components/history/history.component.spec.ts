@@ -58,6 +58,7 @@ describe('HistoryComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HistoryComponent);
     component = fixture.componentInstance;
+    component.searchResult = of();
     fixture.detectChanges();
   });
 
