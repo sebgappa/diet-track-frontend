@@ -1,0 +1,35 @@
+<div class="modal-header light-blue-backdrop">
+    <h4 class="modal-title">How has your day been?</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-12">
+            <h5><b>Mood</b></h5>
+            <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block">
+                <li (click)="countMoodStar(star)"
+                [ngClass]="{'selected': (star <= selectedMoodValue)}"><fa-icon class="fas" [icon]="starIcon" size="2x"></fa-icon></li>
+            </ul>
+        </div>
+        <div class="col-12">
+            <h5><b>Appetite</b></h5>
+            <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block">
+                <li (click)="countAppetiteStar(star)"
+                [ngClass]="{'selected': (star <= selectedAppetiteValue)}"><fa-icon class="fas" [icon]="starIcon" size="2x"></fa-icon></li>
+            </ul>
+        </div>
+        <div class="col-12">
+            <h5><b>Energy</b></h5>
+            <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block">
+                <li (click)="countEnergyStar(star)"
+                [ngClass]="{'selected': (star <= selectedEnergyValue)}"><fa-icon class="fas" [icon]="starIcon" size="2x"></fa-icon></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="submitReview()">Submit</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

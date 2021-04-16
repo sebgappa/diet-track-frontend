@@ -20,6 +20,7 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ReviewModalComponent } from './components/modals/review-modal/review-modal.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LogoutButtonComponent,
     AuthenticationButtonComponent,
     ProfileComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    ReviewModalComponent
   ],
   imports: [
     BrowserModule,
