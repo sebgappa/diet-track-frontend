@@ -15,6 +15,7 @@ import { IFood } from 'src/app/models/food.model';
 import { FoodService } from 'src/app/services/food/food.service';
 import { GoalsService } from 'src/app/services/goals/goals.service';
 import { SessionStorageService } from 'src/app/services/session-storage/session-storage.service';
+import { UserInfoService } from 'src/app/services/user-info.service';
 
 @Component({
   selector: 'app-breakdown',
@@ -53,7 +54,7 @@ export class BreakdownComponent implements OnInit, OnDestroy {
   private unsubscribe: Subject<void> = new Subject();
 
 
-  private user;
+  private userEmail;
 
   constructor(
     private foodService: FoodService,
@@ -64,9 +65,12 @@ export class BreakdownComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private goalService: GoalsService,
     private store: AngularFirestore,
-    private auth: AuthService) { }
+    private userInfo: UserInfoService) { }
 
   ngOnInit(): void {
+
+    this.userEmail = this.userInfo.getEmail();
+
     if (this.router.url.includes('/new')) {
       this.forMeal = true;
     }
@@ -149,10 +153,6 @@ export class BreakdownComponent implements OnInit, OnDestroy {
     });
 
     this.currentServingSizeSelection = this.nutritionBreakdownForm.controls.servingSize.value;
-
-    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
-      this.user = user;
-    });
   }
 
   public ngOnDestroy() {
@@ -183,8 +183,8 @@ export class BreakdownComponent implements OnInit, OnDestroy {
 
     this.store.firestore.runTransaction(() => {
       const promise = Promise.all([
-        this.store.collection(this.user.email).doc('food').collection('history').doc(this.foodObject.code).set(this.foodObject),
-        this.store.collection(this.user.email).doc('food').collection(this.meal).add(this.foodObject)
+        this.store.collection(this.userEmail).doc('food').collection('history').doc(this.foodObject.code).set(this.foodObject),
+        this.store.collection(this.userEmail).doc('food').collection(this.meal).add(this.foodObject)
       ]);
       return promise;
     }).then(() => {
@@ -211,7 +211,7 @@ export class BreakdownComponent implements OnInit, OnDestroy {
       this.foodObject.product.brands = this.foodObject.product.brands.substring(0, 30) + '...';
     }
 
-    this.store.collection(this.user.email).doc('food').collection('history').doc(this.foodObject.code).set(this.foodObject).then(() => {
+    this.store.collection(this.userEmail).doc('food').collection('history').doc(this.foodObject.code).set(this.foodObject).then(() => {
       this.toastr.success('Iteam added');
       this.sessionStorageService.saveFoodItemToMeal(this.foodObject);
       this.router.navigate(['/food/', this.meal]);

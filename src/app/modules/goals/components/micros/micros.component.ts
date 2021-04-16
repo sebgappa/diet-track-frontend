@@ -10,33 +10,24 @@ import { MicronutrientsService } from 'src/app/services/micronutrients/micronutr
   templateUrl: './micros.component.html',
   styleUrls: ['./micros.component.scss']
 })
-export class MicrosComponent implements OnInit, OnDestroy {
+export class MicrosComponent implements OnInit {
 
   public micros: IMicro[];
 
-  private unsubscribe: Subject<void> = new Subject();
-
   constructor(
-    private micronutrients: MicronutrientsService,
-    private auth: AuthService) { }
+    private micronutrients: MicronutrientsService) { }
 
   ngOnInit(): void {
     this.micronutrients.clearTotalMacroNutrientConsumed();
 
-    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
-      Promise.all([
-        this.micronutrients.setBreakfastMicronutrients(user.email),
-        this.micronutrients.setLunchMicronutrients(user.email),
-        this.micronutrients.setDinnerMicronutrients(user.email),
-        this.micronutrients.setSnacksMicronutrients(user.email)]).then(() => {
-          this.micros = this.micronutrients.getMicronutrientObjects();
+    Promise.all([
+      this.micronutrients.setBreakfastMicronutrients(),
+      this.micronutrients.setLunchMicronutrients(),
+      this.micronutrients.setDinnerMicronutrients(),
+      this.micronutrients.setSnacksMicronutrients()]).then(() => {
+        this.micros = this.micronutrients.getMicronutrientObjects();
       });
-    });
-  }
 
-  public ngOnDestroy() {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
   }
 
   microsInTheGreen(currentAmount: number, goalAmount: number): string {

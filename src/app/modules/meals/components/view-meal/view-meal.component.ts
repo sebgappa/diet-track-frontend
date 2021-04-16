@@ -11,6 +11,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Goals } from 'src/app/enums/goals.enum';
 import { IMeal } from 'src/app/models/meal.model';
 import { GoalsService } from 'src/app/services/goals/goals.service';
+import { UserInfoService } from 'src/app/services/user-info.service';
 
 @Component({
   selector: 'app-view-meal',
@@ -46,19 +47,19 @@ export class ViewMealComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private store: AngularFirestore,
-    private auth: AuthService,
+    private userInfo: UserInfoService,
     private toastr: ToastrService,
     private goals: GoalsService,
-    private router: Router, ) { }
+    private router: Router,) { }
 
   ngOnInit(): void {
+    this.userEmail = this.userInfo.getEmail();
+
     this.route.paramMap
-    .pipe(takeUntil(this.unsubscribe))
-    .subscribe(params => {
-      if (params.has('id')) {
-        this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe((user) => {
-          this.userEmail = user.email;
-          this.mealDoc = this.store.collection(user.email).doc('food').collection('meals').doc<IMeal>(params.get('id'));
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(params => {
+        if (params.has('id')) {
+          this.mealDoc = this.store.collection(this.userEmail).doc('food').collection('meals').doc<IMeal>(params.get('id'));
           this.mealDoc.valueChanges().pipe(takeUntil(this.unsubscribe)).subscribe((meal) => {
             this.meal = meal;
             this.setChartData();
@@ -67,18 +68,15 @@ export class ViewMealComponent implements OnInit, OnDestroy {
             this.fatPercentage = this.calculatePercentageOfTotalMacros(this.meal.fat);
             this.carbsPercentage = this.calculatePercentageOfTotalMacros(this.meal.carbs);
           });
-        }, () => {
-          this.toastr.error('Failed to retrieve user.');
-        });
-      }
+        }
 
-      if (params.has('meal')) {
-        this.diaryMeal = params.get('meal');
-        this.addMealReturnRoute = `/food/${this.diaryMeal}/`;
-      }
-    }, () => {
-      this.toastr.error('Couldn\'t retrieve ID.');
-    });
+        if (params.has('meal')) {
+          this.diaryMeal = params.get('meal');
+          this.addMealReturnRoute = `/food/${this.diaryMeal}/`;
+        }
+      }, () => {
+        this.toastr.error('Couldn\'t retrieve ID.');
+      });
   }
 
   public ngOnDestroy() {

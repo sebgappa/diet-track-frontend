@@ -1,11 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IFood } from 'src/app/models/food.model';
+import { UserInfoService } from 'src/app/services/user-info.service';
 
 @Component({
   selector: 'app-history',
@@ -26,7 +26,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private store: AngularFirestore,
-    private auth: AuthService) {
+    private userInfo: UserInfoService) {
   }
 
   ngOnInit(): void {
@@ -43,16 +43,14 @@ export class HistoryComponent implements OnInit, OnDestroy {
       });
 
 
-    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
-        this.store.collection(user.email).doc('food').collection('history').valueChanges({ idField: 'code' })
-        .pipe(takeUntil(this.unsubscribe)).subscribe(response => {
-          this.history = response;
-        });
+    this.store.collection(this.userInfo.getEmail()).doc('food').collection('history').valueChanges({ idField: 'code' })
+      .pipe(takeUntil(this.unsubscribe)).subscribe(response => {
+        this.history = response;
       });
 
     this.eventsSubscription = this.searchResult.subscribe(result => {
-        this.history = result;
-      });
+      this.history = result;
+    });
   }
 
   public ngOnDestroy() {

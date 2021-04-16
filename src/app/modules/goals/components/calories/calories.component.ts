@@ -9,6 +9,7 @@ import { Calories } from 'src/app/enums/calories.enum';
 import { Goals } from 'src/app/enums/goals.enum';
 import { CaloriesService } from 'src/app/services/calories/calories.service';
 import { GoalsService } from 'src/app/services/goals/goals.service';
+import { UserInfoService } from 'src/app/services/user-info.service';
 
 @Component({
   selector: 'app-calories',
@@ -59,31 +60,28 @@ export class CaloriesComponent implements OnInit, OnDestroy {
 
   constructor(
     private calories: CaloriesService,
-    private goals: GoalsService,
-    private auth: AuthService) {
+    private goals: GoalsService) {
   }
 
   ngOnInit(): void {
-    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
-      this.goals.fetchGoals(user.email).then(() => {
-        this.calorieGoal = this.goals.getMacroNutrientGoal(Goals.calories);
-      })
-      Promise.all([
-        this.calories.setBreakfastCalories(user.email),
-        this.calories.setLunchCalories(user.email),
-        this.calories.setDinnerCalories(user.email),
-        this.calories.setSnacksCalories(user.email)]).then(() => {
-          this.breakfastPercentage = this.calculateMealPercentageOfToalCalories(Calories.breakfast);
-          this.lunchPercentage = this.calculateMealPercentageOfToalCalories(Calories.lunch);
-          this.dinnerPercentage = this.calculateMealPercentageOfToalCalories(Calories.dinner);
-          this.snacksPercentage = this.calculateMealPercentageOfToalCalories(Calories.snacks);
+    this.goals.fetchGoals().then(() => {
+      this.calorieGoal = this.goals.getMacroNutrientGoal(Goals.calories);
+    })
+    Promise.all([
+      this.calories.setBreakfastCalories(),
+      this.calories.setLunchCalories(),
+      this.calories.setDinnerCalories(),
+      this.calories.setSnacksCalories()]).then(() => {
+        this.breakfastPercentage = this.calculateMealPercentageOfToalCalories(Calories.breakfast);
+        this.lunchPercentage = this.calculateMealPercentageOfToalCalories(Calories.lunch);
+        this.dinnerPercentage = this.calculateMealPercentageOfToalCalories(Calories.dinner);
+        this.snacksPercentage = this.calculateMealPercentageOfToalCalories(Calories.snacks);
 
-          this.totalCalories = this.calories.getTotalCaloriesConsumed();
-          this.remainingCalories = this.calories.getRemainingCalories();
+        this.totalCalories = this.calories.getTotalCaloriesConsumed();
+        this.remainingCalories = this.calories.getRemainingCalories();
 
-          this.data = [this.lunchPercentage, this.dinnerPercentage, this.snacksPercentage, this.breakfastPercentage];
-        });
-    });
+        this.data = [this.lunchPercentage, this.dinnerPercentage, this.snacksPercentage, this.breakfastPercentage];
+      });
   }
 
   public ngOnDestroy() {

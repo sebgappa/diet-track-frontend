@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
-import { faCamera, faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCamera, faCheck, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { ToastrService } from 'ngx-toastr';
@@ -11,11 +11,13 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Goals } from 'src/app/enums/goals.enum';
 import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
+import { IFood } from 'src/app/models/food.model';
 import { IMeal } from 'src/app/models/meal.model';
 import { CaloriesService } from 'src/app/services/calories/calories.service';
 import { GoalsService } from 'src/app/services/goals/goals.service';
 import { MacronutrientsService } from 'src/app/services/macronutrients/macronutrients.service';
 import { SessionStorageService } from 'src/app/services/session-storage/session-storage.service';
+import { UserInfoService } from 'src/app/services/user-info.service';
 
 @Component({
   selector: 'app-add-meal',
@@ -26,6 +28,7 @@ export class AddMealComponent implements OnInit, OnDestroy {
   public cameraIcon = faCamera;
   public tickIcon = faCheck;
   public plusIcon = faPlus;
+  public deleteIcon = faTimes;
 
   public labels: Label[] = ['Protein', 'Fats', 'Carbs'];
   public type: ChartType = 'doughnut';
@@ -67,7 +70,7 @@ export class AddMealComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private macros: MacronutrientsService,
     private store: AngularFirestore,
-    private auth: AuthService,
+    private userInfo: UserInfoService,
     private calories: CaloriesService,
     private goals: GoalsService) {}
 
@@ -117,18 +120,13 @@ export class AddMealComponent implements OnInit, OnDestroy {
     this.meal.fat = this.fatTotal;
     this.meal.carbs = this.carbsTotal;
 
-
-    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
-      this.store.collection(user.email).doc('food').collection('meals').add(Object.assign({}, this.meal)).then(() => {
-        this.toastr.success('Meal added');
-        this.sessionStorageService.removeObject('meal');
-        this.addMealForm.reset();
-        this.router.navigate(['/meals']);
-      }, () => {
-        this.toastr.error('Failed to store meal.');
-      });
+    this.store.collection(this.userInfo.getEmail()).doc('food').collection('meals').add(Object.assign({}, this.meal)).then(() => {
+      this.toastr.success('Meal added');
+      this.sessionStorageService.removeObject('meal');
+      this.addMealForm.reset();
+      this.router.navigate(['/meals']);
     }, () => {
-      this.toastr.error('Couldn\'t save meal, failed to retrieve user.');
+      this.toastr.error('Failed to store meal.');
     });
   }
 
@@ -151,6 +149,14 @@ export class AddMealComponent implements OnInit, OnDestroy {
     }
 
     this.router.navigate(['/food/new']);
+  }
+
+  deleteItem(item: IFood) {
+    const index = this.meal.items.indexOf(item, 0);
+    if (index > -1) {
+      this.meal.items.splice(index, 1);
+    };
+    this.sessionStorageService.saveObject('meal', this.meal);
   }
 
   private calculatePercentageOfTotalMacros(macroTotal: number) {

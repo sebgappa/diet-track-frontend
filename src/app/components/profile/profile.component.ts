@@ -30,7 +30,6 @@ export class ProfileComponent implements OnInit {
   public calories = faBatteryHalf
 
   private unsubscribe: Subject<void> = new Subject();
-  private userEmail: string;
 
   constructor(
     public auth: AuthService, 
@@ -47,7 +46,6 @@ export class ProfileComponent implements OnInit {
     });
 
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(profile => {
-        this.userEmail = profile.email,
         this.profileJson = JSON.stringify(profile, null, 2)
       });
   }
@@ -55,7 +53,7 @@ export class ProfileComponent implements OnInit {
   updateGoals(goalName: string) {
     switch(goalName) {
       case 'protein':
-        Promise.resolve(this.goals.setMacroNutrientGoal(Goals.protein, this.goalsFormGroup.controls.protein.value, this.userEmail)).then(() => {
+        Promise.resolve(this.goals.setMacroNutrientGoal(Goals.protein, this.goalsFormGroup.controls.protein.value)).then(() => {
           this.toastr.success("Updated!");
           this.goalsFormGroup.controls['protein'].disable();
           this.proteinFieldEnabled = false;
@@ -64,7 +62,7 @@ export class ProfileComponent implements OnInit {
         });
         break;
       case 'fat':
-        Promise.resolve(this.goals.setMacroNutrientGoal(Goals.fat, this.goalsFormGroup.controls.fat.value, this.userEmail)).then(() => {
+        Promise.resolve(this.goals.setMacroNutrientGoal(Goals.fat, this.goalsFormGroup.controls.fat.value)).then(() => {
           this.toastr.success("Updated!");
           this.goalsFormGroup.controls['fat'].disable();
           this.fatFieldEnabled = false;
@@ -73,7 +71,7 @@ export class ProfileComponent implements OnInit {
         });
         break;
       case 'carbs':
-        Promise.resolve(this.goals.setMacroNutrientGoal(Goals.carbs, this.goalsFormGroup.controls.carbs.value, this.userEmail)).then(() => {
+        Promise.resolve(this.goals.setMacroNutrientGoal(Goals.carbs, this.goalsFormGroup.controls.carbs.value)).then(() => {
           this.toastr.success("Updated!");
           this.goalsFormGroup.controls['carbs'].disable();
           this.carbFieldEnabled = false;
@@ -82,7 +80,7 @@ export class ProfileComponent implements OnInit {
         });
         break;
       case 'calories':
-        Promise.resolve(this.goals.setMacroNutrientGoal(Goals.calories, this.goalsFormGroup.controls.calories.value, this.userEmail)).then(() => {
+        Promise.resolve(this.goals.setMacroNutrientGoal(Goals.calories, this.goalsFormGroup.controls.calories.value)).then(() => {
           this.toastr.success("Updated!");
           this.goalsFormGroup.controls['calories'].disable();
           this.calorieFieldEnabled = false;

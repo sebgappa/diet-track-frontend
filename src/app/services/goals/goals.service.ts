@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Goals } from 'src/app/enums/goals.enum';
+import { UserInfoService } from '../user-info.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,18 +27,18 @@ export class GoalsService {
     ['vitamin-d_value', 20],
   ]);
 
-  constructor(private store: AngularFirestore) { }
+  constructor(private store: AngularFirestore, private userInfo: UserInfoService) { }
 
   public getRecommendedMicroNutrientGoals() {
     return this.recommendedMicroNutrientGoals;
   }
 
-  public fetchGoals(email: string): Promise<any> {
+  public fetchGoals(): Promise<any> {
     const promise = Promise.all([
-      this.fetchProtein(email),
-      this.fetchFat(email),
-      this.fetchCarbs(email),
-      this.fetchCalories(email)
+      this.fetchProtein(),
+      this.fetchFat(),
+      this.fetchCarbs(),
+      this.fetchCalories()
     ]);
 
     return promise;
@@ -58,22 +59,22 @@ export class GoalsService {
     }
   }
 
-  public setMacroNutrientGoal(macronutrient: Goals, value: number, email: string) {
+  public setMacroNutrientGoal(macronutrient: Goals, value: number) {
     switch (+macronutrient) {
       case Goals.protein:
-        this.store.collection(email).doc('food').collection('goals').doc('protein').set({value});
+        this.store.collection(this.userInfo.getEmail()).doc('food').collection('goals').doc('protein').set({value});
         this.macroNutrientGoals[0] = value;
         break;
       case Goals.fat:
-        this.store.collection(email).doc('food').collection('goals').doc('fat').set({value});
+        this.store.collection(this.userInfo.getEmail()).doc('food').collection('goals').doc('fat').set({value});
         this.macroNutrientGoals[1] = value;
         break;
       case Goals.carbs:
-        this.store.collection(email).doc('food').collection('goals').doc('carbs').set({value});
+        this.store.collection(this.userInfo.getEmail()).doc('food').collection('goals').doc('carbs').set({value});
         this.macroNutrientGoals[2] = value;
         break;
       case Goals.calories:
-        this.store.collection(email).doc('food').collection('goals').doc('calories').set({value});
+        this.store.collection(this.userInfo.getEmail()).doc('food').collection('goals').doc('calories').set({value});
         this.macroNutrientGoals[3] = value;
         break;
       default:
@@ -81,9 +82,9 @@ export class GoalsService {
     }
   }
 
-  private fetchProtein(email: string): Promise<any> {
+  private fetchProtein(): Promise<any> {
     const promise = new Promise((resolve, reject) => {
-      this.store.collection(email).doc('food').collection('goals').doc('protein').get().subscribe(protein => {
+      this.store.collection(this.userInfo.getEmail()).doc('food').collection('goals').doc('protein').get().subscribe(protein => {
         if (protein.data()) {
           this.macroNutrientGoals[0] = protein.data().value;
         }
@@ -95,9 +96,9 @@ export class GoalsService {
     return promise
   }
 
-  private fetchFat(email: string) {
+  private fetchFat() {
     const promise = new Promise((resolve, reject) => {
-      this.store.collection(email).doc('food').collection('goals').doc('fat').get().subscribe(fat => {
+      this.store.collection(this.userInfo.getEmail()).doc('food').collection('goals').doc('fat').get().subscribe(fat => {
         if (fat.data()) {
           this.macroNutrientGoals[1] = fat.data().value;
         }
@@ -108,9 +109,9 @@ export class GoalsService {
     })
     return promise
   }
-  private fetchCarbs(email: string) {
+  private fetchCarbs() {
     const promise = new Promise((resolve, reject) => {
-      this.store.collection(email).doc('food').collection('goals').doc('carbs').get().subscribe(carbs => {
+      this.store.collection(this.userInfo.getEmail()).doc('food').collection('goals').doc('carbs').get().subscribe(carbs => {
         if (carbs.data()) {
           this.macroNutrientGoals[2] = carbs.data().value;
         }
@@ -122,9 +123,9 @@ export class GoalsService {
     return promise
 
   }
-  private fetchCalories(email: string) {
+  private fetchCalories() {
     const promise = new Promise((resolve, reject) => {
-      this.store.collection(email).doc('food').collection('goals').doc('calories').get().subscribe(calories => {
+      this.store.collection(this.userInfo.getEmail()).doc('food').collection('goals').doc('calories').get().subscribe(calories => {
         if(calories.data()) {
           this.macroNutrientGoals[3] = calories.data().value;
         }

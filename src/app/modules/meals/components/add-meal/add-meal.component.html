@@ -104,7 +104,9 @@
                             </span></h6>
                         <ul *ngIf="meal.items && meal.items.length != 0" class="list-group list-group-flush">
                             <div *ngFor="let item of meal.items">
-                                <li class="list-group-item">{{item.product.product_name}}<span
+                                <li class="list-group-item"><span><a (click)="deleteItem(item)">
+                                    <fa-icon class="fas delete-icon mr-2" [icon]="deleteIcon" size="sm"></fa-icon>
+                                </a></span>{{item.product.product_name}}<span
                                         class="align-items-right"><b>{{item.product.nutriments['energy-kcal_value']}}</b></span>
                                 </li>
                                 <li class="list-group-item text-secondary">{{item.product.brands}},

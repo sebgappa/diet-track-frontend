@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MicroNutrients } from 'src/app/enums/micronutrients.enum';
 import { IMicro } from 'src/app/models/micro.model';
 import { GoalsService } from '../goals/goals.service';
+import { UserInfoService } from '../user-info.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class MicronutrientsService {
 
   constructor(
     private store: AngularFirestore,
-    private goals: GoalsService) { }
+    private goals: GoalsService,
+    private userInfo: UserInfoService) { }
 
   getMicronutrientObjects() {
     const micronutrients: IMicro[] = [];
@@ -45,9 +47,9 @@ export class MicronutrientsService {
     return this.microNutrientTotals;
   }
 
-  setBreakfastMicronutrients(email: string): Promise<null> {
+  setBreakfastMicronutrients(): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
-      this.store.collection(email).doc('food').collection('breakfast').valueChanges({ idField: 'id' }).subscribe(breakfast => {
+      this.store.collection(this.userInfo.getEmail()).doc('food').collection('breakfast').valueChanges({ idField: 'id' }).subscribe(breakfast => {
         for (const food of breakfast) {
           for (const value in MicroNutrients) {
             if (this.microNutrientTotals.has(value)) {
@@ -67,9 +69,9 @@ export class MicronutrientsService {
     return promise;
   }
 
-  setLunchMicronutrients(email: string): Promise<null> {
+  setLunchMicronutrients(): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
-      this.store.collection(email).doc('food').collection('lunch').valueChanges({ idField: 'id' }).subscribe(lunch => {
+      this.store.collection(this.userInfo.getEmail()).doc('food').collection('lunch').valueChanges({ idField: 'id' }).subscribe(lunch => {
         for (const food of lunch) {
           for (const value in MicroNutrients) {
             if (this.microNutrientTotals.has(value)) {
@@ -89,9 +91,9 @@ export class MicronutrientsService {
     return promise;
   }
 
-  setDinnerMicronutrients(email: string): Promise<null> {
+  setDinnerMicronutrients(): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
-      this.store.collection(email).doc('food').collection('dinner').valueChanges({ idField: 'id' }).subscribe(dinner => {
+      this.store.collection(this.userInfo.getEmail()).doc('food').collection('dinner').valueChanges({ idField: 'id' }).subscribe(dinner => {
         for (const food of dinner) {
           for (const value in MicroNutrients) {
             if (this.microNutrientTotals.has(value)) {
@@ -111,9 +113,9 @@ export class MicronutrientsService {
     return promise;
   }
 
-  setSnacksMicronutrients(email: string): Promise<null> {
+  setSnacksMicronutrients(): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
-      this.store.collection(email).doc('food').collection('snacks').valueChanges({ idField: 'id' }).subscribe(snacks => {
+      this.store.collection(this.userInfo.getEmail()).doc('food').collection('snacks').valueChanges({ idField: 'id' }).subscribe(snacks => {
         for (const food of snacks) {
           for (const value in MicroNutrients) {
             if (this.microNutrientTotals.has(value)) {

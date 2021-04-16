@@ -4,6 +4,7 @@ import { Calories } from 'src/app/enums/calories.enum';
 import { Goals } from 'src/app/enums/goals.enum';
 import { IMeal } from 'src/app/models/meal.model';
 import { GoalsService } from '../goals/goals.service';
+import { UserInfoService } from '../user-info.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class CaloriesService {
 
   constructor(
     private store: AngularFirestore,
-    private goals: GoalsService) { }
+    private goals: GoalsService,
+    private userInfo: UserInfoService) { }
 
   public getCaloriesConsumedPerMeal(meal: Calories) {
     switch (+meal) {
@@ -55,10 +57,10 @@ export class CaloriesService {
     this.caloriesInMeal = 0;
   }
 
-  public setBreakfastCalories(email: string): Promise<null> {
+  public setBreakfastCalories(): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
       let breakfastCalories = 0;
-      this.store.collection(email).doc('food').collection('breakfast').valueChanges({ idField: 'id' }).subscribe(breakfast => {
+      this.store.collection(this.userInfo.getEmail()).doc('food').collection('breakfast').valueChanges({ idField: 'id' }).subscribe(breakfast => {
         for (const food of breakfast) {
           breakfastCalories += food.product.nutriments['energy-kcal_value'];
         }
@@ -72,10 +74,10 @@ export class CaloriesService {
     return promise;
   }
 
-  public setLunchCalories(email: string): Promise<null> {
+  public setLunchCalories(): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
       let lunchCalories = 0;
-      this.store.collection(email).doc('food').collection('lunch').valueChanges({ idField: 'id' }).subscribe(lunch => {
+      this.store.collection(this.userInfo.getEmail()).doc('food').collection('lunch').valueChanges({ idField: 'id' }).subscribe(lunch => {
         for (const food of lunch) {
           lunchCalories += food.product.nutriments['energy-kcal_value'];
         }
@@ -89,10 +91,10 @@ export class CaloriesService {
     return promise;
   }
 
-  public setDinnerCalories(email: string): Promise<null> {
+  public setDinnerCalories(): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
       let dinnerCalories = 0;
-      this.store.collection(email).doc('food').collection('dinner').valueChanges({ idField: 'id' }).subscribe(dinner => {
+      this.store.collection(this.userInfo.getEmail()).doc('food').collection('dinner').valueChanges({ idField: 'id' }).subscribe(dinner => {
         for (const food of dinner) {
           dinnerCalories += food.product.nutriments['energy-kcal_value'];
         }
@@ -106,10 +108,10 @@ export class CaloriesService {
     return promise;
   }
 
-  public setSnacksCalories(email: string): Promise<null> {
+  public setSnacksCalories(): Promise<null> {
     const promise = new Promise<null>((resolve, reject) => {
       let snacksCalories = 0;
-      this.store.collection(email).doc('food').collection('snacks').valueChanges({ idField: 'id' }).subscribe(snacks => {
+      this.store.collection(this.userInfo.getEmail()).doc('food').collection('snacks').valueChanges({ idField: 'id' }).subscribe(snacks => {
         for (const food of snacks) {
           snacksCalories += food.product.nutriments['energy-kcal_value'];
         }

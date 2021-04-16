@@ -6,6 +6,7 @@ import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IMeal } from 'src/app/models/meal.model';
+import { UserInfoService } from 'src/app/services/user-info.service';
 
 @Component({
   selector: 'app-my-meals',
@@ -23,7 +24,7 @@ export class MyMealsComponent implements OnInit, OnDestroy {
   private eventsSubscription: Subscription;
 
   constructor(
-    private auth: AuthService,
+    private userInfo: UserInfoService,
     private store: AngularFirestore,
     private route: ActivatedRoute) { }
 
@@ -36,11 +37,9 @@ export class MyMealsComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
-      this.store.collection(user.email).doc('food').collection('meals').valueChanges({ idField: 'id' })
+    this.store.collection(this.userInfo.getEmail()).doc('food').collection('meals').valueChanges({ idField: 'id' })
       .pipe(takeUntil(this.unsubscribe)).subscribe(response => {
         this.meals = response;
-      });
     });
 
     this.eventsSubscription = this.searchResult.subscribe(result => {

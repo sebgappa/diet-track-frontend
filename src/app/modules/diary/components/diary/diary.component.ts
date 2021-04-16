@@ -10,6 +10,7 @@ import { Calories } from 'src/app/enums/calories.enum';
 import { Goals } from 'src/app/enums/goals.enum';
 import { CaloriesService } from 'src/app/services/calories/calories.service';
 import { GoalsService } from 'src/app/services/goals/goals.service';
+import { UserInfoService } from 'src/app/services/user-info.service';
 
 @Component({
   selector: 'app-diary',
@@ -33,46 +34,44 @@ export class DiaryComponent implements OnInit {
   public goalCalories = 0;
   public remainingCalories = 0;
 
-  private unsubscribe: Subject<void> = new Subject();
   private userEmail: string;
 
   constructor(
     private router: Router,
-    private auth: AuthService,
     private store: AngularFirestore,
     private goals: GoalsService,
     private calories: CaloriesService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private userInfo: UserInfoService) {
   }
 
   ngOnInit(): void {
-    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
-      this.goals.fetchGoals(user.email).then(() => {
-        this.userEmail = user.email;
-        this.goalCalories = this.goals.getMacroNutrientGoal(Goals.calories);
-      })
+    this.userEmail = this.userInfo.getEmail();
 
-      this.setFood(user.email);
-      Promise.all([
-        this.calories.setBreakfastCalories(user.email),
-        this.calories.setLunchCalories(user.email),
-        this.calories.setDinnerCalories(user.email),
-        this.calories.setSnacksCalories(user.email)]).then(() => {
-          this.breakfastCalories = this.calories.getCaloriesConsumedPerMeal(Calories.breakfast);
-          this.lunchCalories = this.calories.getCaloriesConsumedPerMeal(Calories.lunch);
-          this.dinnerCalories = this.calories.getCaloriesConsumedPerMeal(Calories.dinner);
-          this.snacksCalories = this.calories.getCaloriesConsumedPerMeal(Calories.snacks);
-          this.remainingCalories = this.calories.getRemainingCalories();
-          this.totalFoodCalories = this.calories.getTotalCaloriesConsumed();
-        });
-    });
+    this.goals.fetchGoals().then(() => {
+      this.goalCalories = this.goals.getMacroNutrientGoal(Goals.calories);
+    })
+
+    this.setFood();
+    Promise.all([
+      this.calories.setBreakfastCalories(),
+      this.calories.setLunchCalories(),
+      this.calories.setDinnerCalories(),
+      this.calories.setSnacksCalories()]).then(() => {
+        this.breakfastCalories = this.calories.getCaloriesConsumedPerMeal(Calories.breakfast);
+        this.lunchCalories = this.calories.getCaloriesConsumedPerMeal(Calories.lunch);
+        this.dinnerCalories = this.calories.getCaloriesConsumedPerMeal(Calories.dinner);
+        this.snacksCalories = this.calories.getCaloriesConsumedPerMeal(Calories.snacks);
+        this.remainingCalories = this.calories.getRemainingCalories();
+        this.totalFoodCalories = this.calories.getTotalCaloriesConsumed();
+      });
   }
 
-  setFood(email: string) {
-    this.breakfast = this.store.collection(email).doc('food').collection('breakfast').valueChanges({ idField: 'id' });
-    this.lunch = this.store.collection(email).doc('food').collection('lunch').valueChanges({ idField: 'id' });
-    this.dinner = this.store.collection(email).doc('food').collection('dinner').valueChanges({ idField: 'id' });
-    this.snacks = this.store.collection(email).doc('food').collection('snacks').valueChanges({ idField: 'id' });
+  setFood() {
+    this.breakfast = this.store.collection(this.userEmail).doc('food').collection('breakfast').valueChanges({ idField: 'id' });
+    this.lunch = this.store.collection(this.userEmail).doc('food').collection('lunch').valueChanges({ idField: 'id' });
+    this.dinner = this.store.collection(this.userEmail).doc('food').collection('dinner').valueChanges({ idField: 'id' });
+    this.snacks = this.store.collection(this.userEmail).doc('food').collection('snacks').valueChanges({ idField: 'id' });
   }
 
   addFood(meal: string) {
@@ -89,7 +88,7 @@ export class DiaryComponent implements OnInit {
 
   deleteBreakfastItem(id: string) {
     this.store.collection(this.userEmail).doc('food').collection('breakfast').doc(id).delete().then(() => {
-      Promise.all([this.calories.setBreakfastCalories(this.userEmail)]).then(() => {
+      Promise.all([this.calories.setBreakfastCalories()]).then(() => {
         this.breakfastCalories = this.calories.getCaloriesConsumedPerMeal(Calories.breakfast);
         this.remainingCalories = this.calories.getRemainingCalories();
         this.totalFoodCalories = this.calories.getTotalCaloriesConsumed();
@@ -102,7 +101,7 @@ export class DiaryComponent implements OnInit {
 
   deleteLunchItem(id: string) {
     this.store.collection(this.userEmail).doc('food').collection('lunch').doc(id).delete().then(() => {
-      Promise.all([this.calories.setLunchCalories(this.userEmail)]).then(() => {
+      Promise.all([this.calories.setLunchCalories()]).then(() => {
         this.lunchCalories = this.calories.getCaloriesConsumedPerMeal(Calories.lunch);
         this.remainingCalories = this.calories.getRemainingCalories();
         this.totalFoodCalories = this.calories.getTotalCaloriesConsumed();
@@ -115,7 +114,7 @@ export class DiaryComponent implements OnInit {
 
   deleteDinnerItem(id: string) {
     this.store.collection(this.userEmail).doc('food').collection('dinner').doc(id).delete().then(() => {
-      Promise.all([this.calories.setDinnerCalories(this.userEmail)]).then(() => {
+      Promise.all([this.calories.setDinnerCalories()]).then(() => {
         this.dinnerCalories = this.calories.getCaloriesConsumedPerMeal(Calories.dinner);
         this.remainingCalories = this.calories.getRemainingCalories();
         this.totalFoodCalories = this.calories.getTotalCaloriesConsumed();
@@ -128,7 +127,7 @@ export class DiaryComponent implements OnInit {
 
   deleteSnacksItem(id: string) {
     this.store.collection(this.userEmail).doc('food').collection('snacks').doc(id).delete().then(() => {
-      Promise.all([this.calories.setSnacksCalories(this.userEmail)]).then(() => {
+      Promise.all([this.calories.setSnacksCalories()]).then(() => {
         this.snacksCalories = this.calories.getCaloriesConsumedPerMeal(Calories.snacks);
         this.remainingCalories = this.calories.getRemainingCalories();
         this.totalFoodCalories = this.calories.getTotalCaloriesConsumed();

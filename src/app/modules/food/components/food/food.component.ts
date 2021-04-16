@@ -35,20 +35,14 @@ export class FoodComponent implements OnInit, OnDestroy {
   public searchWhole: (string|IFood[])[];
 
   private unsubscribe: Subject<void> = new Subject();
-  private userEmail: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private toastrService: ToastrService,
-    private search: SearchService,
-    private auth: AuthService) { }
+    private search: SearchService) { }
 
   ngOnInit(): void {
-    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
-      this.userEmail = user.email;
-    });
-
     this.route.paramMap
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(params => {
@@ -104,12 +98,12 @@ export class FoodComponent implements OnInit, OnDestroy {
 
     switch (this.searchFor) {
       case 'history':
-        Promise.resolve(this.search.searchForHistoryByName(this.userEmail, event)).then((response) => {
+        Promise.resolve(this.search.searchForHistoryByName(event)).then((response) => {
           this.searchHistory.next(response);
         });
         break;
       case 'meals':
-        Promise.resolve(this.search.searchForMealByName(this.userEmail, event)).then((response) => {
+        Promise.resolve(this.search.searchForMealByName(event)).then((response) => {
           this.searchMeals.next(response);
         });
         break;
