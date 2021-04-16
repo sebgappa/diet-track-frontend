@@ -22,7 +22,7 @@
           <span class="input-group-text" id="protein">
             <fa-icon (click)="proteinFieldEnabled = true" [icon]="protein" size="md"></fa-icon>
           </span>
-          <input id="protein" type="text" class="form-control" formControlName="protein" placeholder="Enter"
+          <input id="protein" type="number" class="form-control" formControlName="protein" placeholder="Enter"
             aria-label="protein goal" aria-describedby="protein goal">
           <button type="button" (click)="updateGoals('protein')" class="btn btn-primary" [disabled]="!proteinFieldEnabled">
             <fa-icon [icon]="tickIcon" size="sm"></fa-icon>
@@ -35,7 +35,7 @@
           <span class="input-group-text" id="fat">
             <fa-icon (click)="fatFieldEnabled = true" [icon]="fats" size="md"></fa-icon>
           </span>
-          <input id="fat" type="text" class="form-control" formControlName="fat" placeholder="Enter"
+          <input id="fat" type="number" class="form-control" formControlName="fat" placeholder="Enter"
             aria-label="fat goal" aria-describedby="fat goal">
           <button type="button" (click)="updateGoals('fat')" class="btn btn-primary" [disabled]="!fatFieldEnabled">
             <fa-icon [icon]="tickIcon" size="sm"></fa-icon>
@@ -48,7 +48,7 @@
           <span class="input-group-text" id="carbs">
             <fa-icon (click)="carbFieldEnabled = true" [icon]="carbs" size="md"></fa-icon>
           </span>
-          <input id="carbs" type="text" class="form-control" formControlName="carbs" placeholder="Enter"
+          <input id="carbs" type="number" class="form-control" formControlName="carbs" placeholder="Enter"
             aria-label="carbs goal" aria-describedby="carbs goal">
           <button type="button" (click)="updateGoals('carbs')" class="btn btn-primary" [disabled]="!carbFieldEnabled">
             <fa-icon [icon]="tickIcon" size="sm"></fa-icon>
@@ -61,7 +61,7 @@
           <span class="input-group-text" id="calories">
             <fa-icon (click)="calorieFieldEnabled = true" [icon]="calories" size="md"></fa-icon>
           </span>
-          <input id="calories" type="text" class="form-control" formControlName="calories" placeholder="Enter"
+          <input id="calories" type="number" class="form-control" formControlName="calories" placeholder="Enter"
             aria-label="calories goal" aria-describedby="calories goal">
           <button type="button" (click)="updateGoals('calories')" class="btn btn-primary" [disabled]="!calorieFieldEnabled">
             <fa-icon [icon]="tickIcon" size="sm"></fa-icon>
