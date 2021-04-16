@@ -16,11 +16,11 @@
   </div>
   <form [formGroup]="goalsFormGroup">
     <div class="row pl-3 pr-3">
-      <div class="col-10 mt-3">
+      <div class="col-11 mt-3">
         <div class="font-medium"><b>Protein goal (g):</b></div>
         <div class="input-group">
           <span class="input-group-text" id="protein">
-            <fa-icon (click)="proteinFieldEnabled = true" [icon]="protein" size="md"></fa-icon>
+            <fa-icon (click)="enableProteinField()" [icon]="protein" size="md"></fa-icon>
           </span>
           <input id="protein" type="number" class="form-control" formControlName="protein" placeholder="Enter"
             aria-label="protein goal" aria-describedby="protein goal">
@@ -29,11 +29,11 @@
           </button>
         </div>
       </div>
-      <div class="col-10 mt-4">
+      <div class="col-11 mt-4">
         <div class="font-medium"><b>Fat goal (g):</b></div>
         <div class="input-group">
           <span class="input-group-text" id="fat">
-            <fa-icon (click)="fatFieldEnabled = true" [icon]="fats" size="md"></fa-icon>
+            <fa-icon (click)="enableFatField()" [icon]="fats" size="md"></fa-icon>
           </span>
           <input id="fat" type="number" class="form-control" formControlName="fat" placeholder="Enter"
             aria-label="fat goal" aria-describedby="fat goal">
@@ -42,11 +42,11 @@
           </button>
         </div>
       </div>
-      <div class="col-10 mt-4">
+      <div class="col-11 mt-4">
         <div class="font-medium"><b>Carbs goal (g):</b></div>
         <div class="input-group">
           <span class="input-group-text" id="carbs">
-            <fa-icon (click)="carbFieldEnabled = true" [icon]="carbs" size="md"></fa-icon>
+            <fa-icon (click)="enableCarbsField()" [icon]="carbs" size="md"></fa-icon>
           </span>
           <input id="carbs" type="number" class="form-control" formControlName="carbs" placeholder="Enter"
             aria-label="carbs goal" aria-describedby="carbs goal">
@@ -55,11 +55,11 @@
           </button>
         </div>
       </div>
-      <div class="col-10 mt-4 mb-5">
+      <div class="col-11 mt-4 mb-5">
         <div class="font-medium"><b>Calorie goal (kCal):</b></div>
         <div class="input-group">
           <span class="input-group-text" id="calories">
-            <fa-icon (click)="calorieFieldEnabled = true" [icon]="calories" size="md"></fa-icon>
+            <fa-icon (click)="enableCalorieField" [icon]="calories" size="md"></fa-icon>
           </span>
           <input id="calories" type="number" class="form-control" formControlName="calories" placeholder="Enter"
             aria-label="calories goal" aria-describedby="calories goal">

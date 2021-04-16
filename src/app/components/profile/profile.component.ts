@@ -40,10 +40,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.goalsFormGroup = this.formBuilder.group({
-      protein: [this.goals.getMacroNutrientGoal(Goals.protein)],
-      fat: [this.goals.getMacroNutrientGoal(Goals.fat)],
-      carbs: [this.goals.getMacroNutrientGoal(Goals.carbs)],
-      calories: [this.goals.getMacroNutrientGoal(Goals.calories)]
+      protein: [{value: this.goals.getMacroNutrientGoal(Goals.protein), disabled: true}],
+      fat: [{value: this.goals.getMacroNutrientGoal(Goals.fat), disabled: true}],
+      carbs: [{value: this.goals.getMacroNutrientGoal(Goals.carbs), disabled: true}],
+      calories: [{value: this.goals.getMacroNutrientGoal(Goals.calories), disabled: true}]
     });
 
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(profile => {
@@ -57,6 +57,7 @@ export class ProfileComponent implements OnInit {
       case 'protein':
         Promise.resolve(this.goals.setMacroNutrientGoal(Goals.protein, this.goalsFormGroup.controls.protein.value, this.userEmail)).then(() => {
           this.toastr.success("Updated!");
+          this.goalsFormGroup.controls['protein'].disable();
           this.proteinFieldEnabled = false;
         }, () => {
           this.toastr.error("Failed to update.");
@@ -65,6 +66,7 @@ export class ProfileComponent implements OnInit {
       case 'fat':
         Promise.resolve(this.goals.setMacroNutrientGoal(Goals.fat, this.goalsFormGroup.controls.fat.value, this.userEmail)).then(() => {
           this.toastr.success("Updated!");
+          this.goalsFormGroup.controls['fat'].disable();
           this.fatFieldEnabled = false;
         }, () => {
           this.toastr.error("Failed to update.");
@@ -73,6 +75,7 @@ export class ProfileComponent implements OnInit {
       case 'carbs':
         Promise.resolve(this.goals.setMacroNutrientGoal(Goals.carbs, this.goalsFormGroup.controls.carbs.value, this.userEmail)).then(() => {
           this.toastr.success("Updated!");
+          this.goalsFormGroup.controls['carbs'].disable();
           this.carbFieldEnabled = false;
         }, () => {
           this.toastr.error("Failed to update.");
@@ -81,6 +84,7 @@ export class ProfileComponent implements OnInit {
       case 'calories':
         Promise.resolve(this.goals.setMacroNutrientGoal(Goals.calories, this.goalsFormGroup.controls.calories.value, this.userEmail)).then(() => {
           this.toastr.success("Updated!");
+          this.goalsFormGroup.controls['calories'].disable();
           this.calorieFieldEnabled = false;
          }, () => {
           this.toastr.error("Failed to update.");
@@ -89,5 +93,25 @@ export class ProfileComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  enableProteinField() {
+    this.goalsFormGroup.controls['protein'].enable();
+    this.proteinFieldEnabled = true;
+  }
+
+  enableFatField() {
+    this.goalsFormGroup.controls['fat'].enable();
+    this.fatFieldEnabled = true;
+  }
+
+  enableCarbsField() {
+    this.goalsFormGroup.controls['carbs'].enable();
+    this.carbFieldEnabled = true;
+  }
+
+  enableCalorieField() {
+    this.goalsFormGroup.controls['calories'].enable();
+    this.calorieFieldEnabled = true;
   }
 }
