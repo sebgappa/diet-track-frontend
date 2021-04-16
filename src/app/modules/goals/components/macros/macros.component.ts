@@ -48,15 +48,14 @@ export class MacrosComponent implements OnInit, OnDestroy {
     private goals: GoalsService) {}
 
   ngOnInit(): void {
-
-    this.proteinGoal = this.goals.getMacroNutrientGoal(Goals.protein);
-    this.fatGoal = this.goals.getMacroNutrientGoal(Goals.fat);
-    this.carbsGoal = this.goals.getMacroNutrientGoal(Goals.carbs);
-
-
     this.macronutrients.clearTotalMacroNutrientConsumed();
 
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
+      this.goals.fetchGoals(user.email).then(() => { 
+        this.proteinGoal = this.goals.getMacroNutrientGoal(Goals.protein);
+        this.fatGoal = this.goals.getMacroNutrientGoal(Goals.fat);
+        this.carbsGoal = this.goals.getMacroNutrientGoal(Goals.carbs);
+      });
       Promise.all([
         this.macronutrients.setBreakfastMacroNutrients(user.email),
         this.macronutrients.setLunchMacroNutrients(user.email),

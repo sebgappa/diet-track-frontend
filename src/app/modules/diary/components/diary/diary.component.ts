@@ -40,9 +40,11 @@ export class DiaryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.goalCalories = this.goals.getMacroNutrientGoal(Goals.calories);
-
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
+      this.goals.fetchGoals(user.email).then(() => {
+        this.goalCalories = this.goals.getMacroNutrientGoal(Goals.calories);
+      })
+
       this.setFood(user.email);
       Promise.all([
         this.calories.setBreakfastCalories(user.email),

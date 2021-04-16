@@ -65,6 +65,9 @@ export class CaloriesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(user => {
+      this.goals.fetchGoals(user.email).then(() => {
+        this.calorieGoal = this.goals.getMacroNutrientGoal(Goals.calories);
+      })
       Promise.all([
         this.calories.setBreakfastCalories(user.email),
         this.calories.setLunchCalories(user.email),
@@ -76,7 +79,6 @@ export class CaloriesComponent implements OnInit, OnDestroy {
           this.snacksPercentage = this.calculateMealPercentageOfToalCalories(Calories.snacks);
 
           this.totalCalories = this.calories.getTotalCaloriesConsumed();
-          this.calorieGoal = this.goals.getMacroNutrientGoal(Goals.calories);
           this.remainingCalories = this.calories.getRemainingCalories();
 
           this.data = [this.lunchPercentage, this.dinnerPercentage, this.snacksPercentage, this.breakfastPercentage];

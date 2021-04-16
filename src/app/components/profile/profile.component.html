@@ -1,19 +1,73 @@
 <div *ngIf="auth.user$ | async as user">
-    <div class="row align-items-center profile-header">
-      <div class="col-md-2 mb-3">
-        <img
-          [src]="user.picture"
-          alt="User's profile picture"
-          class="rounded-circle img-fluid profile-picture"
-        />
-      </div>
-      <div class="col-md text-center text-md-left">
-        <h2>{{ user.name }}</h2>
-        <p class="lead text-muted">{{ user.email }}</p>
+  <div class="row profile-header">
+    <div class="col-4">
+      <div class="row">
+        <div class="col ml-3 mt-3">
+          <img [src]="user.picture" alt="User's profile picture" class="rounded-circle img-size profile-picture" />
+        </div>
+        <div class="col ml-3 mt-3">
+          <h5>{{ user.name }}</h5>
+          <h6 class="text-muted">{{ user.email }}</h6>
+        </div>
       </div>
     </div>
-  
-    <div class="row" *ngIf="profileJson">
-      <pre class="col-12 text-light bg-dark p-4">{{ profileJson }}</pre>
+    <div class="col-8">
     </div>
+  </div>
+  <form [formGroup]="goalsFormGroup">
+    <div class="row pl-3 pr-3">
+      <div class="col-10 mt-3">
+        <div class="font-medium"><b>Protein goal (g):</b></div>
+        <div class="input-group">
+          <span class="input-group-text" id="protein">
+            <fa-icon (click)="proteinFieldEnabled = true" [icon]="protein" size="md"></fa-icon>
+          </span>
+          <input id="protein" type="text" class="form-control" formControlName="protein" placeholder="Enter"
+            aria-label="protein goal" aria-describedby="protein goal">
+          <button type="button" (click)="updateGoals('protein')" class="btn btn-primary" [disabled]="!proteinFieldEnabled">
+            <fa-icon [icon]="tickIcon" size="sm"></fa-icon>
+          </button>
+        </div>
+      </div>
+      <div class="col-10 mt-4">
+        <div class="font-medium"><b>Fat goal (g):</b></div>
+        <div class="input-group">
+          <span class="input-group-text" id="fat">
+            <fa-icon (click)="fatFieldEnabled = true" [icon]="fats" size="md"></fa-icon>
+          </span>
+          <input id="fat" type="text" class="form-control" formControlName="fat" placeholder="Enter"
+            aria-label="fat goal" aria-describedby="fat goal">
+          <button type="button" (click)="updateGoals('fat')" class="btn btn-primary" [disabled]="!fatFieldEnabled">
+            <fa-icon [icon]="tickIcon" size="sm"></fa-icon>
+          </button>
+        </div>
+      </div>
+      <div class="col-10 mt-4">
+        <div class="font-medium"><b>Carbs goal (g):</b></div>
+        <div class="input-group">
+          <span class="input-group-text" id="carbs">
+            <fa-icon (click)="carbFieldEnabled = true" [icon]="carbs" size="md"></fa-icon>
+          </span>
+          <input id="carbs" type="text" class="form-control" formControlName="carbs" placeholder="Enter"
+            aria-label="carbs goal" aria-describedby="carbs goal">
+          <button type="button" (click)="updateGoals('carbs')" class="btn btn-primary" [disabled]="!carbFieldEnabled">
+            <fa-icon [icon]="tickIcon" size="sm"></fa-icon>
+          </button>
+        </div>
+      </div>
+      <div class="col-10 mt-4 mb-5">
+        <div class="font-medium"><b>Calorie goal (kCal):</b></div>
+        <div class="input-group">
+          <span class="input-group-text" id="calories">
+            <fa-icon (click)="calorieFieldEnabled = true" [icon]="calories" size="md"></fa-icon>
+          </span>
+          <input id="calories" type="text" class="form-control" formControlName="calories" placeholder="Enter"
+            aria-label="calories goal" aria-describedby="calories goal">
+          <button type="button" (click)="updateGoals('calories')" class="btn btn-primary" [disabled]="!calorieFieldEnabled">
+            <fa-icon [icon]="tickIcon" size="sm"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
