@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '@auth0/auth0-angular';
-import { faBatteryHalf, faBreadSlice, faCheck, faCheese, faDrumstickBite } from '@fortawesome/free-solid-svg-icons';
+import { faBatteryHalf, faBreadSlice, faCheck, faCheese, faClock, faDrumstickBite } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -23,11 +23,15 @@ export class ProfileComponent implements OnInit {
   public carbFieldEnabled = false;
   public fatFieldEnabled = false;
   public calorieFieldEnabled = false;
+  public reviewFieldEnabled = false;
 
   public protein = faDrumstickBite;
   public fats = faCheese;
   public carbs = faBreadSlice;
-  public calories = faBatteryHalf
+  public calories = faBatteryHalf;
+  public clock = faClock;
+
+  public hours: number[];
 
   private unsubscribe: Subject<void> = new Subject();
 
@@ -38,11 +42,14 @@ export class ProfileComponent implements OnInit {
     private goals: GoalsService) {}
 
   ngOnInit(): void {
+    this.hours = Array.from({length: 23}, (_, index) => index + 1);
+
     this.goalsFormGroup = this.formBuilder.group({
       protein: [{value: 0, disabled: true}],
       fat: [{value: 0, disabled: true}],
       carbs: [{value: 0, disabled: true}],
-      calories: [{value: 0, disabled: true}]
+      calories: [{value: 0, disabled: true}],
+      review: [{value: 6, disabled: true}],
     });
 
     this.goals.fetchGoals().then(() => {
@@ -57,8 +64,8 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  updateGoals(goalName: string) {
-    switch(goalName) {
+  updateField(field: string) {
+    switch(field) {
       case 'protein':
         Promise.resolve(this.goals.setMacroNutrientGoal(Goals.protein, this.goalsFormGroup.controls.protein.value)).then(() => {
           this.toastr.success("Updated!");
@@ -95,6 +102,10 @@ export class ProfileComponent implements OnInit {
           this.toastr.error("Failed to update.");
         });
         break;
+      case 'review':
+        this.goalsFormGroup.controls['review'].disable();
+        this.reviewFieldEnabled = false;
+        break;
       default:
         break;
     }
@@ -118,5 +129,10 @@ export class ProfileComponent implements OnInit {
   enableCalorieField() {
     this.goalsFormGroup.controls['calories'].enable();
     this.calorieFieldEnabled = true;
+  }
+
+  enableReviewField() {
+    this.goalsFormGroup.controls['review'].enable();
+    this.reviewFieldEnabled = true;
   }
 }
