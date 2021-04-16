@@ -1,15 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
 import { faAppleAlt, faDrumstickBite, faEgg, faHotdog } from '@fortawesome/free-solid-svg-icons';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { Calories } from 'src/app/enums/calories.enum';
 import { Goals } from 'src/app/enums/goals.enum';
 import { CaloriesService } from 'src/app/services/calories/calories.service';
 import { GoalsService } from 'src/app/services/goals/goals.service';
-import { UserInfoService } from 'src/app/services/user-info.service';
 
 @Component({
   selector: 'app-calories',

@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Goals } from 'src/app/enums/goals.enum';
 import { IMeal } from 'src/app/models/meal.model';

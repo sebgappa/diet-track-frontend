@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { Calories } from 'src/app/enums/calories.enum';
 import { Goals } from 'src/app/enums/goals.enum';
 import { CaloriesService } from 'src/app/services/calories/calories.service';

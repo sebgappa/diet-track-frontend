@@ -1,7 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

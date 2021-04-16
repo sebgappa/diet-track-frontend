@@ -4,7 +4,6 @@ import { AuthGuard } from '@auth0/auth0-angular';
 import { ProfileComponent } from './components/profile/profile.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { DeviceGuard } from './guard/device.guard';
-import { FoodComponent } from './modules/food/components/food/food.component';
 
 const routes: Routes = [
   {

@@ -1,7 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
 import { IMicro } from 'src/app/models/micro.model';
 import { MicronutrientsService } from 'src/app/services/micronutrients/micronutrients.service';
 

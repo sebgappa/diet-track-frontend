@@ -1,14 +1,12 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
 import { faCamera, faCheck, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { Goals } from 'src/app/enums/goals.enum';
 import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
 import { IFood } from 'src/app/models/food.model';

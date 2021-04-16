@@ -1,7 +1,5 @@
-import { trigger } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
