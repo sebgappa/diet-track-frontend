@@ -18,12 +18,14 @@ export class MicronutrientsService {
     const micronutrients: IMicro[] = [];
 
     for (const value in MicroNutrients) {
+      let microTotal = this.microNutrientTotals.get(value) ? this.microNutrientTotals.get(value) : 0;
+
       const micronutrient: IMicro = {
         name: MicroNutrients[value],
-        total: this.microNutrientTotals.get(value),
+        total: microTotal,
         goal: this.goals.getRecommendedMicroNutrientGoals().get(value),
-        left: Number((this.goals.getRecommendedMicroNutrientGoals().get(value) - this.microNutrientTotals.get(value)).toFixed(2)),
-        percentage: this.calculateMicronutrientPercentage(this.microNutrientTotals.get(value), this.goals.getRecommendedMicroNutrientGoals().get(value))
+        left: Number((this.goals.getRecommendedMicroNutrientGoals().get(value) - microTotal).toFixed(2)),
+        percentage: this.calculateMicronutrientPercentage(microTotal, this.goals.getRecommendedMicroNutrientGoals().get(value))
       };
       micronutrients.push(micronutrient);
     }

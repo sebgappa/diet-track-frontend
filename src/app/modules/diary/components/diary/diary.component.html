@@ -41,8 +41,13 @@
             </div>
             <div class="mt-4">
                 <ul class="list-group list-group-flush" *ngFor="let food of breakfast | async">
-                    <li class="list-group-item">{{food.product.product_name}}<span class="align-calories-right"><b>{{food.product.nutriments['energy-kcal_value']}}</b></span></li>
-                    <li class="list-group-item text-secondary">{{food.product.brands}}, {{food.product.serving_number}}x, {{food.product.serving_size}}</li>
+                    <li class="list-group-item"><span><a (click)="deleteBreakfastItem(food.id)">
+                                <fa-icon class="fas delete-icon mr-2" [icon]="deleteIcon" size="sm"></fa-icon>
+                            </a></span>{{food.product.product_name}}<span
+                            class="align-calories-right"><b>{{food.product.nutriments['energy-kcal_value']}}</b></span>
+                    </li>
+                    <li class="list-group-item text-secondary">{{food.product.brands}},
+                        {{food.product.serving_number}}x, {{food.product.serving_size}}</li>
                 </ul>
             </div>
             <div class="mt-2 text-center">
@@ -57,8 +62,13 @@
             </div>
             <div class="mt-4">
                 <ul class="list-group list-group-flush" *ngFor="let food of lunch | async">
-                    <li class="list-group-item">{{food.product.product_name}}<span class="align-calories-right"><b>{{food.product.nutriments['energy-kcal_value']}}</b></span></li>
-                    <li class="list-group-item text-secondary">{{food.product.brands}}, {{food.product.serving_number}}x, {{food.product.serving_size}}</li>
+                    <li class="list-group-item"><span><a (click)="deleteLunchItem(food.id)">
+                        <fa-icon class="fas delete-icon mr-2" [icon]="deleteIcon" size="sm"></fa-icon>
+                    </a></span>{{food.product.product_name}}<span
+                            class="align-calories-right"><b>{{food.product.nutriments['energy-kcal_value']}}</b></span>
+                    </li>
+                    <li class="list-group-item text-secondary">{{food.product.brands}},
+                        {{food.product.serving_number}}x, {{food.product.serving_size}}</li>
                 </ul>
             </div>
             <div class="mt-2 text-center">
@@ -73,8 +83,13 @@
             </div>
             <div class="mt-4">
                 <ul class="list-group list-group-flush" *ngFor="let food of dinner | async">
-                    <li class="list-group-item">{{food.product.product_name}}<span class="align-calories-right"><b>{{food.product.nutriments['energy-kcal_value']}}</b></span></li>
-                    <li class="list-group-item text-secondary">{{food.product.brands}}, {{food.product.serving_number}}x, {{food.product.serving_size}}</li>
+                    <li class="list-group-item"><span><a (click)="deleteDinnerItem(food.id)">
+                        <fa-icon class="fas delete-icon mr-2" [icon]="deleteIcon" size="sm"></fa-icon>
+                    </a></span>{{food.product.product_name}}<span
+                            class="align-calories-right"><b>{{food.product.nutriments['energy-kcal_value']}}</b></span>
+                    </li>
+                    <li class="list-group-item text-secondary">{{food.product.brands}},
+                        {{food.product.serving_number}}x, {{food.product.serving_size}}</li>
                 </ul>
             </div>
             <div class="mt-2 text-center">
@@ -89,8 +104,13 @@
             </div>
             <div class="mt-4">
                 <ul class="list-group list-group-flush" *ngFor="let food of snacks | async">
-                    <li class="list-group-item">{{food.product.product_name}}<span class="align-calories-right"><b>{{food.product.nutriments['energy-kcal_value']}}</b></span></li>
-                    <li class="list-group-item text-secondary">{{food.product.brands}}, {{food.product.serving_number}}x, {{food.product.serving_size}}</li>
+                    <li class="list-group-item"><span><a (click)="deleteSnacksItem(food.id)">
+                        <fa-icon class="fas delete-icon mr-2" [icon]="deleteIcon" size="sm"></fa-icon>
+                    </a></span>{{food.product.product_name}}<span
+                            class="align-calories-right"><b>{{food.product.nutriments['energy-kcal_value']}}</b></span>
+                    </li>
+                    <li class="list-group-item text-secondary">{{food.product.brands}},
+                        {{food.product.serving_number}}x, {{food.product.serving_size}}</li>
                 </ul>
             </div>
             <div class="mt-2 text-center">

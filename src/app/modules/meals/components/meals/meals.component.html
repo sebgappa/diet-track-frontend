@@ -27,6 +27,7 @@
                   <h5 class="card-title">{{meal.name}}</h5>
                   <p class="card-text">{{meal.description}}</p>
                   <a routerLink="view/{{meal.id}}" class="btn btn-primary">View meal</a>
+                  <a (click)="deleteMeal(meal.id)" class="btn btn-danger ml-1">Delete meal</a>
                 </div>
             </div>
         </div>

@@ -40,7 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FontAwesomeModule,
     ToastrModule.forRoot({
-      timeOut: 2000,
+      timeOut: 1000,
       positionClass: 'toast-bottom-right'
     }),
     BrowserAnimationsModule,
