@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { UserInfoService } from './services/user-info.service';
+import { UserInfoService } from './services/user-info/user-info.service';
 
 @Component({
   selector: 'app-root',
@@ -17,11 +17,30 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe((user) => {
-      this.userInfo.setEmail(user.email);
+      if(user) {
+        this.userInfo.setEmail(user.email);
+      }
     })
-  //   setInterval( function(){
-  //     intervalTest();
-  // }, (1000)); 
+
+    var now = new Date();
+    var millisUntilClearDiary = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 11, 59, 0, 0).getTime() - now.getTime();
+    var millisUntilReview = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0, 0, 0).getTime() - now.getTime();
+
+    if (millisUntilClearDiary < 0) {
+      millisUntilClearDiary += 86400000;
+    }
+
+    if (millisUntilReview < 0) {
+      millisUntilReview += 86400000;
+    }
+
+    setTimeout(function(){
+      
+    }, millisUntilClearDiary);
+
+    setTimeout(function(){
+      
+    }, millisUntilReview);
   }
 
   public closeSidebar = false;

@@ -39,10 +39,17 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.goalsFormGroup = this.formBuilder.group({
-      protein: [{value: this.goals.getMacroNutrientGoal(Goals.protein), disabled: true}],
-      fat: [{value: this.goals.getMacroNutrientGoal(Goals.fat), disabled: true}],
-      carbs: [{value: this.goals.getMacroNutrientGoal(Goals.carbs), disabled: true}],
-      calories: [{value: this.goals.getMacroNutrientGoal(Goals.calories), disabled: true}]
+      protein: [{value: 0, disabled: true}],
+      fat: [{value: 0, disabled: true}],
+      carbs: [{value: 0, disabled: true}],
+      calories: [{value: 0, disabled: true}]
+    });
+
+    this.goals.fetchGoals().then(() => {
+      this.goalsFormGroup.controls['protein'].setValue(this.goals.getMacroNutrientGoal(Goals.protein));
+      this.goalsFormGroup.controls['fat'].setValue(this.goals.getMacroNutrientGoal(Goals.fat));
+      this.goalsFormGroup.controls['carbs'].setValue(this.goals.getMacroNutrientGoal(Goals.carbs));
+      this.goalsFormGroup.controls['calories'].setValue(this.goals.getMacroNutrientGoal(Goals.calories));
     });
 
     this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe(profile => {

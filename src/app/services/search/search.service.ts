@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { IFood } from 'src/app/models/food.model';
 import { IMeal } from 'src/app/models/meal.model';
-import { UserInfoService } from '../user-info.service';
+import { UserInfoService } from '../user-info/user-info.service';
 
 @Injectable({
   providedIn: 'root'

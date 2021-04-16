@@ -7,7 +7,7 @@ import { Calories } from 'src/app/enums/calories.enum';
 import { Goals } from 'src/app/enums/goals.enum';
 import { CaloriesService } from 'src/app/services/calories/calories.service';
 import { GoalsService } from 'src/app/services/goals/goals.service';
-import { UserInfoService } from 'src/app/services/user-info.service';
+import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 
 @Component({
   selector: 'app-diary',

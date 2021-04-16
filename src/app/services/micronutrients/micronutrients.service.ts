@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MicroNutrients } from 'src/app/enums/micronutrients.enum';
 import { IMicro } from 'src/app/models/micro.model';
 import { GoalsService } from '../goals/goals.service';
-import { UserInfoService } from '../user-info.service';
+import { UserInfoService } from '../user-info/user-info.service';
 
 @Injectable({
   providedIn: 'root'

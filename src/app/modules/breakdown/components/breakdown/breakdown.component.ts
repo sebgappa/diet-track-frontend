@@ -13,7 +13,7 @@ import { IFood } from 'src/app/models/food.model';
 import { FoodService } from 'src/app/services/food/food.service';
 import { GoalsService } from 'src/app/services/goals/goals.service';
 import { SessionStorageService } from 'src/app/services/session-storage/session-storage.service';
-import { UserInfoService } from 'src/app/services/user-info.service';
+import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 
 @Component({
   selector: 'app-breakdown',

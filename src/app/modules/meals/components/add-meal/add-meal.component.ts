@@ -15,7 +15,7 @@ import { CaloriesService } from 'src/app/services/calories/calories.service';
 import { GoalsService } from 'src/app/services/goals/goals.service';
 import { MacronutrientsService } from 'src/app/services/macronutrients/macronutrients.service';
 import { SessionStorageService } from 'src/app/services/session-storage/session-storage.service';
-import { UserInfoService } from 'src/app/services/user-info.service';
+import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 
 @Component({
   selector: 'app-add-meal',

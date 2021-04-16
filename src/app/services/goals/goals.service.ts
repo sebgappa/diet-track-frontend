@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Goals } from 'src/app/enums/goals.enum';
-import { UserInfoService } from '../user-info.service';
+import { UserInfoService } from '../user-info/user-info.service';
 
 @Injectable({
   providedIn: 'root'

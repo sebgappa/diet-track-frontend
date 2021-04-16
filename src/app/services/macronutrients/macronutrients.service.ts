@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MacroNutrients } from 'src/app/enums/macronutrients.enum';
 import { IMeal } from 'src/app/models/meal.model';
-import { UserInfoService } from '../user-info.service';
+import { UserInfoService } from '../user-info/user-info.service';
 
 @Injectable({
   providedIn: 'root'

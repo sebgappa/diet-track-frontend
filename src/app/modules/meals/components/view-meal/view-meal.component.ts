@@ -10,7 +10,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Goals } from 'src/app/enums/goals.enum';
 import { IMeal } from 'src/app/models/meal.model';
 import { GoalsService } from 'src/app/services/goals/goals.service';
-import { UserInfoService } from 'src/app/services/user-info.service';
+import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 
 @Component({
   selector: 'app-view-meal',

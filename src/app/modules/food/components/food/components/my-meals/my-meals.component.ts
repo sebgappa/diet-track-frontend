@@ -5,7 +5,7 @@ import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IMeal } from 'src/app/models/meal.model';
-import { UserInfoService } from 'src/app/services/user-info.service';
+import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 
 @Component({
   selector: 'app-my-meals',

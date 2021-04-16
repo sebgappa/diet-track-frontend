@@ -4,7 +4,7 @@ import { Calories } from 'src/app/enums/calories.enum';
 import { Goals } from 'src/app/enums/goals.enum';
 import { IMeal } from 'src/app/models/meal.model';
 import { GoalsService } from '../goals/goals.service';
-import { UserInfoService } from '../user-info.service';
+import { UserInfoService } from '../user-info/user-info.service';
 
 @Injectable({
   providedIn: 'root'
