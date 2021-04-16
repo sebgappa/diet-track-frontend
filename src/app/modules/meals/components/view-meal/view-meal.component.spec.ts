@@ -1,11 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '@auth0/auth0-angular';
 import { ChartsModule } from 'ng2-charts';
 import { ToastrService } from 'ngx-toastr';
-import { AuthServiceStub } from 'src/app/infrastructure/auth-stub.component';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 
 import { ViewMealComponent } from './view-meal.component';
 
@@ -14,8 +13,11 @@ describe('ViewMealComponent', () => {
   let fixture: ComponentFixture<ViewMealComponent>;
   let firestoreSpy;
   let toastrSpy;
+  let userInfoSpy;
 
   beforeEach(async () => {
+    userInfoSpy = jasmine.createSpyObj('UserInfoService', ['getEmail']);
+
     firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection', 'doc', 'valueChanges']);
     toastrSpy = jasmine.createSpyObj('ToastrService', ['success', 'error']);
 
@@ -32,8 +34,8 @@ describe('ViewMealComponent', () => {
           useValue: firestoreSpy
         },
         {
-          provide: AuthService,
-          useClass: AuthServiceStub
+          provide: UserInfoService,
+          useValue: userInfoSpy
         },
         {
           provide: ToastrService,

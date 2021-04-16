@@ -25,7 +25,8 @@ describe('CaloriesComponent', () => {
       'getTotalCaloriesConsumed',
       'getCaloriesConsumedPerMeal',
       'getRemainingCalories']);
-    goalsServiceSpy = jasmine.createSpyObj('GoalsService', ['getMacroNutrientGoal']);
+    goalsServiceSpy = jasmine.createSpyObj('GoalsService', ['getMacroNutrientGoal', 'fetchGoals']);
+    goalsServiceSpy.fetchGoals.and.returnValue(Promise.resolve());
 
 
     await TestBed.configureTestingModule({
@@ -42,10 +43,6 @@ describe('CaloriesComponent', () => {
         {
           provide: GoalsService,
           useValue: goalsServiceSpy
-        },
-        {
-          provide: AuthService,
-          useClass: AuthServiceStub
         }
       ]
     })

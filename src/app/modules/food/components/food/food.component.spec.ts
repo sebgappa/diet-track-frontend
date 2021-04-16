@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '@auth0/auth0-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
-import { AuthServiceStub } from 'src/app/infrastructure/auth-stub.component';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { SearchService } from 'src/app/services/search/search.service';
+import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 import { FoodRoutingModule } from '../../food-routing.module';
 import { HistoryComponent } from './components/history/history.component';
 
@@ -21,9 +21,13 @@ describe('FoodComponent', () => {
   let firestoreSpy;
   let docSpy;
   let collectionSpy;
+  let userInfoSpy;
+  let searchServiceSpy;
 
 
   beforeEach(async () => {
+    userInfoSpy = jasmine.createSpyObj('UserInfoService', ['getEmail']);
+    searchServiceSpy = jasmine.createSpyObj('SearchService', ['searchForHistoryByName', 'searchForMealByName']);
     routerSpy = jasmine.createSpyObj('Router', ['navigate']);
     toastrSpy = jasmine.createSpyObj('ToastrService', ['info']);
     firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
@@ -45,6 +49,9 @@ describe('FoodComponent', () => {
       }
     }]));
 
+    searchServiceSpy.searchForHistoryByName.and.returnValue(Promise.resolve());
+    searchServiceSpy.searchForMealByName.and.returnValue(Promise.resolve());
+
     await TestBed.configureTestingModule({
       imports: [
         SharedModule,
@@ -64,8 +71,12 @@ describe('FoodComponent', () => {
           useValue: toastrSpy
         },
         {
-          provide: AuthService,
-          useClass: AuthServiceStub
+          provide: SearchService,
+          useValue: searchServiceSpy
+        },
+        {
+          provide: UserInfoService,
+          useValue: userInfoSpy
         }
       ]
     })

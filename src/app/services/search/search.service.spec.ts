@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { of } from 'rxjs';
 import { IFood } from 'src/app/models/food.model';
+import { UserInfoService } from '../user-info/user-info.service';
 
 import { SearchService } from './search.service';
 
@@ -10,6 +11,8 @@ describe('SearchService', () => {
   let firestoreSpy;
   let docSpy;
   let collectionSpy;
+  let userInfoSpy;
+
   const foodMock: IFood = {
     code: '12345',
         product: {
@@ -45,6 +48,8 @@ describe('SearchService', () => {
   };
 
   beforeEach(() => {
+    userInfoSpy = jasmine.createSpyObj('UserInfoService', ['getEmail']);
+
     firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
     docSpy = jasmine.createSpyObj( 'doc', [ 'collection']);
     collectionSpy = jasmine.createSpyObj( 'collection', [ 'doc', 'valueChanges' ]);
@@ -59,6 +64,10 @@ describe('SearchService', () => {
         {
           provide: AngularFirestore,
           useValue: firestoreSpy
+        },
+        {
+          provide: UserInfoService,
+          useValue: userInfoSpy
         }
       ]
     });

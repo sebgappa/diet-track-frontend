@@ -5,6 +5,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { of } from 'rxjs';
 import { AuthServiceStub } from 'src/app/infrastructure/auth-stub.component';
+import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 
 import { HistoryComponent } from './history.component';
 
@@ -14,8 +15,10 @@ describe('HistoryComponent', () => {
   let firestoreSpy;
   let docSpy;
   let collectionSpy;
+  let userInfoSpy
 
   beforeEach(waitForAsync(() => {
+    userInfoSpy = jasmine.createSpyObj('UserInfoService', ['getEmail']);
     firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
     docSpy = jasmine.createSpyObj( 'doc', [ 'collection']);
     collectionSpy = jasmine.createSpyObj( 'collection', [ 'doc', 'valueChanges' ]);
@@ -43,8 +46,8 @@ describe('HistoryComponent', () => {
       declarations: [ HistoryComponent ],
       providers: [
         {
-          provide: AuthService,
-          useClass: AuthServiceStub
+          provide: UserInfoService,
+          useValue: userInfoSpy
         },
         {
           provide: AngularFirestore,

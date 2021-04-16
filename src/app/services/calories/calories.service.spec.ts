@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { Calories } from 'src/app/enums/calories.enum';
 import { IMeal } from 'src/app/models/meal.model';
 import { GoalsService } from '../goals/goals.service';
+import { UserInfoService } from '../user-info/user-info.service';
 
 import { CaloriesService } from './calories.service';
 
@@ -13,6 +14,7 @@ describe('CaloriesService', () => {
   let docSpy;
   let collectionSpy;
   let goalsServiceSpy;
+  let userInfoSpy;
   let mealMock: IMeal;
 
   beforeEach(() => {
@@ -53,6 +55,8 @@ describe('CaloriesService', () => {
       }]
     };
 
+    userInfoSpy = jasmine.createSpyObj('UserInfoService', ['getEmail']);
+
     firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
     docSpy = jasmine.createSpyObj( 'doc', [ 'collection']);
     collectionSpy = jasmine.createSpyObj( 'collection', [ 'doc', 'valueChanges' ]);
@@ -73,6 +77,10 @@ describe('CaloriesService', () => {
         {
           provide: GoalsService,
           useValue: goalsServiceSpy
+        },
+        {
+          provide: UserInfoService,
+          useValue: userInfoSpy
         }
       ]
     });
@@ -146,28 +154,28 @@ describe('CaloriesService', () => {
 
   describe('setBreakfastCalories', () => {
     it('should set breakfast calories', () => {
-      service.setBreakfastCalories('test');
+      service.setBreakfastCalories();
       expect(service.caloriesConsumedPerMeal[0]).toEqual(100);
     });
   });
 
   describe('setLunchCalories', () => {
       it('should set lunch calories', () => {
-        service.setLunchCalories('test');
+        service.setLunchCalories();
         expect(service.caloriesConsumedPerMeal[1]).toEqual(100);
       });
     });
 
   describe('setDinnerCalories', () => {
     it('should set dinner calories', () => {
-      service.setDinnerCalories('test');
+      service.setDinnerCalories();
       expect(service.caloriesConsumedPerMeal[2]).toEqual(100);
     });
   });
 
   describe('setSnacksCalories', () => {
     it('should set snacks calories', () => {
-      service.setSnacksCalories('test');
+      service.setSnacksCalories();
       expect(service.caloriesConsumedPerMeal[3]).toEqual(100);
     });
   });

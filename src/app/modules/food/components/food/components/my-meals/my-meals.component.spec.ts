@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '@auth0/auth0-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { of } from 'rxjs';
-import { AuthServiceStub } from 'src/app/infrastructure/auth-stub.component';
+import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 
 import { MyMealsComponent } from './my-meals.component';
 
@@ -14,8 +13,11 @@ describe('MyMealsComponent', () => {
   let firestoreSpy;
   let docSpy;
   let collectionSpy;
+  let userInfoSpy;
 
   beforeEach(async () => {
+    userInfoSpy = jasmine.createSpyObj('UserInfoService', ['getEmail']);
+
     firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
     docSpy = jasmine.createSpyObj( 'doc', [ 'collection']);
     collectionSpy = jasmine.createSpyObj( 'collection', [ 'doc', 'valueChanges' ]);
@@ -41,8 +43,8 @@ describe('MyMealsComponent', () => {
       declarations: [ MyMealsComponent ],
       providers: [
         {
-          provide: AuthService,
-          useClass: AuthServiceStub
+          provide: UserInfoService,
+          useValue: userInfoSpy
         },
         {
           provide: AngularFirestore,

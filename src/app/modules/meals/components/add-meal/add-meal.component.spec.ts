@@ -2,12 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '@auth0/auth0-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ChartsModule } from 'ng2-charts';
 import { ToastrService } from 'ngx-toastr';
-import { AuthServiceStub } from 'src/app/infrastructure/auth-stub.component';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 
 import { AddMealComponent } from './add-meal.component';
 
@@ -16,8 +15,10 @@ describe('AddMealComponent', () => {
   let fixture: ComponentFixture<AddMealComponent>;
   let toastrSpy;
   let firestoreSpy;
+  let userInfoSpy;
 
   beforeEach(async () => {
+    userInfoSpy = jasmine.createSpyObj('UserInfoService', ['getEmail']);
     toastrSpy = jasmine.createSpyObj('ToastrService', ['success', 'error']);
     firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection', 'doc', 'valueChanges']);
 
@@ -40,8 +41,8 @@ describe('AddMealComponent', () => {
           useValue: firestoreSpy
         },
         {
-          provide: AuthService,
-          useClass: AuthServiceStub
+          provide: UserInfoService,
+          useValue: userInfoSpy
         }
       ]
     })

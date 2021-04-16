@@ -5,6 +5,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 
 @Component({
   selector: 'app-meals',
@@ -21,18 +22,17 @@ export class MealsComponent implements OnInit, OnDestroy {
   private userEmail: string;
 
   constructor(private store: AngularFirestore,
-              private auth: AuthService,
+              private userInfo: UserInfoService,
               private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.auth.user$.pipe(takeUntil(this.unsubscribe)).subscribe((user) => {
-      this.meals = this.store.collection(user.email).doc('food').collection('meals').valueChanges({ idField: 'id' });
-      this.userEmail = user.email;
-      this.store.collection(user.email).doc('food').collection('meals').valueChanges({ idField: 'id' }).subscribe((response) => {
-        if (response.length == 0) {
-          this.noMeals = true;
-        }
-      });
+    this.userEmail = this.userInfo.getEmail();
+
+    this.meals = this.store.collection(this.userEmail).doc('food').collection('meals').valueChanges({ idField: 'id' });
+    this.store.collection(this.userEmail).doc('food').collection('meals').valueChanges({ idField: 'id' }).subscribe((response) => {
+      if (response.length == 0) {
+        this.noMeals = true;
+      }
     });
   }
 

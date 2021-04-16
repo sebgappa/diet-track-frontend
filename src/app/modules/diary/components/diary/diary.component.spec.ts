@@ -1,9 +1,11 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '@auth0/auth0-angular';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
-import { AuthServiceStub } from 'src/app/infrastructure/auth-stub.component';
+import { GoalsService } from 'src/app/services/goals/goals.service';
+import { UserInfoService } from 'src/app/services/user-info/user-info.service';
 
 import { DiaryComponent } from './diary.component';
 
@@ -13,8 +15,16 @@ describe('DiaryComponent', () => {
   let firestoreSpy;
   let collectionSpy;
   let docSpy;
+  let toastrSpy;
+  let userInfoSpy;
+  let goalsServiceSpy
 
   beforeEach(waitForAsync(() => {
+    goalsServiceSpy = jasmine.createSpyObj('GoalsService', ['fetchGoals', 'getMacroNutrientGoal']);
+    userInfoSpy = jasmine.createSpyObj('UserInfoService', ['getEmail']);
+
+    toastrSpy = jasmine.createSpyObj('ToastrService', ['success', 'error']);
+
     firestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
     docSpy = jasmine.createSpyObj( 'doc', [ 'collection']);
     collectionSpy = jasmine.createSpyObj( 'collection', [ 'doc', 'valueChanges' ]);
@@ -29,19 +39,30 @@ describe('DiaryComponent', () => {
       }
     }]));
 
+    goalsServiceSpy.fetchGoals.and.returnValue(Promise.resolve());
+
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        FontAwesomeModule,
       ],
       declarations: [ DiaryComponent ],
       providers: [
         {
-          provide: AuthService,
-          useClass: AuthServiceStub
+          provide: UserInfoService,
+          useValue: userInfoSpy
         },
         {
           provide: AngularFirestore,
           useValue: firestoreSpy
+        },
+        {
+          provide: ToastrService,
+          useValue: toastrSpy
+        }, 
+        {
+          provide: GoalsService,
+          useValue: goalsServiceSpy
         }
       ]
     })
