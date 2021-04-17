@@ -130,15 +130,15 @@ export class BreakdownComponent implements OnInit, OnDestroy {
         status_verbose: response.status_verbose
       };
 
-      this.macronutrients = [this.foodObject.product.nutriments.proteins_100g,
-                            this.foodObject.product.nutriments.fat_100g,
-                            this.foodObject.product.nutriments.carbohydrates_100g,
-                            this.foodObject.product.nutriments['energy-kcal_100g']];
+      this.macronutrients = [Number((this.foodObject.product.nutriments.proteins_100g).toFixed(4)),
+      Number((this.foodObject.product.nutriments.fat_100g).toFixed(4)),
+      Number((this.foodObject.product.nutriments.carbohydrates_100g).toFixed(4)),
+      Number((this.foodObject.product.nutriments['energy-kcal_100g']).toFixed(4))];
 
-      this.originalMacronutrients = [this.foodObject.product.nutriments.proteins_100g,
-                                    this.foodObject.product.nutriments.fat_100g,
-                                    this.foodObject.product.nutriments.carbohydrates_100g,
-                                    this.foodObject.product.nutriments['energy-kcal_100g']];
+      this.originalMacronutrients = [Number((this.foodObject.product.nutriments.proteins_100g).toFixed(4)),
+      Number((this.foodObject.product.nutriments.fat_100g).toFixed(4)),
+      Number((this.foodObject.product.nutriments.carbohydrates_100g).toFixed(4)),
+      Number((this.foodObject.product.nutriments['energy-kcal_100g']).toFixed(4))];
 
       this.macronutrientGoalPercentages = [
         this.calculatePercentageOfMacronutrientGoal(response.product.nutriments.proteins_100g, Goals.protein),
