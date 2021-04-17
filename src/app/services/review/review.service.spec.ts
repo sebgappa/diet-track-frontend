@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { ReviewService } from './review.service';
 
 describe('ReviewService', () => {

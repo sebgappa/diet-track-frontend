@@ -11,7 +11,7 @@ export class ReviewService {
 
   setTimer() {
     var now = new Date();
-    var millisUntilReview = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 19, 59, 0, 0).getTime() - now.getTime();
+    var millisUntilReview = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0, 0, 0).getTime() - now.getTime();
 
     if (millisUntilReview < 0) {
       millisUntilReview += 86400000;

@@ -169,16 +169,10 @@ describe('BreakdownComponent', () => {
 
   it('should set the macronutrient values from response', () => {
     expect(component.macronutrients).toEqual(
-      [foodMock.product.nutriments.proteins_100g,
-       foodMock.product.nutriments.fat_100g,
-       0,
-       0]);
+      [foodMock.product.nutriments.proteins_100g,foodMock.product.nutriments.fat_100g,0,0]);
 
     expect(component.originalMacronutrients).toEqual(
-      [foodMock.product.nutriments.proteins_100g,
-        foodMock.product.nutriments.fat_100g,
-        0,
-        0]);
+      [foodMock.product.nutriments.proteins_100g,foodMock.product.nutriments.fat_100g,0,0]);
   });
 
   describe('calculatePercentageOfMacronutrientGoal', () => {
@@ -212,96 +206,39 @@ describe('BreakdownComponent', () => {
     it('if selection is 100 and current selection is 100 change nothing', () => {
       component.updateMacroServingSize();
 
-      expect(component.macronutrients).toEqual(
-        [15,
-         14,
-         0,
-         0]);
-
-      expect(component.originalMacronutrients).toEqual(
-        [15,
-          14,
-          0,
-          0]);
-
-      expect(component.macronutrientGoalPercentages).toEqual(
-        [15,
-          14,
-          0,
-          0]);
+      expect(component.macronutrients).toEqual([15,14,0,0]);
+      expect(component.originalMacronutrients).toEqual([15,14,0,0]);
+      expect(component.macronutrientGoalPercentages).toEqual([15,14,0,0]);
     });
 
     it('if selection is 100 and current selection is 10 times by 10', () => {
       component.currentServingSizeSelection = '10';
       component.updateMacroServingSize();
-      expect(component.macronutrients).toEqual(
-          [150,
-           140,
-           0,
-           0]);
 
-      expect(component.originalMacronutrients).toEqual(
-          [150,
-            140,
-            0,
-            0]);
-
+      expect(component.macronutrients).toEqual([150,140,0,0]);
+      expect(component.originalMacronutrients).toEqual([150,140,0,0]);
       expect(goalsServiceSpy.getMacroNutrientGoal).toHaveBeenCalledTimes(4);
-
-      expect(component.macronutrientGoalPercentages).toEqual(
-          [100,
-            100,
-            0,
-            0]);
+      expect(component.macronutrientGoalPercentages).toEqual([100,100,0,0]);
     });
 
     it('if selection is 100 and current selection is 1 times by 100', () => {
       component.currentServingSizeSelection = '1';
       component.updateMacroServingSize();
-      expect(component.macronutrients).toEqual(
-          [1500,
-           1400,
-           0,
-           0]);
 
-      expect(component.originalMacronutrients).toEqual(
-          [1500,
-            1400,
-            0,
-            0]);
-
+      expect(component.macronutrients).toEqual([1500,1400,0,0]);
+      expect(component.originalMacronutrients).toEqual([1500,1400,0,0]);
       expect(goalsServiceSpy.getMacroNutrientGoal).toHaveBeenCalledTimes(4);
-
-      expect(component.macronutrientGoalPercentages).toEqual(
-          [100,
-            100,
-            0,
-            0]);
+      expect(component.macronutrientGoalPercentages).toEqual([100,100,0,0]);
     });
 
     it('if selection is 10 and current selection is 100 divide by 10', () => {
       component.nutritionBreakdownForm.controls.servingSize.setValue('10');
       component.updateMacroServingSize();
 
-      expect(component.macronutrients).toEqual(
-        [1.5,
-         1.4,
-         0,
-         0]);
-
-      expect(component.originalMacronutrients).toEqual(
-        [1.5,
-          1.4,
-          0,
-          0]);
-
+      expect(component.macronutrients).toEqual([1.5,1.4,0,0]);
+      expect(component.originalMacronutrients).toEqual([1.5,1.4,0,0]);
       expect(goalsServiceSpy.getMacroNutrientGoal).toHaveBeenCalledTimes(4);
-
-      expect(component.macronutrientGoalPercentages).toEqual(
-        [2,
-          1,
-          0,
-          0]);
+      expect(component.macronutrientGoalPercentages).toEqual([2,1,0,0]);
     });
 
     it('if selection is 10 and current selection is 1 times by 10', () => {
@@ -309,50 +246,20 @@ describe('BreakdownComponent', () => {
       component.nutritionBreakdownForm.controls.servingSize.setValue('10');
       component.updateMacroServingSize();
 
-      expect(component.macronutrients).toEqual(
-        [150,
-         140,
-         0,
-         0]);
-
-      expect(component.originalMacronutrients).toEqual(
-        [150,
-          140,
-          0,
-          0]);
-
+      expect(component.macronutrients).toEqual([150,140,0,0]);
+      expect(component.originalMacronutrients).toEqual([150,140,0,0]);
       expect(goalsServiceSpy.getMacroNutrientGoal).toHaveBeenCalledTimes(4);
-
-      expect(component.macronutrientGoalPercentages).toEqual(
-        [100,
-          100,
-          0,
-          0]);
+      expect(component.macronutrientGoalPercentages).toEqual([100,100,0,0]);
     });
 
     it('if selection is 1 and current selection is 100 divide by 100', () => {
       component.nutritionBreakdownForm.controls.servingSize.setValue('1');
       component.updateMacroServingSize();
 
-      expect(component.macronutrients).toEqual(
-        [0.15,
-         0.14,
-         0,
-         0]);
-
-      expect(component.originalMacronutrients).toEqual(
-        [0.15,
-          0.14,
-          0,
-          0]);
-
+      expect(component.macronutrients).toEqual([0.15,0.14,0,0]);
+      expect(component.originalMacronutrients).toEqual([0.15,0.14,0,0]);
       expect(goalsServiceSpy.getMacroNutrientGoal).toHaveBeenCalledTimes(4);
-
-      expect(component.macronutrientGoalPercentages).toEqual(
-        [0,
-          0,
-          0,
-          0]);
+      expect(component.macronutrientGoalPercentages).toEqual([0,0,0,0]);
     });
 
     it('if selection is 1 and current selection is 10 divide by 10', () => {
@@ -360,25 +267,10 @@ describe('BreakdownComponent', () => {
       component.nutritionBreakdownForm.controls.servingSize.setValue('1');
       component.updateMacroServingSize();
 
-      expect(component.macronutrients).toEqual(
-        [1.5,
-         1.4,
-         0,
-         0]);
-
-      expect(component.originalMacronutrients).toEqual(
-        [1.5,
-          1.4,
-          0,
-          0]);
-
+      expect(component.macronutrients).toEqual([1.5,1.4,0,0]);
+      expect(component.originalMacronutrients).toEqual([1.5,1.4,0,0]);
       expect(goalsServiceSpy.getMacroNutrientGoal).toHaveBeenCalledTimes(4);
-
-      expect(component.macronutrientGoalPercentages).toEqual(
-        [2,
-          1,
-          0,
-          0]);
+      expect(component.macronutrientGoalPercentages).toEqual([2,1,0,0]);
     });
   });
 
@@ -387,34 +279,16 @@ describe('BreakdownComponent', () => {
       component.nutritionBreakdownForm.controls.numOfServings.setValue(10001);
       component.updateMacroServingSize();
 
-      expect(component.macronutrients).toEqual(
-        [15,
-         14,
-         0,
-         0]);
-
-      expect(component.macronutrientGoalPercentages).toEqual(
-        [15,
-          14,
-          0,
-          0]);
+      expect(component.macronutrients).toEqual([15,14,0,0]);
+      expect(component.macronutrientGoalPercentages).toEqual([15,14,0,0]);
     });
 
     it('should set correct macronutrient values for valid serving size', () => {
       component.nutritionBreakdownForm.controls.numOfServings.setValue(10);
       component.updateMacroServingSize();
 
-      expect(component.macronutrients).toEqual(
-        [150,
-         140,
-         0,
-         0]);
-
-      expect(component.macronutrientGoalPercentages).toEqual(
-        [100,
-          100,
-          0,
-          0]);
+      expect(component.macronutrients).toEqual([150,140,0,0]);
+      expect(component.macronutrientGoalPercentages).toEqual([100,100,0,0]);
     });
   });
 
