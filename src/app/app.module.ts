@@ -53,7 +53,7 @@ import { ReviewModalComponent } from './components/modals/review-modal/review-mo
       },
     }),
     AngularFireModule.initializeApp(env.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule.enablePersistence()
   ],
   providers: [
     {
