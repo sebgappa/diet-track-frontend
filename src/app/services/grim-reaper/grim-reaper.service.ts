@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
 import { UserInfoService } from '../user-info/user-info.service';
 
 @Injectable({
@@ -9,7 +8,7 @@ import { UserInfoService } from '../user-info/user-info.service';
 export class GrimReaperService {
 
   private lastWipeDate: Date;
-  constructor(private store: AngularFirestore, private userInfo: UserInfoService, private router: Router) { }
+  constructor(private store: AngularFirestore, private userInfo: UserInfoService) { }
 
   checkClearDiary() {
     Promise.resolve(this.fetchLastWipe()).then(() => {

@@ -21,6 +21,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ReviewModalComponent } from './components/modals/review-modal/review-modal.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ReviewModalComponent } from './components/modals/review-modal/review-mo
       },
     }),
     AngularFireModule.initializeApp(env.firebase),
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule.enablePersistence(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: env.production })
   ],
   providers: [
     {

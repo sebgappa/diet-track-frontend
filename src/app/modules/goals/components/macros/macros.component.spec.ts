@@ -12,7 +12,7 @@ describe('MacrosComponent', () => {
   let goalsServiceSpy;
 
   beforeEach(async () => {
-    goalsServiceSpy = jasmine.createSpyObj('GoalsService', ['getMacronutrientGoal', 'fetchGoals']);
+    goalsServiceSpy = jasmine.createSpyObj('GoalsService', ['getMacroNutrientGoal', 'fetchGoals']);
     macronutrientsServiceSpy = jasmine.createSpyObj('MacronutrientsService', [
       'setBreakfastMacroNutrients',
       'setLunchMacroNutrients',
