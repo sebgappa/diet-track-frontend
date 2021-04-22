@@ -5,7 +5,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 @Injectable({
     providedIn: 'root',
 })
-export class DeviceGuard implements CanActivate {
+export class MobileGuard implements CanActivate {
     constructor(private deviceDetectorService: DeviceDetectorService, private router: Router) {}
 
     canActivate(): boolean {

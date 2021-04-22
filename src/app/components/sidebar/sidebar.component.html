@@ -19,6 +19,12 @@
                     <span class="nav-item-text ml-3">Meals</span>
                 </a>
             </li>
+            <li *ngIf="!isMobile" class="nav-item">
+                <a class="nav-link px-4" routerLink="trends" routerLinkActive="active">
+                    <span><fa-icon [icon]="trendsIcon"></fa-icon></span>
+                    <span class="nav-item-text ml-3">Trends</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link px-4" routerLink="profile" routerLinkActive="active">
                     <span><fa-icon [icon]="userIcon"></fa-icon></span>

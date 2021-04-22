@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { faBook, faBullseye, faChevronLeft, faChevronRight, faUser, faUtensils } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faBullseye, faChartLine, faChevronLeft, faChevronRight, faUser, faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
@@ -17,6 +17,7 @@ export class SidebarComponent implements OnInit {
   public goalIcon = faBullseye;
   public mealIcon = faUtensils;
   public userIcon = faUser;
+  public trendsIcon = faChartLine;
   public isMobile;
 
   constructor(deviceDetectorService: DeviceDetectorService) {

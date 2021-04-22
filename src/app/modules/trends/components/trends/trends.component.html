@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col mr-5">
+            <canvas baseChart [datasets]="macronutrientChartData" [chartType]="lineChartType" [labels]="lineChartLabels"
+                [options]="lineChartOptions" [colors]="macronutrientChartColors" [legend]="lineChartLegend">
+            </canvas>
+        </div>
+        <div class="col">
+            <canvas baseChart [datasets]="calorieChartData" [chartType]="lineChartType" [labels]="lineChartLabels"
+                [options]="lineChartOptions" [colors]="calorieChartColors" [legend]="lineChartLegend">
+            </canvas>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <canvas baseChart [datasets]="reviewChartData" [chartType]="lineChartType" [labels]="lineChartLabels"
+                [options]="lineChartOptions" [colors]="reviewChartColors" [legend]="lineChartLegend">
+            </canvas>
+        </div>
+    </div>
+</div>
