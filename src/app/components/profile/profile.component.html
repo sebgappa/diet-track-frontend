@@ -22,11 +22,25 @@
           <span class="input-group-text" id="protein">
             <fa-icon (click)="enableProteinField()" [icon]="protein" size="md"></fa-icon>
           </span>
-          <input id="protein" type="number" class="form-control" formControlName="protein" placeholder="Enter"
+          <input id="protein" type="text" class="form-control" formControlName="protein" placeholder="Enter"
             aria-label="protein goal" aria-describedby="protein goal">
-          <button type="button" (click)="updateField('protein')" class="btn btn-primary" [disabled]="!proteinFieldEnabled">
+          <button type="button" (click)="updateField('protein')" class="btn btn-primary"
+            [disabled]="!proteinFieldEnabled || !goalsFormGroup.valid">
             <fa-icon [icon]="tickIcon" size="sm"></fa-icon>
           </button>
+        </div>
+      </div>
+      <div class="col-11 mt-1"
+        *ngIf="goalsForm.protein.invalid && (goalsForm.protein.dirty || goalsForm.protein.touched)">
+        <div class="col no-padding">
+          <div class="alert alert-danger">
+            <div *ngIf="goalsForm.protein.errors.maxlength">
+              Max length is 10 characters.
+            </div>
+            <div *ngIf="goalsForm.protein.errors.pattern">
+              Protein must be a number.
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-11 mt-4">
@@ -35,11 +49,24 @@
           <span class="input-group-text" id="fat">
             <fa-icon (click)="enableFatField()" [icon]="fats" size="md"></fa-icon>
           </span>
-          <input id="fat" type="number" class="form-control" formControlName="fat" placeholder="Enter"
+          <input id="fat" type="text" class="form-control" formControlName="fat" placeholder="Enter"
             aria-label="fat goal" aria-describedby="fat goal">
-          <button type="button" (click)="updateField('fat')" class="btn btn-primary" [disabled]="!fatFieldEnabled">
+          <button type="button" (click)="updateField('fat')" class="btn btn-primary"
+            [disabled]="!fatFieldEnabled || !goalsFormGroup.valid">
             <fa-icon [icon]="tickIcon" size="sm"></fa-icon>
           </button>
+        </div>
+      </div>
+      <div class="col-11 mt-1" *ngIf="goalsForm.fat.invalid && (goalsForm.fat.dirty || goalsForm.fat.touched)">
+        <div class="col no-padding">
+          <div class="alert alert-danger">
+            <div *ngIf="goalsForm.fat.errors.maxlength">
+              Max length is 10 characters.
+            </div>
+            <div *ngIf="goalsForm.fat.errors.pattern">
+              Fat must be a number.
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-11 mt-4">
@@ -48,11 +75,24 @@
           <span class="input-group-text" id="carbs">
             <fa-icon (click)="enableCarbsField()" [icon]="carbs" size="md"></fa-icon>
           </span>
-          <input id="carbs" type="number" class="form-control" formControlName="carbs" placeholder="Enter"
+          <input id="carbs" type="text" class="form-control" formControlName="carbs" placeholder="Enter"
             aria-label="carbs goal" aria-describedby="carbs goal">
-          <button type="button" (click)="updateField('carbs')" class="btn btn-primary" [disabled]="!carbFieldEnabled">
+          <button type="button" (click)="updateField('carbs')" class="btn btn-primary"
+            [disabled]="!carbFieldEnabled || !goalsFormGroup.valid">
             <fa-icon [icon]="tickIcon" size="sm"></fa-icon>
           </button>
+        </div>
+      </div>
+      <div class="col-11 mt-1" *ngIf="goalsForm.carbs.invalid && (goalsForm.carbs.dirty || goalsForm.carbs.touched)">
+        <div class="col no-padding">
+          <div class="alert alert-danger">
+            <div *ngIf="goalsForm.carbs.errors.maxlength">
+              Max length is 10 characters.
+            </div>
+            <div *ngIf="goalsForm.carbs.errors.pattern">
+              Carbs must be a number.
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-11 mt-4">
@@ -61,11 +101,25 @@
           <span class="input-group-text" id="calories">
             <fa-icon (click)="enableCalorieField()" [icon]="calories" size="md"></fa-icon>
           </span>
-          <input id="calories" type="number" class="form-control" formControlName="calories" placeholder="Enter"
+          <input id="calories" type="text" class="form-control" formControlName="calories" placeholder="Enter"
             aria-label="calories goal" aria-describedby="calories goal">
-          <button type="button" (click)="updateField('calories')" class="btn btn-primary" [disabled]="!calorieFieldEnabled">
+          <button type="button" (click)="updateField('calories')" class="btn btn-primary"
+            [disabled]="!calorieFieldEnabled || !goalsFormGroup.valid">
             <fa-icon [icon]="tickIcon" size="sm"></fa-icon>
           </button>
+        </div>
+      </div>
+      <div class="col-11 mt-1"
+        *ngIf="goalsForm.calories.invalid && (goalsForm.calories.dirty || goalsForm.calories.touched)">
+        <div class="col no-padding">
+          <div class="alert alert-danger">
+            <div *ngIf="goalsForm.calories.errors.maxlength">
+              Max length is 20 characters.
+            </div>
+            <div *ngIf="goalsForm.calories.errors.pattern">
+              Calories must be a number.
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-11 mt-4 mb-5">
@@ -76,8 +130,9 @@
           </span>
           <select class="custom-select" formControlName="review">
             <option *ngFor="let hour of hours" [ngValue]="hour">{{hour}}:00</option>
-         </select>
-          <button type="button" (click)="updateField('review')" class="btn btn-primary" [disabled]="!reviewFieldEnabled">
+          </select>
+          <button type="button" (click)="updateField('review')" class="btn btn-primary"
+            [disabled]="!reviewFieldEnabled">
             <fa-icon [icon]="tickIcon" size="sm"></fa-icon>
           </button>
         </div>
