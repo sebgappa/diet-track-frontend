@@ -1,6 +1,6 @@
 # DietTrack
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.1.
+A single page progressive web app designed for nutritional tracking through barcode scanning.
 
 ## Development server
 
