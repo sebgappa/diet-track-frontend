@@ -1,6 +1,6 @@
 {
-  "domain": "dev--rbibi38.eu.auth0.com",
-  "clientId": "nphLc6SOfiyT7uXROB0xg5pPaLLl03DJ",
+  "domain": "",
+  "clientId": "",
   "audience": "https://supermarket/",
   "apiUri": "https://localhost:5001",
   "appUri": "http://localhost:4200"
